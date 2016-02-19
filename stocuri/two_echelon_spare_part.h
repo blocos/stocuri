@@ -21,7 +21,7 @@ class TwoEchelonSparePart {
 	public:
 
 		TwoEchelonSparePart();
-		TwoEchelonSparePart(QList<QList<double>*> *m, QList<QList<double>*> *t, QList<QList<double>*> *S);
+		TwoEchelonSparePart(QList<QList<double>*> *am, QList<QList<double>*> *at, QList<QList<double>*> *aS);
 		~TwoEchelonSparePart();
 
 		void evaluate();

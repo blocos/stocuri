@@ -57,12 +57,13 @@ int main ( int argc, char *argv[] ) {
 
 
 	TwoEchelonSparePart *sChain = new TwoEchelonSparePart(m, t, S);
+	
+	
 	sChain->evaluate();
 
 
-	std::cout << "hello world" << std::endl;
 
 	
-
+	
 	return a.exec();
 }
