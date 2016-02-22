@@ -4,6 +4,7 @@
 #include "two_echelon_spare_part.h"
 
 #include <iostream>
+#include <climits>
 
 
 int main ( int argc, char *argv[] ) {
@@ -21,7 +22,7 @@ int main ( int argc, char *argv[] ) {
 	m1->append(0.1);
 
 	QList<double> *m2 = new QList<double>();
-	m2->append(0.1);
+	m2->append(0.2);
 
 	m->append(m0);
 	m->append(m1);
@@ -45,7 +46,7 @@ int main ( int argc, char *argv[] ) {
 	S0->append(2);
 
 	QList<double> *S1 = new QList<double>();
-	S1->append(1);
+	S1->append(19);
 
 	QList<double> *S2 = new QList<double>();
 	S2->append(1);
@@ -56,10 +57,15 @@ int main ( int argc, char *argv[] ) {
 
 
 
-	TwoEchelonSparePart *sChain = new TwoEchelonSparePart(m, t, S);
+	TwoEchelonSparePart *sChain = new TwoEchelonSparePart();
 	
 	
-	sChain->evaluate();
+	sChain->evaluate(m, t, S);
+	sChain->greedyProcedure(m, t, S);
+
+
+
+
 
 
 
