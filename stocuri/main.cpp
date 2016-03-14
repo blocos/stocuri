@@ -1,16 +1,42 @@
-
 #include <QtCore/QCoreApplication>
-
-#include "two_echelon_spare_part.h"
 
 #include <iostream>
 #include <climits>
+#include <cfloat>
+#include <cfenv>
+#include <exception>
+#include <cassert>
 
+#include "two_echelon_spare_part.h"
+
+#include "poisson_distribution.h"
+#include "normal_distribution.h"
+
+#pragma fenv_access (on)
 
 int main ( int argc, char *argv[] ) {
 	
-	QCoreApplication a ( argc, argv );
 
+	double lambda = 4000;
+	double x = 4000;
+	double result = 0.0;
+
+	PoissonDistribution tetrodotoxin;
+
+	try {
+		result = tetrodotoxin.probability(lambda, x);
+		std::cout << "probability by Poisson: " << result << std::endl;
+	}
+	catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+		result = tetrodotoxin.probabilityByNormalApproximation(lambda, x);
+		std::cout << "probability by Normal approximation of Poisson distribution: " << result << std::endl;
+	}
+
+
+
+	QCoreApplication a ( argc, argv );
+	/*
 	QList<QList<double>*> *m = new QList<QList<double>*>();
 	QList<QList<double>*> *t = new QList<QList<double>*>();
 	QList<QList<double>*> *S = new QList<QList<double>*>();
@@ -61,9 +87,11 @@ int main ( int argc, char *argv[] ) {
 	
 	
 	sChain->evaluate(m, t, S);
+	
+	
 	sChain->greedyProcedure(m, t, S);
 
-
+	*/
 
 
 

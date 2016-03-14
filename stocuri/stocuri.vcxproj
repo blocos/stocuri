@@ -138,9 +138,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="normal_distribution.cpp" />
+    <ClCompile Include="poisson_distribution.cpp" />
     <ClCompile Include="two_echelon_spare_part.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="normal_distribution.h" />
+    <ClInclude Include="poisson_distribution.h" />
     <ClInclude Include="two_echelon_spare_part.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
