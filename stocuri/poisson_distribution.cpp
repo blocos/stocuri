@@ -14,7 +14,6 @@ double PoissonDistribution::recursiveProbability(double lambda, double x){
 		result = 1.0;
 	}
 	else {
-		//std::cout << (lambda / x)  << std::endl;
 		result = (lambda / x) * recursiveProbability(lambda, x - 1);
 	}
 
@@ -49,7 +48,6 @@ double PoissonDistribution::probability(double lambda, double x) {
 		throw std::underflow_error("underflow in PoissonDistribution.pdf");
 	}
 
-
 	return result;
 
 } // pdf
@@ -69,4 +67,5 @@ double PoissonDistribution::probabilityByNormalApproximation(double lambda, doub
 	result = kees.probability(lambda, sqrt(lambda), x);
 
 	return result;
+
 } // probabilityByNormalApproximation

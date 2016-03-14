@@ -1,11 +1,15 @@
 #include "two_echelon_spare_part.h"
 
+// ---------------------------------------------------------------------------------------------- CONSTRUCTORS AND DESTRUCTORS --
+
 TwoEchelonSparePart::TwoEchelonSparePart() {
 }
 
 TwoEchelonSparePart::~TwoEchelonSparePart() {
 }
 
+// ------------------------------------------------------------------------------------------------------- GETTERS AND SETTERS --
+/*
 unsigned long long int TwoEchelonSparePart::factorial(unsigned long long int x) {
   return (x == 1 || x == 0) ? 1 : factorial(x - 1) * x;
 }
@@ -13,22 +17,72 @@ unsigned long long int TwoEchelonSparePart::factorial(unsigned long long int x) 
 unsigned TwoEchelonSparePart::binomialCoef(unsigned n, unsigned k) {
 	unsigned c = 1, i;
 	if (k > n - k) {
-		k = n - k;  /* take advantage of symmetry */
+		k = n - k;  // take advantage of symmetry
 	}
 	for (i = 1; i <= k; i++, n--) {
 		if (c / i > UINT_MAX / n) {
-			return 0;  /* return 0 on overflow */
+			return 0;  // return 0 on overflow 
 		}
-		c = c / i * n + c%i * n / i;  /* split c*n/i into (c/i*i + c%i)*n/i */
+		c = c / i * n + c%i * n / i;  // split c*n/i into (c/i*i + c%i)*n/i
 	}
 	return c;
 }
 
-double TwoEchelonSparePart::pPartsInRepairAtW0(int i, int x) {
-	//return pow((m->at(0)->at(i - 1) * t->at(0)->at(i - 1)), x) / factorial(x))*exp(-m->at(0)->at(i - 1)*t->at(0)->at(i - 1));
+*/
 
-	return exp(x * log((m->at(0)->at(i - 1) * t->at(0)->at(i - 1))) - lgamma(x + 1.0) - (m->at(0)->at(i - 1) * t->at(0)->at(i - 1)));
-}
+
+void TwoEchelonSparePart::setArrivalRates(QList<QList<double>*> *am) { 
+	// pre	: True
+	// post	: m <- am
+
+	m = am;
+
+} // setArrivalRates
+
+void TwoEchelonSparePart::setLeadTimes(QList<QList<double>*> *at){}
+void TwoEchelonSparePart::setBasestockLevels(QList<QList<double>*> *aS){}
+
+
+
+
+// ----------------------------------------------------------------------------------------------------------- PRIVATE METHODS --
+
+double TwoEchelonSparePart::pPartsInRepairAtW0(int item, int x) {
+	// pre	: 1 <= item <= cardinalityI && x >= 0
+	// ret	: P[X = x], X~Poisson(lambda) with lambda = arrival rate * lead time for item
+
+	assert(1 <= item <= cardinalityI);
+	assert(x >= 0);
+
+	// pre-conditions satisfied
+
+	double result = 0.0;
+
+	// determine mean for Poisson distribution
+	double lambda = m->at(0)->at(item - 1) * t->at(0)->at(item - 1);
+
+	// initialize Poisson distribution
+	PoissonDistribution tetrodotoxin;
+
+	try {
+		// try regular calculation
+		result = tetrodotoxin.probability(lambda, x);
+	} catch (std::exception& me) {
+		std::cout << me.what() << std::endl;
+
+		// catched me, try calculation with Normal approximation
+		result = tetrodotoxin.probabilityByNormalApproximation(lambda, x);
+	} // tryCatchMe
+
+	return result;
+
+} // pPartsInRepairAtW0
+
+
+
+
+
+/*
 
 double TwoEchelonSparePart::pPartsOnHandAtW0(int i, int x) {
 	if (x == 0) {
@@ -328,3 +382,5 @@ void TwoEchelonSparePart::greedyProcedure(QList<QList<double>*> *am, QList<QList
 	}
 
 } // greedyProcedure
+
+*/

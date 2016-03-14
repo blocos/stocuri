@@ -6,6 +6,8 @@
 
 #include <QtCore>
 
+#include "poisson_distribution.h"
+
 class TwoEchelonSparePart {
 	private:	
 
@@ -13,11 +15,17 @@ class TwoEchelonSparePart {
 		QList<QList<double>*> *t;
 		QList<QList<double>*> *S;
 
-		unsigned long long int factorial(unsigned long long int x);
-		unsigned binomialCoef(unsigned n, unsigned k);
+		int cardinalityI;
+		int cardinalityJ;
+		int cardinalityJloc;
+
+		//unsigned long long int factorial(unsigned long long int x);
+		//unsigned binomialCoef(unsigned n, unsigned k);
 
 		double pPartsInRepairAtW0(int i, int x);
-		double pPartsOnHandAtW0(int i, int x);
+		
+		
+		/*double pPartsOnHandAtW0(int i, int x);
 		double pPartsOnBackorderAtW0(int i, int x);
 		double pPartsOnBackorderAtW0FromWJ(int i, int j, int x);
 
@@ -38,16 +46,24 @@ class TwoEchelonSparePart {
 		void clearGamma(QList<QList<double>*> *gamma, int cardyI, int cardyJ);
 		void clearDelta(QList<QList<double>*> *delta, int cardyI, int cardyJ);
 
-		bool stopingCriterionMet();
+		bool stopingCriterionMet();*/
 
 	public:
 
 		TwoEchelonSparePart();
 		TwoEchelonSparePart(QList<QList<double>*> *am, QList<QList<double>*> *at, QList<QList<double>*> *aS);
+		//TwoEchelonSparePart(QList<QList<double>*> *am, QList<QList<double>*> *at, QList<QList<double>*> *aS);
 		~TwoEchelonSparePart();
 
-		void evaluate(QList<QList<double>*> *am, QList<QList<double>*> *at, QList<QList<double>*> *aS);
-		void greedyProcedure(QList<QList<double>*> *am, QList<QList<double>*> *at, QList<QList<double>*> *aS);
+
+
+		void setArrivalRates(QList<QList<double>*> *am);
+		void setLeadTimes(QList<QList<double>*> *at);
+		void setBasestockLevels(QList<QList<double>*> *aS);
+
+
+		void evaluate();
+		void greedyProcedure();
 
 };
 

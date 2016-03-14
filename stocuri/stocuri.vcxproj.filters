@@ -33,6 +33,12 @@
     <ClCompile Include="normal_distribution.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="supply_chain_network.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="two_echelon_distribution_network.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="two_echelon_spare_part.h">
@@ -42,6 +48,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="normal_distribution.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="supply_chain_network.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="two_echelon_distribution_network.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
