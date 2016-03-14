@@ -46,7 +46,7 @@ int main ( int argc, char *argv[] ) {
 	S0->append(2);
 
 	QList<double> *S1 = new QList<double>();
-	S1->append(19);
+	S1->append(1);
 
 	QList<double> *S2 = new QList<double>();
 	S2->append(1);
@@ -61,7 +61,7 @@ int main ( int argc, char *argv[] ) {
 	
 	
 	sChain->evaluate(m, t, S);
-	sChain->greedyProcedure(m, t, S);
+//	sChain->greedyProcedure(m, t, S);
 
 
 
