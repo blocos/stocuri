@@ -6,26 +6,37 @@ TwoEchelonDistributionNetwork::TwoEchelonDistributionNetwork() {
 }
 
 
-TwoEchelonDistributionNetwork::TwoEchelonDistributionNetwork(int nWarehouses, int nProducts) {
+TwoEchelonDistributionNetwork::TwoEchelonDistributionNetwork(int nRetailers, int nProducts) {
 	// pre	: nWarehouse > 0 && nProducts > 0
-	// post	: 
+	// post	: arrivalRates = leadTimes = baseStockLevels = [ [ 0, ..., 0 ], ..., [ 0, ..., 0 ] ]
 
-	assert(nWarehouses > 0);
+	assert(nRetailers > 0);
 	assert(nProducts > 0);
 
 	// pre-conditions satisfied
 
-	QList<QList<double>*> *arrivalRates = new QList<QList<double>*>();
+	this->nRetailers = nRetailers;
+	this->nProducts = nProducts;
 
-	for (int j = 0; j < nWarehouses; j++){
+	arrivalRates = new QList<QList<double>*>();
+	leadTimes = new QList<QList<double>*>();
+	baseStockLevels = new QList<QList<double>*>();
 
-		QList<double>* products = new QList<double>();
+	for (int j = 0; j < nRetailers; j++){
+
+		QList<double>* arrivalRatesAtJ = new QList<double>();
+		QList<double>* leadTimesAtJ = new QList<double>();
+		QList<double>* baseStockLevelsAtJ = new QList<double>();
 
 		for (int i = 0; i < nProducts; i++){
-			products->append(0);
+			arrivalRatesAtJ->append(0);
+			leadTimesAtJ->append(0);
+			baseStockLevelsAtJ->append(0);
 		} // for
 
-		arrivalRates->append(products);
+		arrivalRates->append(arrivalRatesAtJ);
+		leadTimes->append(leadTimesAtJ);
+		baseStockLevels->append(baseStockLevelsAtJ);
 
 	} // for
 
@@ -33,42 +44,68 @@ TwoEchelonDistributionNetwork::TwoEchelonDistributionNetwork(int nWarehouses, in
 
 
 TwoEchelonDistributionNetwork::~TwoEchelonDistributionNetwork() {
+
+	for (int j = 0; j < nRetailers; j++) {
+		delete[] arrivalRates;
+	}
 }
 
 // ------------------------------------------------------------------------------------------------------- GETTERS AND SETTERS --
 
-void TwoEchelonDistributionNetwork::setArrivalRateAtWarehouse(int product){
+void TwoEchelonDistributionNetwork::setArrivalRateAtWarehouse(int product, double arrivalRate) {
+	(*(*arrivalRates)[0])[product - 1] = arrivalRate;
 }
 
-void TwoEchelonDistributionNetwork::getArrivalRateAtWarehouse(int product){
+double TwoEchelonDistributionNetwork::getArrivalRateAtWarehouse(int product) {
+	return arrivalRates->at(0)->at(product - 1);
 }
 
-void TwoEchelonDistributionNetwork::setLeadTimeToWarehouse(int product){
+void TwoEchelonDistributionNetwork::setLeadTimeToWarehouse(int product, double leadTime) {
+	(*(*leadTimes)[0])[product - 1] = leadTime;
 }
 
-void TwoEchelonDistributionNetwork::getLeadTimeToWarehouse(int product){
+double TwoEchelonDistributionNetwork::getLeadTimeToWarehouse(int product) {
+	return leadTimes->at(0)->at(product - 1);
 }
 
-void TwoEchelonDistributionNetwork::setBaseStockLevelAtWarehouse(int product){
+void TwoEchelonDistributionNetwork::setBaseStockLevelAtWarehouse(int product, double baseStockLevel) {
+	(*(*baseStockLevels)[0])[product - 1] = baseStockLevel;
 }
 
-void TwoEchelonDistributionNetwork::setBaseStockLevelAtWarehouse(int product){
+double TwoEchelonDistributionNetwork::getBaseStockLevelAtWarehouse(int product) {
+	return baseStockLevels->at(0)->at(product - 1);
 }
 
-void TwoEchelonDistributionNetwork::setArrivalRateAtWarehouse(int retailer, int product){
+void TwoEchelonDistributionNetwork::setArrivalRateAtRetailer(int product, int retailer, double arrivalRate) {
+	(*(*arrivalRates)[0])[product - 1] = arrivalRate;
 }
 
-void TwoEchelonDistributionNetwork::getArrivalRateAtWarehouse(int retailer, int product){
+double TwoEchelonDistributionNetwork::getArrivalRateAtRetailer(int product, int retailer) {
+	return arrivalRates->at(retailer)->at(product - 1);
 }
 
-void TwoEchelonDistributionNetwork::setLeadTimeToRetailer(int retailer, int product){
+void TwoEchelonDistributionNetwork::setLeadTimeToRetailer(int product, int retailer, double leadTime) {
+	(*(*leadTimes)[0])[product - 1] = leadTime;
 }
 
-void TwoEchelonDistributionNetwork::getLeadTimeToWarehouse(int retailer, int product){
+double TwoEchelonDistributionNetwork::getLeadTimeToRetailer(int product, int retailer) {
+	return leadTimes->at(retailer)->at(product - 1);
 }
 
-void TwoEchelonDistributionNetwork::setBaseStockLevelAtRetailer(int retailer, int product){
+void TwoEchelonDistributionNetwork::setBaseStockLevelAtRetailer(int product, int retailer, double baseStockLevel) {
+	(*(*baseStockLevels)[retailer])[product - 1] = baseStockLevel;
 }
 
-void TwoEchelonDistributionNetwork::setBaseStockLevelAtWarehouse(int retailer, int product){
+double TwoEchelonDistributionNetwork::getBaseStockLevelAtRetailer(int product, int retailer) {
+	return baseStockLevels->at(retailer)->at(product - 1);
+}
+
+// ------------------------------------------------------------------------------------------------------------ PUBLIC METHODS --
+
+int TwoEchelonDistributionNetwork::sizeProducts() {
+	return nProducts;
+}
+
+int TwoEchelonDistributionNetwork::sizeRetailers() {
+	return nRetailers;
 }

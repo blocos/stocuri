@@ -15,7 +15,12 @@ class TwoEchelonDistributionNetwork : SupplyChainNetwork {
 		QList<QList<double>*> *S;*/
 
 	private:
-		QList< QList< double > *> *arrivalRates;
+		QList<QList<double>*> *arrivalRates;
+		QList<QList<double>*> *leadTimes;
+		QList<QList<double>*> *baseStockLevels;
+
+		int nRetailers;
+		int nProducts;
 
 	public:
 		TwoEchelonDistributionNetwork();
@@ -23,28 +28,28 @@ class TwoEchelonDistributionNetwork : SupplyChainNetwork {
 		~TwoEchelonDistributionNetwork();
 
 		// warehouse related 
-		void setArrivalRateAtWarehouse(int product);
-		void getArrivalRateAtWarehouse(int product);
+		void setArrivalRateAtWarehouse(int product, double arrivalRate);
+		double getArrivalRateAtWarehouse(int product);
 
-		void setLeadTimeToWarehouse(int product);
-		void getLeadTimeToWarehouse(int product);
+		void setLeadTimeToWarehouse(int product, double leadTime);
+		double getLeadTimeToWarehouse(int product);
 
-		void setBaseStockLevelAtWarehouse(int product);
-		void setBaseStockLevelAtWarehouse(int product);
+		void setBaseStockLevelAtWarehouse(int product, double baseStockLevel);
+		double getBaseStockLevelAtWarehouse(int product);
 
 		// retailer related
-		void setArrivalRateAtWarehouse(int retailer, int product);
-		void getArrivalRateAtWarehouse(int retailer, int product);
+		void setArrivalRateAtRetailer(int product, int retailer, double arrivalRate);
+		double getArrivalRateAtRetailer(int product, int retailer);
 
-		void setLeadTimeToRetailer(int retailer, int product);
-		void getLeadTimeToWarehouse(int retailer, int product);
+		void setLeadTimeToRetailer(int product, int retailer, double leadTime);
+		double getLeadTimeToRetailer(int product, int retailer);
 
-		void setBaseStockLevelAtRetailer(int retailer, int product);
-		void setBaseStockLevelAtWarehouse(int retailer, int product);
+		void setBaseStockLevelAtRetailer(int product, int retailer, double baseStockLevel);
+		double getBaseStockLevelAtRetailer(int product, int retailer);
 
 
-		void sizeRetailers();
-		void sizeProducts();
+		int sizeRetailers();
+		int sizeProducts();
 
 
 };

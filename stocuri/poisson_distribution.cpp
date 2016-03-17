@@ -21,8 +21,8 @@ double PoissonDistribution::recursiveProbability(double lambda, double x){
 }
 
 double PoissonDistribution::probability(double lambda, double x) {
-	// pre	: lambda >= 0 && x >= 0
-	// ret	: exception || P[X = x], given X~Poisson(lambda)
+	// pre	: lambda >= 0 /\ x >= 0
+	// ret	: exception \/ P[X = x], given X~Poisson(lambda)
 
 	assert(lambda >= 0);
 	assert(x >= 0);

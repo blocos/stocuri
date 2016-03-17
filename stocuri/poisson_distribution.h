@@ -20,7 +20,6 @@ class PoissonDistribution {
 		PoissonDistribution();
 		~PoissonDistribution();
 
-
 		double probability(double lambda, double x);
 
 		double probabilityBySterlingApproximation(double lambda, double x);

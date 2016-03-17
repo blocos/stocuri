@@ -7,36 +7,26 @@
 #include <exception>
 #include <cassert>
 
-#include "two_echelon_spare_part.h"
+#include "greedy_algorithm.h"
 
 #include "poisson_distribution.h"
 #include "normal_distribution.h"
 
+// ensure access to floating point operations registers, needed to detect underflows
 #pragma fenv_access (on)
 
 int main ( int argc, char *argv[] ) {
 	
-
-	double lambda = 500000;
-	double x = 500000;
-	double result = 0.0;
-
-	PoissonDistribution tetrodotoxin;
-
-	try {
-		result = tetrodotoxin.probability(lambda, x);
-		std::cout << "probability by Poisson: " << result << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
-		result = tetrodotoxin.probabilityByNormalApproximation(lambda, x);
-		std::cout << "probability by Normal approximation of Poisson distribution: " << result << std::endl;
-	}
-
-
-
 	QCoreApplication a ( argc, argv );
-	///*
+
+
+	
+
+	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(2, 1);
+
+	GreedyAlgorithm *gerrit = new GreedyAlgorithm();
+	gerrit->optimizeNetwork(network);
+	/*
 	QList<QList<double>*> *m = new QList<QList<double>*>();
 	QList<QList<double>*> *t = new QList<QList<double>*>();
 	QList<QList<double>*> *S = new QList<QList<double>*>();
@@ -82,22 +72,7 @@ int main ( int argc, char *argv[] ) {
 	S->append(S2);
 
 
-
-	TwoEchelonSparePart *sChain = new TwoEchelonSparePart();
-	
-	sChain->setArrivalRates(m);
-	sChain->setLeadTimes(t);
-	sChain->setBasestockLevels(S);
-
-
-	//sChain->evaluate(m, t, S);
-
-	
-	//sChain->greedyProcedure(m, t, S);
-
-
-
-
+	*/
 
 
 	

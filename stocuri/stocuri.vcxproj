@@ -142,14 +142,14 @@
     <ClCompile Include="poisson_distribution.cpp" />
     <ClCompile Include="supply_chain_network.cpp" />
     <ClCompile Include="two_echelon_distribution_network.cpp" />
-    <ClCompile Include="two_echelon_spare_part.cpp" />
+    <ClCompile Include="greedy_algorithm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="normal_distribution.h" />
     <ClInclude Include="poisson_distribution.h" />
     <ClInclude Include="supply_chain_network.h" />
     <ClInclude Include="two_echelon_distribution_network.h" />
-    <ClInclude Include="two_echelon_spare_part.h" />
+    <ClInclude Include="greedy_algorithm.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
