@@ -9,15 +9,11 @@
 
 class TwoEchelonDistributionNetwork : SupplyChainNetwork {
 
-	/*private:
-		QList<QList<double>*> *m;
-		QList<QList<double>*> *t;
-		QList<QList<double>*> *S;*/
-
 	private:
 		QList<QList<double>*> *arrivalRates;
 		QList<QList<double>*> *leadTimes;
 		QList<QList<double>*> *baseStockLevels;
+		QList<QList<double>*> *inventoryHoldingCosts;
 
 		int nRetailers;
 		int nProducts;
@@ -37,6 +33,9 @@ class TwoEchelonDistributionNetwork : SupplyChainNetwork {
 		void setBaseStockLevelAtWarehouse(int product, double baseStockLevel);
 		double getBaseStockLevelAtWarehouse(int product);
 
+		void setInventoryHoldingCostAtWarehouse(int product, double inventoryHoldingCost);
+		double getInventoryHoldingCostAtWarehouse(int product);
+
 		// retailer related
 		void setArrivalRateAtRetailer(int product, int retailer, double arrivalRate);
 		double getArrivalRateAtRetailer(int product, int retailer);
@@ -47,7 +46,10 @@ class TwoEchelonDistributionNetwork : SupplyChainNetwork {
 		void setBaseStockLevelAtRetailer(int product, int retailer, double baseStockLevel);
 		double getBaseStockLevelAtRetailer(int product, int retailer);
 
+		void setInventoryHoldingCostAtRetailer(int product, int retailer, double inventoryHoldingCost);
+		double getInventoryHoldingCostAtRetailer(int product, int retailer);
 
+		// general
 		int sizeRetailers();
 		int sizeProducts();
 

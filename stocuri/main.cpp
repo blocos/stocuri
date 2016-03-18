@@ -12,6 +12,10 @@
 #include "poisson_distribution.h"
 #include "normal_distribution.h"
 
+#include "BasicExcel.hpp"
+
+using namespace YExcel;
+
 // ensure access to floating point operations registers, needed to detect underflows
 #pragma fenv_access (on)
 
@@ -19,63 +23,98 @@ int main ( int argc, char *argv[] ) {
 	
 	QCoreApplication a ( argc, argv );
 
-
+	QList<double> *targetAggregateFillRates = new QList<double>();
+	targetAggregateFillRates->append(0.95);
+	targetAggregateFillRates->append(0.95);
 	
-
+	// retailers = 2, products = 1
 	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(2, 1);
 
+	// set arrival rates
+	network->setArrivalRateAtWarehouse(1, 100); 
+	network->setArrivalRateAtRetailer(1, 1, 30);
+	network->setArrivalRateAtRetailer(1, 2, 70);
+	
+	// set lead times
+	network->setLeadTimeToWarehouse(1, 4);
+	network->setLeadTimeToRetailer(1, 1, 1);
+	network->setLeadTimeToRetailer(1, 2, 1);
+
+	// set inventory holding cost
+	network->setInventoryHoldingCostAtWarehouse(1, 1);
+	network->setInventoryHoldingCostAtRetailer(1, 1, 1);
+	network->setInventoryHoldingCostAtRetailer(1, 1, 2);
+
+
+	// ----------------------------------------------------------------------------------------------------------- optimizatia --
+
 	GreedyAlgorithm *gerrit = new GreedyAlgorithm();
-	gerrit->optimizeNetwork(network);
-	/*
-	QList<QList<double>*> *m = new QList<QList<double>*>();
-	QList<QList<double>*> *t = new QList<QList<double>*>();
-	QList<QList<double>*> *S = new QList<QList<double>*>();
-
-	QList<double> *m0 = new QList<double>();
-	m0->append(0.3);
-
-	QList<double> *m1 = new QList<double>();
-	m1->append(0.1);
-
-	QList<double> *m2 = new QList<double>();
-	m2->append(0.2);
-
-	m->append(m0);
-	m->append(m1);
-	m->append(m2);
+	int result = gerrit->optimizeNetwork(network, targetAggregateFillRates);
 
 
-	QList<double> *t0 = new QList<double>();
-	t0->append(4);
+	// ------------------------------------------------------------------------------------------------------------- evaluation --
 
-	QList<double> *t1 = new QList<double>();
-	t1->append(1);
+	// set base-stock levels
+	//network->setBaseStockLevelAtWarehouse(1, 2);
+	//network->setBaseStockLevelAtRetailer(1, 1, 1);
+	//network->setBaseStockLevelAtRetailer(1, 2, 1);
 
-	QList<double> *t2 = new QList<double>();
-	t2->append(1);
+	QList<double> EBOj = gerrit->evaluateNetwork(network);
 
-	t->append(t0);
-	t->append(t1);
-	t->append(t2);
+	for (int j = 1; j <= network->sizeRetailers(); j++){
+		double Mj = 0.0;
+		for (int i = 1; i <= network->sizeProducts(); i++){
+			Mj = Mj + network->getArrivalRateAtRetailer(i, j);
+		}
+		std::cout << "beta star for j=" << j << " equals: " << (1 - (EBOj[j - 1] / Mj)) << std::endl;
+	} // for
 
-	QList<double> *S0 = new QList<double>();
-	S0->append(2);
+	 // ------------------------------------------------------------------------------------------------------- write to excel --
 
-	QList<double> *S1 = new QList<double>();
-	S1->append(1);
+	BasicExcel e;
+	e.New(1);
 
-	QList<double> *S2 = new QList<double>();
-	S2->append(1);
+	BasicExcelWorksheet* sheet = e.GetWorksheet("Sheet1");
+	BasicExcelCell* cell;
 
-	S->append(S0);
-	S->append(S1);
-	S->append(S2);
+	if (sheet) {
 
+		int row = 1;
+		int column = 1;
 
-	*/
+		for (int j = 0; j <= network->sizeRetailers(); j++){
 
+			cell = sheet->Cell(0, column); // location
+			cell->Set((int)j);
 
+			for (int i = 1; i <= network->sizeProducts(); i++) {
+				
+				cell = sheet->Cell(row, 0); // product
+				cell->Set((int)i);
+
+				cell = sheet->Cell(row, column); // base-stock level
+				
+				if (j == 0) {
+					cell->Set((int)network->getBaseStockLevelAtWarehouse(i));
+				} else {
+					cell->Set((int)network->getBaseStockLevelAtRetailer(i, j));
+				} // eif
+
+				row = row + 1;
+
+			} // for
+
+			row = 1;
+			column = column + 1;
+
+		} // for
+
+	} // if
 	
-	
+	e.SaveAs("base-stock-levels.xls");
+
+	std::cout << "wrote results to Excel" << std::endl;
+
 	return a.exec();
-}
+
+} // main

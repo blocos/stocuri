@@ -9,29 +9,8 @@ GreedyAlgorithm::~GreedyAlgorithm() {
 }
 
 // ------------------------------------------------------------------------------------------------------- GETTERS AND SETTERS --
-/*
-unsigned long long int TwoEchelonSparePart::factorial(unsigned long long int x) {
-  return (x == 1 || x == 0) ? 1 : factorial(x - 1) * x;
-}
 
-unsigned TwoEchelonSparePart::binomialCoef(unsigned n, unsigned k) {
-	unsigned c = 1, i;
-	if (k > n - k) {
-		k = n - k;  // take advantage of symmetry
-	}
-	for (i = 1; i <= k; i++, n--) {
-		if (c / i > UINT_MAX / n) {
-			return 0;  // return 0 on overflow 
-		}
-		c = c / i * n + c%i * n / i;  // split c*n/i into (c/i*i + c%i)*n/i
-	}
-	return c;
-}
-
-*/
-
-
-
+// none
 
 
 // ---------------------------------------------------------------------------------------------- PRIVATE METHODS -- warehouse --
@@ -56,9 +35,12 @@ double GreedyAlgorithm::pPartsOnOrderAtWarehouse(int product, int x) {
 
 	try {
 		// try regular calculation
-		result = tetrodotoxin.probability(lambda, x);
+		result = tetrodotoxin.probabilityBySterlingApproximation(lambda, x);
 	} catch (std::exception& me) {
 		std::cout << me.what() << std::endl;
+
+		std::cout << lambda << std::endl;
+		std::cout << x << std::endl;
 
 		// catched me, try calculation with Normal approximation
 		result = tetrodotoxin.probabilityByNormalApproximation(lambda, x);
@@ -173,33 +155,33 @@ double GreedyAlgorithm::pPartsOnBackorderAtWarehouseFromRetailer(int product, in
 
 	double result = 0;
 
-
-	/*
-	double prev = 0;
+	double mi0 = network->getArrivalRateAtWarehouse(product);
+	double mij = network->getArrivalRateAtRetailer(product, retailer);
+	
+	double previous = 0;
 
 	int y = x;
 
-	// not safe!
-
 	while (true) {
-		double term1 = binomialCoef(y, x);
-		double term2 = pow(m->at(j)->at(i - 1) / m->at(0)->at(i - 1), x);
-		double term3 = pow(1 - (m->at(j)->at(i - 1) / m->at(0)->at(i - 1)), y - x);
-		double term4 = pPartsOnBackorderAtW0(i, y);
 
-		double value = term1 * term2 * term3 * term4;
+		double xOverY = binomialCoefficient(y, x);
+		double powerX = pow(mij / mi0, x);
+		double powerYminX = pow(1 - (mij / mi0), y - x);
+		double p = pPartsOnBackorderAtWarehouse(product, y);
+
+		double value = xOverY * powerX * powerYminX * p;
 
 		result = result + value;
 
 		y = y + 1;
 
-		if (result - prev < 0.0000001) {
+		if (result - previous < 0.0000001) {
 			break;
-		}
+		} // if
 
-		prev = result;
+		previous = result;
 
-	}*/
+	} // while
 
 	return result;
 
@@ -259,17 +241,19 @@ double GreedyAlgorithm::pPartsOnOrderAtRetailer(int product, int retailer, int x
 
 		try {
 			// try regular calculation
-			p1 = tetrodotoxin.probability(lambda, x);
+			p1 = tetrodotoxin.probability(lambda, x - k);
 		}
 		catch (std::exception& me) {
 			std::cout << me.what() << std::endl;
 
+			std::cout << lambda << std::endl;
+
 			// catched me, try calculation with Normal approximation
-			p1 = tetrodotoxin.probabilityByNormalApproximation(lambda, x);
+			p1 = tetrodotoxin.probabilityByNormalApproximation(lambda, x - k);
 		} // tryCatchMe
 
 		// 2. P[BOj = x - k]
-		double p2 = pPartsOnBackorderAtWarehouseFromRetailer(product, retailer, x - k);
+		double p2 = pPartsOnBackorderAtWarehouseFromRetailer(product, retailer, k);
 
 		result = result + (p1 * p2);
 	}
@@ -277,6 +261,40 @@ double GreedyAlgorithm::pPartsOnOrderAtRetailer(int product, int retailer, int x
 	return result;
 
 } // pPartsOnOrderAtRetailer
+
+
+double GreedyAlgorithm::pPartsOnOrderAtRetailer2Moment(int product, int retailer, int x) {
+	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
+	// ret	: P[Xij(Si0)=x] sim P[XijNB(Si0)=x]
+
+	assert(1 <= product);
+	assert(product <= network->sizeProducts());
+	assert(1 <= retailer);
+	assert(retailer <= network->sizeRetailers());
+	assert(x >= 0);
+
+	// pre-conditions satisfied
+
+	double result = 0.0;
+
+	double mij = network->getArrivalRateAtRetailer(product, retailer);
+	double Lij = network->getLeadTimeToRetailer(product, retailer);
+	double EBOj = ePartsOnBackorderAtWarehouseFromRetailer(product, retailer);
+
+	double VarBOj = 0.0;
+
+	double EXij = mij*Lij + EBOj;
+	double VarXij = mij*Lij + VarBOj;
+
+	double p = ( VarXij - EXij ) / VarXij;
+	double k = ((1 - p) / p)*EXij;
+
+	NegativeBinomialDistribution grumpy;
+	result = grumpy.probability(p, k, x);
+
+	return result;
+
+} // pPartsOnOrderAtRetailer2Moment
 
 
 double GreedyAlgorithm::pPartsOnHandAtRetailer(int product, int retailer, int x){
@@ -327,194 +345,312 @@ double GreedyAlgorithm::pPartsOnBackorderAtRetailer(int product, int retailer, i
 } // pPartsOnBackorderAtRetailer
 
 
-/*
+double GreedyAlgorithm::ePartsOnHandAtRetailer(int product, int retailer) {
+	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc|
+	// ret	: E[BOij(Si0, Sij)]
 
+	assert(1 <= product);
+	assert(product <= network->sizeProducts());
+	assert(1 <= retailer);
+	assert(retailer <= network->sizeRetailers());
 
+	// pre-conditions satisfied
 
-
-double GreedyAlgorithm::ePartsOnBackorderAtWJ(int i, int j){
 	double result = 0.0;
 
-	result = (m->at(j)->at(i - 1)*t->at(j)->at(i - 1)) + ePartsOnBackorderAtW0FromWJ(i, j) - S->at(j)->at(i-1) + ePartsOnHandAtWJ(i, j);
+	double Sij = network->getBaseStockLevelAtRetailer(product, retailer);
+
+	for (int x = 0; x <= Sij; x++){
+		result = result + ((Sij - x)*pPartsOnOrderAtRetailer(product, retailer, x));
+	} // for
 
 	return result;
-}
 
-void GreedyAlgorithm::evaluate(QList<QList<double>*> *am, QList<QList<double>*> *at, QList<QList<double>*> *aS){
-	m = am;
-	t = at;
-	S = aS; 
-	
-	std::cout << "evaluate function invoked" << std::endl;
+} // ePartsOnHandAtRetailer
 
-	for (int x = 0; x <= 3; x++) {
-		std::cout << pPartsOnBackorderAtWJ(1, 1, x) << std::endl;
-	}
 
-	//std::cout << pPartsOnBackorderAtW0FromWJ(1, 1, 0) << std::endl;
+double GreedyAlgorithm::ePartsOnBackorderAtRetailer(int product, int retailer){
+	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc|
+	// ret	: E[BOij(Si0, Sij)]
 
-	std::cout << (m->at(1)->at(0) * t->at(1)->at(0)) << std::endl;
+	assert(1 <= product);
+	assert(product <= network->sizeProducts());
+	assert(1 <= retailer);
+	assert(retailer <= network->sizeRetailers());
 
-	std::cout << "expected backorders at location 1: " << ePartsOnBackorderAtWJ(1, 1) << std::endl;
-	
-}
+	// pre-conditions satisfied
 
-void GreedyAlgorithm::initializeGamma(QList<QList<double>*> *gamma, int cardyI, int cardyJ) {
-	for (int j = 0; j < cardyJ; ++j) {
-		QList<double> *tmp = new QList<double>();
-		for (int i = 0; i < cardyI; ++i){
-			tmp->append(0);
-		} // for
-		gamma->append(tmp);
-	} // for
-} // initializeGamma
+	double result = 0.0;
 
-void GreedyAlgorithm::initializeDelta(QList<QList<double>*> *delta, int cardyI, int cardyJ) {
-	for (int j = 0; j < cardyJ; ++j) {
-		QList<double> *tmp = new QList<double>();
-		for (int i = 0; i < cardyI; ++i){
-			tmp->append(0);
-		} // for
-		delta->append(tmp);
-	} // for
-} // initializeDelta
+	double mij = network->getArrivalRateAtRetailer(product, retailer);
+	double Lij = network->getLeadTimeToRetailer(product, retailer);
+	double Sij = network->getBaseStockLevelAtRetailer(product, retailer);
 
-void GreedyAlgorithm::clearS(QList<QList<double>*> *aS) {
-	for (int j = 0; j < aS->size(); ++j) {
-		for (int i = 0; i < aS->at(j)->size(); ++i){
-			(*(*aS)[j])[i] = 0;
-		} // for
-	} // for
-} // clearS
+	result = (mij*Lij) - Sij + ePartsOnBackorderAtWarehouseFromRetailer(product, retailer) + ePartsOnHandAtRetailer(product, retailer);
 
-void GreedyAlgorithm::clearGamma(QList<QList<double>*> *gamma, int cardyI, int cardyJ) {
-	for (int j = 0; j < cardyJ; ++j) {
-		for (int i = 0; i < cardyI; ++i){
-			(*(*gamma)[j])[i] = 0;
-		} // for
-	} // for
-} // initializeGamma
-
-void GreedyAlgorithm::clearDelta(QList<QList<double>*> *delta, int cardyI, int cardyJ) {
-	for (int j = 0; j < cardyJ; ++j) {
-		for (int i = 0; i < cardyI; ++i){
-			(*(*delta)[j])[i] = 0;
-		} // for
-	} // for
-} // initializeDelta
-
-bool GreedyAlgorithm::stopingCriterionMet(){
-	bool result = false;
 	return result;
-}
 
-void GreedyAlgorithm::greedyProcedure(QList<QList<double>*> *am, QList<QList<double>*> *at, QList<QList<double>*> *aS){
-	
-	m = am;
-	t = at;
-	S = aS;
-
-	int cardyJ = aS->size();
-	int cardyJlocal = aS->size() - 1;
-	int cardyI = aS->at(0)->size();
-
-	std::cout << cardyJ << std::endl;
-	std::cout << cardyJlocal << std::endl;
-
-	// Greedy Algorithm according to Basten and Van Houtum (2014)
-
-	// step 1
-
-	clearS(S);
-
-	int costS = 0;
-
-	QList<double> EBOj = QList<double>();
-
-	for (int j = 0; j < cardyJlocal; ++j){
-		EBOj.append(0);
-		std::cout << "location j=" << j + 1 << " " << EBOj[j] << std::endl;
-
-		for (int i = 0; i < cardyI; ++i){
-			std::cout << "item " << i + 1 << std::endl;
-			EBOj[j] = EBOj[j] + m->at(j+1)->at(i) * (t->at(0)->at(i) + t->at(j+1)->at(i));
-		} // for
-
-		std::cout << "expected backorders at location j=" << j + 1 << " equals " << EBOj[j] << std::endl;
-
-	} // for
-	
-
-	// step 2
-
-	QList<QList<double>*> *gamma = new QList<QList<double>*>();
-	initializeGamma(gamma, cardyI, cardyJ);
-
-	QList<QList<double>*> *delta = new QList<QList<double>*>();
-	initializeDelta(delta, cardyI, cardyJ);
-	
-	while (!stopingCriterionMet()){
-		
-		// calculate EBO for each location J-local
-
-		for (int j = 0; j < cardyJlocal; ++j){
-			EBOj[j] = 0;
-			
-			for (int i = 0; i < cardyI; ++i){
-				EBOj[j] = EBOj[j] + ePartsOnBackorderAtWJ(i+1, j+1);
-			}
-		}
-
-
-		// for all locations
-		for (int j = 0; j < cardyJ; ++j) {
-			// for all items
-			for (int i = 0; i < cardyI; ++i){
-				
-				for (int l = 0; l < cardyJlocal; ++l) {
-					
-					double term1 = ((EBOj[l] / m->at(l + 1)->at(i)) - 0.05 <= 0) ? 0.05 : (EBOj[l] / m->at(l + 1)->at(i)) - 0.05;
-					
-					// increase S(i,j)
-					(*(*S)[j])[i] = (*(*S)[j])[i] + 1;
-					
-					double EBOSpe = 0.0;
-					for (int v = 0; v < cardyI; ++v){
-						EBOSpe = EBOSpe + ePartsOnBackorderAtWJ(v+1, l + 1);
-					}
-
-					double term2 = ((EBOSpe / m->at(l + 1)->at(i)) - 0.05 <= 0) ? 0.05 : (EBOSpe / m->at(l + 1)->at(i)) - 0.05;
-
-					// decrease S(i,j)
-					(*(*S)[j])[i] = (*(*S)[j])[i] - 1;
-
-
-					(*(*delta)[j])[i] = (*(*delta)[j])[i] + ( term1 - term2 );
-
-				} // for
-
-				std::cout << "delta for (" << i << "," << j << ")" << (*(*delta)[j])[i] << std::endl;
-
-			} // for
-		} // for
-
-
-		break;
-
-		
-	}
-
-} // greedyProcedure
-
-*/
+} // ePartsOnBackorderAtWarehouse
 
 
 // ------------------------------------------------------------------------------------------------------------ PUBLIC METHODS --
 
-void GreedyAlgorithm::evaluateNetwork(TwoEchelonDistributionNetwork *network) {
+QList<double> GreedyAlgorithm::evaluateNetwork(TwoEchelonDistributionNetwork *network) {
+	// pre	: True
+	// post	: [EBO1, EBO2, ..., EBOj], 1 <= j <= |Jloc|
 
-}
+	// pre-conditions satisfied
 
-void GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network) {
 	this->network = network;
+
+	QList<double> EBOj = QList<double>();
+
+	for (int j = 1; j <= network->sizeRetailers(); j++) {
+		EBOj.append(0);
+		for (int i = 1; i <= network->sizeProducts(); i++) {
+			EBOj[j - 1] = EBOj[j - 1] + ePartsOnBackorderAtRetailer(i, j);
+		} // for
+	} // for
+
+	return EBOj;
+
+} // evaluateNetwork
+
+int GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network, QList<double> *targetAggregateFillRates) {
+	// pre	: network->sizeRetailers = |targetAggregateFillRates|
+	// post	: []
+
+	assert(network->sizeRetailers() == targetAggregateFillRates->size());
+
+	// pre-conditions satisfied
+
+	this->network = network;
+
+	// Lines 2 - 3
+	// implicitly expected from argument 'network'
+
+	// Lines 4 - 5
+
+	QList<double> *EBOj = new QList<double>();
+	
+	for (int j = 1; j <= network->sizeRetailers(); j++){
+
+		EBOj->append(0);
+
+		for (int i = 1; i <= network->sizeProducts(); i++) {
+
+			double mij = network->getArrivalRateAtRetailer(i, j);
+			double Li0 = network->getLeadTimeToWarehouse(i);
+			double Lij = network->getLeadTimeToRetailer(i, j);
+
+			(*EBOj)[j - 1] = (*EBOj)[j - 1] + (mij*(Li0 + Lij));
+
+		} // for
+
+	} // for
+	
+
+	// Line 6
+
+	double costS = 0;
+
+	// Line 7 
+
+	if (!isTargetFillRatesSatisfied(network, EBOj, targetAggregateFillRates)) {
+		
+		// Line 8
+		
+		while ( true ) {
+
+			// Lines 9 - 10
+
+			QVector<QVector<double>> gamma = QVector<QVector<double>>(network->sizeProducts(), QVector<double>(network->sizeRetailers() + 1, 0));
+
+			int k = -1;
+			int l = -1;
+
+			double deltaMax = -1.0;
+
+			
+
+			for (int i = 1; i <= network->sizeProducts(); i++) {
+
+				// for each location, including the warehouse
+				for (int j = 0; j <= network->sizeRetailers(); j++) {
+
+					double deltaEBO = calculateDeltaEBO(i, j, targetAggregateFillRates);
+				
+					double hiX = 0.0;
+
+					if (j == 0) {
+						hiX = network->getInventoryHoldingCostAtWarehouse(i);
+					} else{
+						hiX = network->getInventoryHoldingCostAtRetailer(i, j);
+					} // eif
+
+					gamma[i - 1][j] = deltaEBO / hiX;
+
+					// Line 11
+					if (deltaMax < gamma[i - 1][j]) {
+						k = i;
+						l = j; 
+						deltaMax = gamma[i - 1][j];
+					} // if
+
+				} // for
+
+			} //
+
+			// Line 12
+			//std::cout << "increment product " << k << " at location " << l << std::endl;
+
+			double SiX = 0.0;
+
+			if (l == 0) {
+				SiX = network->getBaseStockLevelAtWarehouse(k);
+				network->setBaseStockLevelAtWarehouse(k, SiX + 1);
+			} else {
+				SiX = network->getBaseStockLevelAtRetailer(k, l);
+				network->setBaseStockLevelAtRetailer(k, l, SiX + 1);
+			} // eif
+
+			// Line 13
+
+			for (int j = 1; j <= network->sizeRetailers(); j++){
+				(*EBOj)[j - 1] = 0;
+				for (int i = 1; i <= network->sizeProducts(); i++) {
+					(*EBOj)[j - 1] = (*EBOj)[j - 1] + ePartsOnBackorderAtRetailer(i, j);
+				} // for
+
+				std::cout << "EBO(j=" << j << ")=" << (*EBOj)[j - 1] << std::endl;
+			} // for
+
+			if (isTargetFillRatesSatisfied(network, EBOj, targetAggregateFillRates)) {
+				break;
+			} // if
+		} // while
+	} // if
+
+
+	// Line 14;
+
+	return 0;
+
+} // optimizeNetwork
+
+
+// ------------------------------------------------------------------------------------------------ PRIVATE METHODS -- support --
+
+bool GreedyAlgorithm::isTargetFillRatesSatisfied(TwoEchelonDistributionNetwork *network, QList<double> *EBOj, QList<double> *targetAggregateFillRates){
+	// pre	: True
+	// ret	: not Line 7 or Line 13
+
+	bool result = true;
+
+	for (int j = 1; j <= network->sizeRetailers(); j++) {
+
+		double arrivalRateOverI = 0.0;
+		for (int i = 1; i <= network->sizeProducts(); i++) {
+			arrivalRateOverI = arrivalRateOverI + network->getArrivalRateAtRetailer(i, j);
+		} // for
+
+		double actualFillRate = (1 - ((*EBOj)[j - 1] / arrivalRateOverI));
+
+		if (actualFillRate < targetAggregateFillRates->at(j - 1)) {
+			result = false;
+		} // if
+
+	} // for 
+
+	return result;
 }
+
+
+unsigned long long GreedyAlgorithm::binomialCoefficient(unsigned long long n, unsigned long long k) {
+	unsigned long long c = 1, i;
+
+	if (k > n - k) {
+		k = n - k;  // take advantage of symmetry
+	} // if
+
+	for (i = 1; i <= k; i++, n--) {
+		if (c / i > UINT_MAX / n) {
+			return 0;  // return 0 on overflow
+		} // if
+		c = c / i * n + c%i * n / i;  // split c*n/i into (c/i*i + c%i)*n/i
+	} // for
+
+	return c;
+
+} // binomialCoefficient
+
+
+double GreedyAlgorithm::calculateDeltaEBO(int product, int j, QList<double> *targetAggregateFillRates) {
+	// pre	: 1 <= product <= |I| /\ 0 <= location <= |J|
+	// ret	: deltaEBOij
+
+	assert(1 <= product);
+	assert(product <= network->sizeProducts());
+	assert(0 <= j);
+	assert(j <= network->sizeRetailers());
+
+	// pre-conditions satisfied
+
+	double result = 0.0;
+
+	for (int l = 1; l <= network->sizeRetailers(); l++){
+
+		double Mj = 0.0;
+		double EBOlS = 0.0;
+
+		for (int i = 1; i <= network->sizeProducts(); i++){
+			Mj = Mj + network->getArrivalRateAtRetailer(i, l);
+			EBOlS = EBOlS + ePartsOnBackorderAtRetailer(i, l);
+		} // for
+
+		double m1 = 0;
+
+		m1 = (EBOlS / Mj) - (1 - 0.05);
+
+		if (m1 <= 0) {
+			m1 = 0;
+		} // if
+
+		double EBOlSplus1 = 0.0;
+
+		double SiX = 0.0;
+
+		if (j == 0) {
+			SiX = network->getBaseStockLevelAtWarehouse(product);
+			network->setBaseStockLevelAtWarehouse(product, SiX + 1);
+		} else {
+			SiX = network->getBaseStockLevelAtRetailer(product, j);
+			network->setBaseStockLevelAtRetailer(product, j, SiX + 1);
+		}
+
+		for (int i = 1; i <= network->sizeProducts(); i++){
+			EBOlSplus1 = EBOlSplus1 + ePartsOnBackorderAtRetailer(i, l);
+		} // for
+
+		if (j == 0) {
+			network->setBaseStockLevelAtWarehouse(product, SiX);
+		}
+		else {
+			network->setBaseStockLevelAtRetailer(product, j, SiX);
+		}
+
+		double m2 = 0;
+
+		m2 = (EBOlSplus1 / Mj) - (1 - 0.05);
+
+		if (m2 <= 0) {
+			m2 = 0;
+		} // if
+
+		result = result + (m1 - m2);
+
+	} // for
+
+	return result;
+
+} // calculateDeltaEBO

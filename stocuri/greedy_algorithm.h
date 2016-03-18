@@ -9,6 +9,7 @@
 
 #include "poisson_distribution.h"
 #include "normal_distribution.h"
+#include "negative_binomial_distribution.h"
 
 #include "two_echelon_distribution_network.h"
 
@@ -36,35 +37,27 @@ class GreedyAlgorithm {
 		// retailer -------------------------------------------------------------------------------------------------------------
 		
 		double pPartsOnOrderAtRetailer(int product, int retailer, int x);
+		double pPartsOnOrderAtRetailer2Moment(int product, int retailer, int x);
 		double pPartsOnHandAtRetailer(int product, int retailer, int x);
 		double pPartsOnBackorderAtRetailer(int product, int retailer, int x);
-		
-		/*
-		
 
-		double ePartsOnHandAtWJ(int i, int j);
-		double ePartsOnBackorderAtWJ(int i, int j);
+		double ePartsOnHandAtRetailer(int product, int retailer);
+		double ePartsOnBackorderAtRetailer(int product, int retailer);
 
-		void initializeGamma(QList<QList<double>*> *gamma, int cardyI, int cardyJ);
-		void initializeDelta(QList<QList<double>*> *delta, int cardyI, int cardyJ);
 
-		void clearS(QList<QList<double>*> *aS);
-		void clearGamma(QList<QList<double>*> *gamma, int cardyI, int cardyJ);
-		void clearDelta(QList<QList<double>*> *delta, int cardyI, int cardyJ);
+		// support --------------------------------------------------------------------------------------------------------------
 
-		bool stopingCriterionMet();
-		
-		
-		//unsigned long long int factorial(unsigned long long int x);
-		//unsigned binomialCoef(unsigned n, unsigned k);
-		*/
+		bool isTargetFillRatesSatisfied(TwoEchelonDistributionNetwork *network, QList<double> *EBOj, QList<double> *targetAggregateFillRates);
+		unsigned long long binomialCoefficient(unsigned long long n, unsigned long long k);
+		double calculateDeltaEBO(int product, int j, QList<double> *targetAggregateFillRates);
+
 
 	public:
 		GreedyAlgorithm();
 		~GreedyAlgorithm();
 
-		void evaluateNetwork(TwoEchelonDistributionNetwork *network);
-		void optimizeNetwork(TwoEchelonDistributionNetwork *network);
+		QList<double> evaluateNetwork(TwoEchelonDistributionNetwork *network);
+		int optimizeNetwork(TwoEchelonDistributionNetwork *network, QList<double> *targetAggregateFillRates);
 
 };
 

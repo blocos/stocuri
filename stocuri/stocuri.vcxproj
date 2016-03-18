@@ -137,7 +137,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BasicExcel.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="negative_binomial_distribution.cpp" />
     <ClCompile Include="normal_distribution.cpp" />
     <ClCompile Include="poisson_distribution.cpp" />
     <ClCompile Include="supply_chain_network.cpp" />
@@ -145,6 +147,8 @@
     <ClCompile Include="greedy_algorithm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BasicExcel.hpp" />
+    <ClInclude Include="negative_binomial_distribution.h" />
     <ClInclude Include="normal_distribution.h" />
     <ClInclude Include="poisson_distribution.h" />
     <ClInclude Include="supply_chain_network.h" />
