@@ -206,6 +206,8 @@ double GreedyAlgorithm::ePartsOnBackorderAtWarehouseFromRetailer(int product, in
 
 	result = (mij / mi0)*ePartsOnBackorderAtWarehouse(product);
 
+	assert(0 <= result);
+	assert(result <= 1);
 	return result;
 
 } // ePartsOnBackorderAtWarehouseFromRetailer
@@ -409,6 +411,8 @@ QList<double> GreedyAlgorithm::evaluateNetwork(TwoEchelonDistributionNetwork *ne
 		EBOj.append(0);
 		for (int i = 1; i <= network->sizeProducts(); i++) {
 			EBOj[j - 1] = EBOj[j - 1] + ePartsOnBackorderAtRetailer(i, j);
+
+			std::cout << i << "," << j << " " << ePartsOnBackorderAtRetailer(i, j) << std::endl;
 		} // for
 	} // for
 
@@ -469,7 +473,7 @@ int GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network, QLi
 			int k = -1;
 			int l = -1;
 
-			double deltaMax = -1.0;
+			double deltaMax = -1000.0;
 
 			
 
@@ -610,7 +614,7 @@ double GreedyAlgorithm::calculateDeltaEBO(int product, int j, QList<double> *tar
 
 		double m1 = 0;
 
-		m1 = (EBOlS / Mj) - (1 - 0.05);
+		m1 = (EBOlS / Mj) - (1.0 - (*targetAggregateFillRates)[l-1]);
 
 		if (m1 <= 0) {
 			m1 = 0;
@@ -641,7 +645,7 @@ double GreedyAlgorithm::calculateDeltaEBO(int product, int j, QList<double> *tar
 
 		double m2 = 0;
 
-		m2 = (EBOlSplus1 / Mj) - (1 - 0.05);
+		m2 = (EBOlSplus1 / Mj) - (1.0 - (*targetAggregateFillRates)[l - 1]);
 
 		if (m2 <= 0) {
 			m2 = 0;
