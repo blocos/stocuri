@@ -414,10 +414,9 @@ QList<double> GreedyAlgorithm::evaluateNetwork(TwoEchelonDistributionNetwork *ne
 
 	this->network = network;
 
-
-	for (int x = 0; x <= 6; x++) {
+	/*for (int x = 0; x <= 6; x++) {
 		std::cout << pPartsOnBackorderAtWarehouse(1, x) << std::endl;
-	}
+	}*/
 
 	QList<double> EBOj = QList<double>();
 

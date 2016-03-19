@@ -128,3 +128,42 @@ int TwoEchelonDistributionNetwork::sizeProducts() {
 int TwoEchelonDistributionNetwork::sizeRetailers() {
 	return nRetailers;
 }
+
+// -------------------------------------------------------------------------------------------------------- OVERRIDDEN METHODS --
+
+int TwoEchelonDistributionNetwork::loadFromFile(QString fileName){
+	int result = 0;
+
+	
+
+	return result;
+}
+
+int TwoEchelonDistributionNetwork::writeBaseStockLevelsToFile(QString fileName){
+	bool result = 0;
+
+	std::ofstream fileOutput(fileName.toStdString(), std::ios::out);
+
+	if (!fileOutput.is_open()) {
+		result = 1;
+	} else {
+		for (int j = 0; j <= sizeRetailers(); j++) {
+			for (int i = 1; i <= sizeProducts(); i++) {
+				double SiX = 0.0;
+
+				if (j == 0){
+					SiX = getBaseStockLevelAtWarehouse(i);
+				} else{
+					SiX = getArrivalRateAtRetailer(i, j);
+				}
+
+				fileOutput << j << ", " << i << ", " << SiX << std::endl;
+			} // for
+		} // for
+
+		fileOutput.close();
+
+	} // eif
+
+	return result;
+}

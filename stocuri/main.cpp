@@ -31,16 +31,16 @@ int main ( int argc, char *argv[] ) {
 	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(2, 2);
 
 	// set arrival rates
-	network->setArrivalRateAtWarehouse(1, 0.3); 
-	network->setArrivalRateAtRetailer(1, 1, 0.1);
-	network->setArrivalRateAtRetailer(1, 2, 0.2);
+	network->setArrivalRateAtWarehouse(1, 3); 
+	network->setArrivalRateAtRetailer(1, 1, 1);
+	network->setArrivalRateAtRetailer(1, 2, 2);
 
-	network->setArrivalRateAtWarehouse(2, 0.4);
-	network->setArrivalRateAtRetailer(2, 1, 0.2);
-	network->setArrivalRateAtRetailer(2, 2, 0.2);
+	network->setArrivalRateAtWarehouse(2, 4);
+	network->setArrivalRateAtRetailer(2, 1, 2);
+	network->setArrivalRateAtRetailer(2, 2, 2);
 	
 	// set lead times
-	network->setLeadTimeToWarehouse(1, 4);
+	network->setLeadTimeToWarehouse(1, 6);
 	network->setLeadTimeToRetailer(1, 1, 1);
 	network->setLeadTimeToRetailer(1, 2, 1);
 
@@ -87,6 +87,9 @@ int main ( int argc, char *argv[] ) {
 	} // for
 
 	 // ------------------------------------------------------------------------------------------------------- write to excel --
+	
+
+
 	/*
 	BasicExcel e;
 	e.New(1);
@@ -124,10 +127,14 @@ int main ( int argc, char *argv[] ) {
 
 	} // if
 	
-	e.SaveAs("base-stock-levels.xls");*/
+	e.SaveAs("base-stock-levels.xls");
 
 	std::cout << "wrote results to Excel" << std::endl;
+*/
+
+	network->writeBaseStockLevelsToFile("base-stock-levels.txt");
 
 	return a.exec();
-
+	
+	
 } // main

@@ -6,6 +6,7 @@
 #include <QtCore>
 
 #include <cassert>
+#include <fstream>
 
 class TwoEchelonDistributionNetwork : SupplyChainNetwork {
 
@@ -53,6 +54,10 @@ class TwoEchelonDistributionNetwork : SupplyChainNetwork {
 		int sizeRetailers();
 		int sizeProducts();
 
+		// overriding virtual methods
+
+		int loadFromFile(QString fileName);
+		int writeBaseStockLevelsToFile(QString fileName);
 
 };
 
