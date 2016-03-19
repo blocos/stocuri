@@ -30,12 +30,15 @@ double GreedyAlgorithm::pPartsOnOrderAtWarehouse(int product, int x) {
 	// determine mean for Poisson distribution
 	double lambda = network->getArrivalRateAtWarehouse(product) * network->getLeadTimeToWarehouse(product);
 
+	//std::cout << lambda << std::endl;
+
 	// initialize Poisson distribution
 	PoissonDistribution tetrodotoxin;
 
 	try {
 		// try regular calculation
 		result = tetrodotoxin.probabilityBySterlingApproximation(lambda, x);
+		//result = tetrodotoxin.probability(lambda, x);
 	} catch (std::exception& me) {
 		std::cout << me.what() << std::endl;
 
@@ -46,6 +49,10 @@ double GreedyAlgorithm::pPartsOnOrderAtWarehouse(int product, int x) {
 		result = tetrodotoxin.probabilityByNormalApproximation(lambda, x);
 	} // tryCatchMe
 
+	//std::cout << result << std::endl;
+
+	//assert(result >= 0);
+
 	return result;
 
 } // pPartsOnOrderAtWarehouse
@@ -53,7 +60,7 @@ double GreedyAlgorithm::pPartsOnOrderAtWarehouse(int product, int x) {
 
 double GreedyAlgorithm::pPartsOnHandAtWarehouse(int product, int x) {
 	// pre	: 1 <= product <= |I| /\ x >= 0
-	// ret	: -1
+	// ret	: 0
 
 	assert(1 <= product);
 	assert(product <= network->sizeProducts());
@@ -136,6 +143,8 @@ double GreedyAlgorithm::ePartsOnBackorderAtWarehouse(int product) {
 
 	result = (arrivalRatei0 * leadTimei0) - Si0 + ePartsOnHandAtWarehouse(product);
 
+	//std::cout << arrivalRatei0 * leadTimei0 << std::endl;
+	//assert(result >= 0);
 	return result;
 
 } // ePartsOnBackorderAtWarehouse
@@ -205,9 +214,9 @@ double GreedyAlgorithm::ePartsOnBackorderAtWarehouseFromRetailer(int product, in
 	double mij = network->getArrivalRateAtRetailer(product, retailer);
 
 	result = (mij / mi0)*ePartsOnBackorderAtWarehouse(product);
-
-	assert(0 <= result);
-	assert(result <= 1);
+	
+	//assert(0 <= result);
+	//assert(result <= 1);
 	return result;
 
 } // ePartsOnBackorderAtWarehouseFromRetailer
@@ -405,6 +414,11 @@ QList<double> GreedyAlgorithm::evaluateNetwork(TwoEchelonDistributionNetwork *ne
 
 	this->network = network;
 
+
+	for (int x = 0; x <= 6; x++) {
+		std::cout << pPartsOnBackorderAtWarehouse(1, x) << std::endl;
+	}
+
 	QList<double> EBOj = QList<double>();
 
 	for (int j = 1; j <= network->sizeRetailers(); j++) {
@@ -506,7 +520,7 @@ int GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network, QLi
 			} //
 
 			// Line 12
-			//std::cout << "increment product " << k << " at location " << l << std::endl;
+			std::cout << "increment product " << k << " at location " << l << std::endl;
 
 			double SiX = 0.0;
 

@@ -31,29 +31,29 @@ int main ( int argc, char *argv[] ) {
 	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(2, 2);
 
 	// set arrival rates
-	network->setArrivalRateAtWarehouse(1, 5); 
-	network->setArrivalRateAtRetailer(1, 1, 2);
-	network->setArrivalRateAtRetailer(1, 2, 3);
+	network->setArrivalRateAtWarehouse(1, 0.3); 
+	network->setArrivalRateAtRetailer(1, 1, 0.1);
+	network->setArrivalRateAtRetailer(1, 2, 0.2);
 
-	network->setArrivalRateAtWarehouse(2, 5);
-	network->setArrivalRateAtRetailer(2, 1, 2);
-	network->setArrivalRateAtRetailer(2, 2, 3);
+	network->setArrivalRateAtWarehouse(2, 0.4);
+	network->setArrivalRateAtRetailer(2, 1, 0.2);
+	network->setArrivalRateAtRetailer(2, 2, 0.2);
 	
 	// set lead times
-	network->setLeadTimeToWarehouse(1, 0);
+	network->setLeadTimeToWarehouse(1, 4);
 	network->setLeadTimeToRetailer(1, 1, 1);
 	network->setLeadTimeToRetailer(1, 2, 1);
 
-	network->setLeadTimeToWarehouse(2, 0);
+	network->setLeadTimeToWarehouse(2, 4);
 	network->setLeadTimeToRetailer(2, 1, 1);
 	network->setLeadTimeToRetailer(2, 2, 1);
 
 	// set inventory holding cost
-	network->setInventoryHoldingCostAtWarehouse(1, 100000);
+	network->setInventoryHoldingCostAtWarehouse(1, 1);
 	network->setInventoryHoldingCostAtRetailer(1, 1, 1);
 	network->setInventoryHoldingCostAtRetailer(1, 2, 1);
 
-	network->setInventoryHoldingCostAtWarehouse(2, 100000);
+	network->setInventoryHoldingCostAtWarehouse(2, 1);
 	network->setInventoryHoldingCostAtRetailer(2, 1, 1);
 	network->setInventoryHoldingCostAtRetailer(2, 2, 1);
 
@@ -67,9 +67,9 @@ int main ( int argc, char *argv[] ) {
 
 	// set base-stock levels
 	/*network->setBaseStockLevelAtWarehouse(1, 2);
-	network->setBaseStockLevelAtRetailer(1, 1, 5);
-	network->setBaseStockLevelAtRetailer(1, 2, 3);
-
+	network->setBaseStockLevelAtRetailer(1, 1, 1);
+	network->setBaseStockLevelAtRetailer(1, 2, 1);
+	
 	network->setBaseStockLevelAtWarehouse(2, 2);
 	network->setBaseStockLevelAtRetailer(2, 1, 3);
 	network->setBaseStockLevelAtRetailer(2, 2, 5);*/
@@ -87,7 +87,7 @@ int main ( int argc, char *argv[] ) {
 	} // for
 
 	 // ------------------------------------------------------------------------------------------------------- write to excel --
-
+	/*
 	BasicExcel e;
 	e.New(1);
 
@@ -124,7 +124,7 @@ int main ( int argc, char *argv[] ) {
 
 	} // if
 	
-	e.SaveAs("base-stock-levels.xls");
+	e.SaveAs("base-stock-levels.xls");*/
 
 	std::cout << "wrote results to Excel" << std::endl;
 

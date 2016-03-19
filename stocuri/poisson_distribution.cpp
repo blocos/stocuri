@@ -53,8 +53,15 @@ double PoissonDistribution::probability(double lambda, double x) {
 } // pdf
 
 double PoissonDistribution::probabilityBySterlingApproximation(double lambda, double x) {
-	double result = 0.0;
+	// pre	: True
+	// ret	: PDF based onSterling's Approximation
+
+	// pre-conditions satisfied
+
+	double result = exp(x * log(lambda) - lgamma(x + 1.0) - lambda);
+	
 	return result;
+
 } // pdfSterlingApproximation
 
 double PoissonDistribution::probabilityByNormalApproximation(double lambda, double x) {
