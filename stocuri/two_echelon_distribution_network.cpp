@@ -154,7 +154,7 @@ int TwoEchelonDistributionNetwork::writeBaseStockLevelsToFile(QString fileName){
 				if (j == 0){
 					SiX = getBaseStockLevelAtWarehouse(i);
 				} else{
-					SiX = getArrivalRateAtRetailer(i, j);
+					SiX = getBaseStockLevelAtRetailer(i, j);
 				}
 
 				fileOutput << j << ", " << i << ", " << SiX << std::endl;

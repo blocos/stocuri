@@ -31,9 +31,9 @@ int main ( int argc, char *argv[] ) {
 	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(2, 2);
 
 	// set arrival rates
-	network->setArrivalRateAtWarehouse(1, 3); 
-	network->setArrivalRateAtRetailer(1, 1, 1);
-	network->setArrivalRateAtRetailer(1, 2, 2);
+	network->setArrivalRateAtWarehouse(1, 20); 
+	network->setArrivalRateAtRetailer(1, 1, 12);
+	network->setArrivalRateAtRetailer(1, 2, 8);
 
 	network->setArrivalRateAtWarehouse(2, 4);
 	network->setArrivalRateAtRetailer(2, 1, 2);
