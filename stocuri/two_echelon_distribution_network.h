@@ -7,6 +7,11 @@
 
 #include <cassert>
 #include <fstream>
+#include <iostream>
+
+#include "BasicExcel.hpp"
+
+using namespace YExcel;
 
 class TwoEchelonDistributionNetwork : SupplyChainNetwork {
 
@@ -15,6 +20,8 @@ class TwoEchelonDistributionNetwork : SupplyChainNetwork {
 		QList<QList<double>*> *leadTimes;
 		QList<QList<double>*> *baseStockLevels;
 		QList<QList<double>*> *inventoryHoldingCosts;
+
+		QVector<QString> *productsIdToNumber;
 
 		int nRetailers;
 		int nProducts;
@@ -56,8 +63,9 @@ class TwoEchelonDistributionNetwork : SupplyChainNetwork {
 
 		// overriding virtual methods
 
-		int loadFromFile(QString fileName);
+		int loadFromFile(QString fileNameSettings, QString filenNameDemand);
 		int writeBaseStockLevelsToFile(QString fileName);
+		int writeBaseStockLevelsToExcel(QString fileName);
 
 };
 

@@ -9,7 +9,7 @@ SupplyChainNetwork::~SupplyChainNetwork() {
 }
 
 
-int SupplyChainNetwork::loadFromFile(QString fileName) {
+int SupplyChainNetwork::loadFromFile(QString fileNameSettings, QString filenNameDemand) {
 	
 	int result = 1;
 

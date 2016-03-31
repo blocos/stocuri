@@ -6,15 +6,12 @@
 #include <cfenv>
 #include <exception>
 #include <cassert>
+#include <ctime>
 
 #include "greedy_algorithm.h"
 
 #include "poisson_distribution.h"
 #include "normal_distribution.h"
-
-#include "BasicExcel.hpp"
-
-using namespace YExcel;
 
 // ensure access to floating point operations registers, needed to detect underflows
 #pragma fenv_access (on)
@@ -26,27 +23,43 @@ int main ( int argc, char *argv[] ) {
 	QList<double> *targetAggregateFillRates = new QList<double>();
 	targetAggregateFillRates->append(0.95);
 	targetAggregateFillRates->append(0.95);
+	targetAggregateFillRates->append(0.95);
 	
-	// retailers = 2, products = 2
-	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(2, 2);
+	// retailers = 3, products = 4
+	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, 5);
+	network->loadFromFile("preprocessesed-settings.csv", "demand.csv");
+
+	qDebug() << network->getArrivalRateAtWarehouse(1);
+	qDebug() << network->getArrivalRateAtRetailer(1, 1);
+	qDebug() << network->getArrivalRateAtRetailer(1, 2);
+	qDebug() << network->getArrivalRateAtRetailer(1, 3);
+
 
 	// set arrival rates
-	network->setArrivalRateAtWarehouse(1, 20); 
-	network->setArrivalRateAtRetailer(1, 1, 12);
-	network->setArrivalRateAtRetailer(1, 2, 8);
+	/*network->setArrivalRateAtWarehouse(1, 0.3); 
+	network->setArrivalRateAtRetailer(1, 1, 0.1);
+	network->setArrivalRateAtRetailer(1, 2, 0.2);
 
 	network->setArrivalRateAtWarehouse(2, 4);
 	network->setArrivalRateAtRetailer(2, 1, 2);
 	network->setArrivalRateAtRetailer(2, 2, 2);
+
+	network->setArrivalRateAtWarehouse(3, 0.75);
+	network->setArrivalRateAtRetailer(3, 1, 0.05);
+	network->setArrivalRateAtRetailer(3, 2, 0.70);
 	
 	// set lead times
-	network->setLeadTimeToWarehouse(1, 6);
+	network->setLeadTimeToWarehouse(1, 4);
 	network->setLeadTimeToRetailer(1, 1, 1);
 	network->setLeadTimeToRetailer(1, 2, 1);
 
-	network->setLeadTimeToWarehouse(2, 4);
+	network->setLeadTimeToWarehouse(2, 5);
 	network->setLeadTimeToRetailer(2, 1, 1);
 	network->setLeadTimeToRetailer(2, 2, 1);
+
+	network->setLeadTimeToWarehouse(3, 6);
+	network->setLeadTimeToRetailer(3, 1, 1);
+	network->setLeadTimeToRetailer(3, 2, 1);
 
 	// set inventory holding cost
 	network->setInventoryHoldingCostAtWarehouse(1, 1);
@@ -57,11 +70,30 @@ int main ( int argc, char *argv[] ) {
 	network->setInventoryHoldingCostAtRetailer(2, 1, 1);
 	network->setInventoryHoldingCostAtRetailer(2, 2, 1);
 
+	network->setInventoryHoldingCostAtWarehouse(3, 1);
+	network->setInventoryHoldingCostAtRetailer(3, 1, 1);
+	network->setInventoryHoldingCostAtRetailer(3, 2, 1);*/
+
 	// ----------------------------------------------------------------------------------------------------------- optimizatia --
 
 	GreedyAlgorithm *gerrit = new GreedyAlgorithm();
+
+	time_t start;
+	time(&start);
+
 	int result = gerrit->optimizeNetwork(network, targetAggregateFillRates);
 
+	time_t stop;
+	time(&stop);
+
+	int duration = difftime(stop, start);
+
+	int seconds = duration % 60;
+	int minutes = floor(duration / 60);
+	int hours = floor(duration / 3600 );
+
+
+	std::cout << "optimization duration: " << duration << "s" << std::endl;
 
 	// ------------------------------------------------------------------------------------------------------------- evaluation --
 
@@ -86,53 +118,26 @@ int main ( int argc, char *argv[] ) {
 		std::cout << "beta star for j=" << j << " equals: " << (1 - (EBOj[j - 1] / Mj)) << std::endl;
 	} // for
 
-	 // ------------------------------------------------------------------------------------------------------- write to excel --
-	
-
-
-	/*
-	BasicExcel e;
-	e.New(1);
-
-	BasicExcelWorksheet* sheet = e.GetWorksheet("Sheet1");
-	BasicExcelCell* cell;
-
-	if (sheet) {
-
-		int row = 0;
-
-		for (int j = 0; j <= network->sizeRetailers(); j++){
-
-			for (int i = 1; i <= network->sizeProducts(); i++) {
-				
-				cell = sheet->Cell(row, 0); // location
-				cell->Set((int)j);
-
-				cell = sheet->Cell(row, 1); // product
-				cell->Set((int)i);
-
-				cell = sheet->Cell(row, 2); // base-stock level
-				
-				if (j == 0) {
-					cell->Set((double)network->getBaseStockLevelAtWarehouse(i));
-				} else {
-					cell->Set((double)network->getBaseStockLevelAtRetailer(i, j));
-				} // eif
-
-				row = row + 1;
-
-			} // for
-
-		} // for
-
-	} // if
-	
-	e.SaveAs("base-stock-levels.xls");
-
-	std::cout << "wrote results to Excel" << std::endl;
-*/
+	// -------------------------------------------------------------------------------------------------------- write to files --
 
 	network->writeBaseStockLevelsToFile("base-stock-levels.txt");
+
+	network->writeBaseStockLevelsToExcel("base-stock-levels.xls");
+
+
+	// -------------------------------------------------------------------------------------------------------------- clean up --
+
+	delete network;
+	network = 0;
+
+	delete targetAggregateFillRates;
+	targetAggregateFillRates = 0;
+
+	delete gerrit;
+	gerrit = 0;
+
+
+	// --------------------------------------------------------------------------------------------------- execute application --
 
 	return a.exec();
 	

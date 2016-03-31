@@ -18,6 +18,8 @@ class GreedyAlgorithm {
 
 		TwoEchelonDistributionNetwork *network;
 
+		bool debug = false;
+
 		// warehouse ------------------------------------------------------------------------------------------------------------
 		
 		// probabilities

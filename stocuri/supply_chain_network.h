@@ -8,7 +8,7 @@ class SupplyChainNetwork {
 		SupplyChainNetwork();
 		~SupplyChainNetwork();
 
-		virtual int loadFromFile(QString fileName);
+		virtual int loadFromFile(QString fileNameSettings, QString filenNameDemand);
 		virtual int writeBaseStockLevelsToFile(QString fileName);
 
 };

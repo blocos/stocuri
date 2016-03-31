@@ -23,6 +23,8 @@ TwoEchelonDistributionNetwork::TwoEchelonDistributionNetwork(int nRetailers, int
 	baseStockLevels = new QList<QList<double>*>();
 	inventoryHoldingCosts = new QList<QList<double>*>();
 
+	productsIdToNumber = new QVector<QString>(nProducts, "");
+
 	// retailers + 1 warehouse
 	for (int j = 0; j < nRetailers + 1; j++){
 
@@ -49,6 +51,26 @@ TwoEchelonDistributionNetwork::TwoEchelonDistributionNetwork(int nRetailers, int
 
 
 TwoEchelonDistributionNetwork::~TwoEchelonDistributionNetwork() {
+	for (int j = 0; j < nRetailers + 1; j++){
+		delete (*arrivalRates)[j];
+		delete (*leadTimes)[j];
+		delete (*baseStockLevels)[j];
+		delete (*inventoryHoldingCosts)[j];
+	}
+
+	delete arrivalRates;
+	arrivalRates = 0;
+
+	delete leadTimes;
+	leadTimes = 0;
+
+	delete baseStockLevels;
+	baseStockLevels = 0;
+
+	delete inventoryHoldingCosts;
+	inventoryHoldingCosts = 0;
+
+	delete productsIdToNumber;
 
 }
 
@@ -131,10 +153,126 @@ int TwoEchelonDistributionNetwork::sizeRetailers() {
 
 // -------------------------------------------------------------------------------------------------------- OVERRIDDEN METHODS --
 
-int TwoEchelonDistributionNetwork::loadFromFile(QString fileName){
+int TwoEchelonDistributionNetwork::loadFromFile(QString fileNameSettings, QString filenNameDemand){
 	int result = 0;
 
+	bool sfl = true;
+	int lineCounter = 0;
+
+	// parse settings -----------------------------------------------------------------------------------------------------------
+
+	std::ifstream fileInputSettings(fileNameSettings.toStdString());
 	
+	std::string line;
+	while (std::getline(fileInputSettings, line, '\n')) {
+		if (sfl) {
+			sfl = false;
+			continue;
+		} 
+
+		// print line
+		// std::cout << line << std::endl;
+
+		// convert
+		QString qLine = QString::fromStdString(line);
+
+		// got one additional line
+		lineCounter = lineCounter + 1;
+
+		// split in parts
+		QStringList parts = qLine.split(",");
+
+		// id (0), number (1), price (2), H-RSHQ (3), H-CSC (4), L-CSC (5), L-USA (6), L-Singapore (7), L-China (8), L-USA+1 (9), L-Singapore+1 (10), L-China+1 (11)
+
+		// retrieve id
+		int id = parts[0].toInt();
+
+		// store relation id->number
+		(*productsIdToNumber)[id-1] = parts[1];
+
+		// store lead times
+		double leadTimeCSC = parts[5].toDouble();
+		this->setLeadTimeToWarehouse(id, leadTimeCSC);
+
+		double leadTimeUSA = parts[9].toDouble();
+		this->setLeadTimeToRetailer(id, 1, leadTimeUSA);
+
+		double leadTimeSingapore = parts[9].toDouble();
+		this->setLeadTimeToRetailer(id, 2, leadTimeSingapore);
+
+		double leadTimeChina = parts[9].toDouble();
+		this->setLeadTimeToRetailer(id, 3, leadTimeChina);
+
+		// store inventory holding costs
+		double inventoryHoldingCostCSC = parts[4].toDouble();
+		this->setInventoryHoldingCostAtWarehouse(id, inventoryHoldingCostCSC);
+
+		double inventoryHoldingCostRSHQ = parts[3].toDouble();
+		this->setInventoryHoldingCostAtRetailer(id, 1, inventoryHoldingCostRSHQ);
+		this->setInventoryHoldingCostAtRetailer(id, 2, inventoryHoldingCostRSHQ);
+		this->setInventoryHoldingCostAtRetailer(id, 3, inventoryHoldingCostRSHQ);
+
+		if (lineCounter == nProducts) {
+			break;
+		}
+
+	} // while
+
+	fileInputSettings.close();
+
+	qDebug() << *productsIdToNumber;
+
+	// parse demand -------------------------------------------------------------------------------------------------------------
+	
+	sfl = true;
+	lineCounter = 0;
+
+	std::ifstream fileInputDemand(filenNameDemand.toStdString());
+
+	while (std::getline(fileInputDemand, line, '\n')) {
+		if (sfl) {
+			sfl = false;
+			continue;
+		}
+
+		// convert
+		QString qLine = QString::fromStdString(line);
+
+		// read one additional line
+		lineCounter = lineCounter + 1;
+
+		// split in parts
+		QStringList parts = qLine.split(",");
+
+		// region (0), number (1), rate (2)
+
+		// retrieve name
+		QString name = parts[0];
+		QString number = parts[1];
+		
+		double rate = parts[2].toDouble();
+
+		int id = productsIdToNumber->indexOf(number.trimmed()) + 1;
+
+		if (name == "USA") {
+			this->setArrivalRateAtRetailer(id, 1, rate);
+		} else if (name == "Singapore") {
+			this->setArrivalRateAtRetailer(id, 2, rate);
+		} else if (name == "China"){
+			this->setArrivalRateAtRetailer(id, 3, rate);
+		} else if (name == "World"){
+			this->setArrivalRateAtWarehouse(id, rate);
+		} else {
+			// undefined
+		} // eif
+		
+
+		if ((lineCounter / 4) == nProducts) {
+			break;
+		} // if
+	} // while
+
+	fileInputDemand.close();
 
 	return result;
 }
@@ -143,6 +281,8 @@ int TwoEchelonDistributionNetwork::writeBaseStockLevelsToFile(QString fileName){
 	bool result = 0;
 
 	std::ofstream fileOutput(fileName.toStdString(), std::ios::out);
+
+	QVector<QString> regions = QVector<QString>() << "CSC" << "USA" << "Singapore" << "China";
 
 	if (!fileOutput.is_open()) {
 		result = 1;
@@ -157,7 +297,8 @@ int TwoEchelonDistributionNetwork::writeBaseStockLevelsToFile(QString fileName){
 					SiX = getBaseStockLevelAtRetailer(i, j);
 				}
 
-				fileOutput << j << ", " << i << ", " << SiX << std::endl;
+				QString number = productsIdToNumber->at(i - 1);
+				fileOutput << regions[j].toStdString() << ", " << number.toStdString() << ", " << SiX << std::endl;
 			} // for
 		} // for
 
@@ -166,4 +307,62 @@ int TwoEchelonDistributionNetwork::writeBaseStockLevelsToFile(QString fileName){
 	} // eif
 
 	return result;
-}
+
+} // writeBaseStockLevelsToFile
+
+int TwoEchelonDistributionNetwork::writeBaseStockLevelsToExcel(QString fileName) {
+
+	int result = 0;
+
+	BasicExcel e;
+	e.New(1);
+
+	BasicExcelWorksheet* sheet = e.GetWorksheet("Sheet1");
+	BasicExcelCell* cell;
+
+	if (sheet) {
+
+		cell = sheet->Cell(0, 1); // location
+		cell->Set("CSC");
+
+		cell = sheet->Cell(0, 2); // location
+		cell->Set("USA");
+
+		cell = sheet->Cell(0, 3); // location
+		cell->Set("Singapore");
+
+		cell = sheet->Cell(0, 4); // location
+		cell->Set("China");
+
+		int row = 1;
+
+		for (int i = 1; i <= this->sizeProducts(); i++) {
+
+			cell = sheet->Cell(row, 0); // location
+			QString number = productsIdToNumber->at(i - 1);
+			cell->Set(number.toInt());
+
+			for (int j = 0; j <= this->sizeRetailers(); j++){
+
+				cell = sheet->Cell(row, j + 1);
+
+				if (j == 0) {
+					cell->Set((double)this->getBaseStockLevelAtWarehouse(i));
+				}
+				else {
+					cell->Set((double)this->getBaseStockLevelAtRetailer(i, j));
+				} // eif
+
+			} // for
+
+			row = row + 1;
+
+		} // for
+
+	} // if
+
+	e.SaveAs("base-stock-levels.xls");
+
+	return result;
+
+} // writeBaseStockLevelsToExcel
