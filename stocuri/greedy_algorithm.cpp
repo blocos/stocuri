@@ -182,16 +182,34 @@ double GreedyAlgorithm::pPartsOnBackorderAtWarehouseFromRetailer(int product, in
 
 	while (true) {
 
-		double xOverY = binomialCoefficient(y, x);
+		//double xOverY = binomialCoefficient(y, x);
+
+		// y over x
+		// y! / x!(y-x)!
+
+		//double yex = lgammal(y + 1);
+		//double xex = lgammal(x + 1);
+		//double yminxex = lgammal(y - x + 1);
+
+		//double yOverX = yex / (xex * yminxex);
+		//exp(GammaLn(n + 1) - GammaLn(k + 1) - GammaLn(n - k + 1))
+
+		double over = exp(lgammal(y + 1) - lgammal(x + 1) - lgammal(y - x + 1));
+		//std::cout << "over: " << over << std::endl;
+		//std::cout << xOverY << std::endl;
+
+
 		double powerX = pow(mij / mi0, x);
 		double powerYminX = pow(1 - (mij / mi0), y - x);
 		double p = pPartsOnBackorderAtWarehouse(product, y);
 
-		double value = xOverY * powerX * powerYminX * p;
+		
+
+		double value = over * powerX * powerYminX * p;
 
 		
 		if (value < 0) {qDebug() << "val: " << value;
-			qDebug() << xOverY;
+			qDebug() << over;
 			qDebug() << powerX;
 			qDebug() << powerYminX;
 			qDebug() << p;
@@ -440,14 +458,40 @@ double GreedyAlgorithm::ePartsOnBackorderAtRetailer(int product, int retailer){
 
 	result = (mij*Lij) - Sij + ePartsOnBackorderAtWarehouseFromRetailer(product, retailer) + ePartsOnHandAtRetailer(product, retailer);
 
+	//return result;
 
-	/*if (result < 0) {
-		qDebug() << mij*Lij;
-		qDebug() << Sij;
-		qDebug() << ePartsOnBackorderAtWarehouseFromRetailer(product, retailer);
-		qDebug() << ePartsOnHandAtRetailer(product, retailer);
-		result = 0;
+	/*
+	double previous = 0.0;
+	double x = Sij + 1;
+
+	while (true) {
+		double p = pPartsOnOrderAtRetailer(product, retailer, x);
+
+
+		double value = (x - Sij)*p;
+		result = result + value;
+
+		x = x + 1;
+
+		if (result - previous <= 0.00000000000001){
+			break;
+		}
+
+		previous = result;
 	}*/
+
+	
+
+
+	if (result < 0) {
+		//qDebug() << result;
+		//qDebug() << mij*Lij;
+		//qDebug() << Sij;
+		//qDebug() << ePartsOnBackorderAtWarehouseFromRetailer(product, retailer);
+		//qDebug() << ePartsOnHandAtRetailer(product, retailer);
+		//result = 0;
+	}
+	//assert(result >= 0);
 
 	//assert(result >= 0);
 
@@ -466,9 +510,13 @@ QList<double> GreedyAlgorithm::evaluateNetwork(TwoEchelonDistributionNetwork *ne
 
 	this->network = network;
 
-	/*for (int x = 0; x <= 6; x++) {
+	for (int x = 0; x <= 6; x++) {
 		std::cout << pPartsOnBackorderAtWarehouse(1, x) << std::endl;
-	}*/
+	}
+
+	for (int x = 0; x <= 3; x++) {
+		std::cout << pPartsOnBackorderAtRetailer(1, 1, x) << std::endl;
+	}
 
 	QList<double> EBOj = QList<double>();
 
