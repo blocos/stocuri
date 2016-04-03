@@ -99,7 +99,7 @@ int main ( int argc, char *argv[] ) {
 
 	// set base-stock levels
 
-	network->setBaseStockLevelAtRetailer(5, 3, 2);
+	//setBaseStockLevelAtRetailer(1, 3, 1);
 
 	/*network->setBaseStockLevelAtWarehouse(1, 2);
 	network->setBaseStockLevelAtRetailer(1, 1, 1);
@@ -110,6 +110,9 @@ int main ( int argc, char *argv[] ) {
 	network->setBaseStockLevelAtRetailer(2, 2, 5);*/
 
 	QList<double> EBOj = gerrit->evaluateNetwork(network);
+	network->setBaseStockLevelAtRetailer(5, 3, 2);
+
+	EBOj = gerrit->evaluateNetwork(network);
 
 	for (int j = 1; j <= network->sizeRetailers(); j++){
 		double Mj = 0.0;
@@ -123,9 +126,9 @@ int main ( int argc, char *argv[] ) {
 
 	// -------------------------------------------------------------------------------------------------------- write to files --
 
-	network->writeBaseStockLevelsToFile("base-stock-levels.txt");
+	//network->writeBaseStockLevelsToFile("base-stock-levels.txt");
 
-	network->writeBaseStockLevelsToExcel("base-stock-levels.xls");
+	//network->writeBaseStockLevelsToExcel("base-stock-levels.xls");
 
 
 	// -------------------------------------------------------------------------------------------------------------- clean up --

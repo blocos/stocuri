@@ -37,8 +37,8 @@ double GreedyAlgorithm::pPartsOnOrderAtWarehouse(int product, int x) {
 
 	try {
 		// try regular calculation
-		result = tetrodotoxin.probabilityBySterlingApproximation(lambda, x);
-		//result = tetrodotoxin.probability(lambda, x);
+		//result = tetrodotoxin.probabilityBySterlingApproximation(lambda, x);
+		result = tetrodotoxin.probability(lambda, x);
 	} catch (std::exception& me) {
 		std::cout << me.what() << std::endl;
 
@@ -124,10 +124,23 @@ double GreedyAlgorithm::ePartsOnHandAtWarehouse(int product) {
 
 	double Si0 = network->getBaseStockLevelAtWarehouse(product);
 
+	if (debug) {
+		//std::cout << "begin e parts on hand at warehouse" << std::endl;
+		//std::cout << "si0" << Si0 << std::endl;
+	}
+
 	for (int x = 0; x <= Si0; x++){
-		result = result + ((Si0 - x)*pPartsOnOrderAtWarehouse(product, x));
+		result = result + ((Si0 - (double)x)*pPartsOnOrderAtWarehouse(product, x));
+
+		if (debug) {
+			//std::cout << pPartsOnOrderAtWarehouse(product, x) << std::endl;
+		}
 	} // for
 
+
+	if (debug) {
+		//std::cout << "end----" << std::endl;
+	}
 	assert(result >= 0);
 
 	return result;
@@ -181,50 +194,23 @@ double GreedyAlgorithm::pPartsOnBackorderAtWarehouseFromRetailer(int product, in
 	int y = x;
 
 	while (true) {
-
-		//double xOverY = binomialCoefficient(y, x);
-
 		// y over x
-		// y! / x!(y-x)!
-
-		//double yex = lgammal(y + 1);
-		//double xex = lgammal(x + 1);
-		//double yminxex = lgammal(y - x + 1);
-
-		//double yOverX = yex / (xex * yminxex);
-		//exp(GammaLn(n + 1) - GammaLn(k + 1) - GammaLn(n - k + 1))
+		double xOverY = binomialCoefficient(y,x);
 
 		double over = exp(lgammal(y + 1) - lgammal(x + 1) - lgammal(y - x + 1));
-		//std::cout << "over: " << over << std::endl;
-		//std::cout << xOverY << std::endl;
-
-
 		double powerX = pow(mij / mi0, x);
-		double powerYminX = pow(1 - (mij / mi0), y - x);
+		double powerYminX = pow(1.0 - (mij / mi0), y - x);
 		double p = pPartsOnBackorderAtWarehouse(product, y);
 
-		
-
+	
 		double value = over * powerX * powerYminX * p;
 
-		
-		if (value < 0) {qDebug() << "val: " << value;
-			qDebug() << over;
-			qDebug() << powerX;
-			qDebug() << powerYminX;
-			qDebug() << p;
-			qDebug() << mij;
-			qDebug() << mi0;
-			qDebug() << y;
-			qDebug() << x;
-			qDebug() << product;
-		}
 
 		result = result + value;
 
 		y = y + 1;
 
-		if (result - previous < 0.0000001) {
+		if (result - previous < 0.00000001) {
 			break;
 		} // if
 
@@ -260,6 +246,9 @@ double GreedyAlgorithm::ePartsOnBackorderAtWarehouseFromRetailer(int product, in
 
 	result = (mij / mi0)*ePartsOnBackorderAtWarehouse(product);
 
+	if (retailer == 3 && debug){
+		std::cout << "parts on backorder at warehouse: " << ePartsOnBackorderAtWarehouse(product) << std::endl;
+	}
 	assert(result >= 0);
 	
 	return result;
@@ -297,7 +286,7 @@ double GreedyAlgorithm::pPartsOnOrderAtRetailer(int product, int retailer, int x
 
 		try {
 			// try regular calculation
-			p1 = tetrodotoxin.probability(lambda, x - k);
+			p1 = tetrodotoxin.probability(lambda, k);
 		}
 		catch (std::exception& me) {
 			std::cout << me.what() << std::endl;
@@ -305,11 +294,11 @@ double GreedyAlgorithm::pPartsOnOrderAtRetailer(int product, int retailer, int x
 			std::cout << lambda << std::endl;
 
 			// catched me, try calculation with Normal approximation
-			p1 = tetrodotoxin.probabilityByNormalApproximation(lambda, x - k);
+			p1 = tetrodotoxin.probabilityByNormalApproximation(lambda, k);
 		} // tryCatchMe
 
 		// 2. P[BOj = x - k]
-		double p2 = pPartsOnBackorderAtWarehouseFromRetailer(product, retailer, k);
+		double p2 = pPartsOnBackorderAtWarehouseFromRetailer(product, retailer, x-k);
 
 		result = result + (p1 * p2);
 	}
@@ -427,9 +416,15 @@ double GreedyAlgorithm::ePartsOnHandAtRetailer(int product, int retailer) {
 	double result = 0.0;
 
 	double Sij = network->getBaseStockLevelAtRetailer(product, retailer);
-
+	if (debug){
+		std::cout << "s" << Sij << std::endl;
+	}
 	for (int x = 0; x <= Sij; x++){
 		result = result + ((Sij - x)*pPartsOnOrderAtRetailer(product, retailer, x));
+		if (debug){
+			std::cout << pPartsOnOrderAtRetailer(product, retailer, x) << std::endl;
+			std::cout << "r:"<< result << std::endl;
+		}
 	} // for
 
 	assert(result >= 0);
@@ -458,6 +453,18 @@ double GreedyAlgorithm::ePartsOnBackorderAtRetailer(int product, int retailer){
 
 	result = (mij*Lij) - Sij + ePartsOnBackorderAtWarehouseFromRetailer(product, retailer) + ePartsOnHandAtRetailer(product, retailer);
 
+	if (debug) {
+		std::cout << "start expected backorders at retailer: " << retailer << std::endl;
+
+		std::cout << "mij*Lij: " << (mij*Lij) << std::endl;
+
+		std::cout << "Sij: " << Sij << std::endl;
+
+		std::cout << "E[BO at warehouse from j=" << retailer << "]=" << ePartsOnBackorderAtWarehouseFromRetailer(product, retailer) << std::endl;
+		std::cout << "E[OHj]=" << ePartsOnHandAtRetailer(product, retailer) << std::endl;
+
+		std::cout << "end ---" << std::endl;
+	}
 	//return result;
 
 	/*
@@ -511,21 +518,28 @@ QList<double> GreedyAlgorithm::evaluateNetwork(TwoEchelonDistributionNetwork *ne
 	this->network = network;
 
 	for (int x = 0; x <= 6; x++) {
-		std::cout << pPartsOnBackorderAtWarehouse(1, x) << std::endl;
+		//std::cout << pPartsOnBackorderAtWarehouse(1, x) << std::endl;
 	}
 
 	for (int x = 0; x <= 3; x++) {
-		std::cout << pPartsOnBackorderAtRetailer(1, 1, x) << std::endl;
+		//std::cout << pPartsOnBackorderAtRetailer(1, 1, x) << std::endl;
 	}
 
 	QList<double> EBOj = QList<double>();
 
 	for (int j = 1; j <= network->sizeRetailers(); j++) {
 		EBOj.append(0);
-		for (int i = 1; i <= network->sizeProducts(); i++) {
-			EBOj[j - 1] = EBOj[j - 1] + ePartsOnBackorderAtRetailer(i, j);
 
-			std::cout << i << "," << j << " " << ePartsOnBackorderAtRetailer(i, j) << std::endl;
+
+		for (int i = 1; i <= network->sizeProducts(); i++) {
+
+			double eboj = ePartsOnBackorderAtRetailer(i, j);
+
+			EBOj[j - 1] = EBOj[j - 1] + eboj;
+
+		
+			std::cout << "product: " << i << ", location: " << j << ": E[BOj]=" << eboj << std::endl;
+		
 		} // for
 	} // for
 
