@@ -15,7 +15,10 @@ class BasestockInitializationAlgorithm {
 
 		TwoEchelonDistributionNetwork *network;
 
+		double pPartsOnOrderAtRetailer(int product, int retailer, double x);
+
 		double calculateBetaJ(double BigM, int retailer);
+
 	public:
 		BasestockInitializationAlgorithm();
 		~BasestockInitializationAlgorithm();

@@ -21,7 +21,7 @@ double NormalDistribution::probability(double mu, double sigma, double x) {
 	double pi = 3.1415926535897;
 
 	double z = (x - mu) / sigma;
-
+	std::feclearexcept(FE_ALL_EXCEPT);
 	//std::cout << "z: " << z << std::endl;
 	//std::cout << "1.0/sigma: " << 1.0 / sigma << std::endl;
 	///std::cout << "(1.0 / sqrt(2.0 * pi)): " << (1.0 / sqrt(2.0 * pi)) << std::endl;
@@ -30,11 +30,17 @@ double NormalDistribution::probability(double mu, double sigma, double x) {
 
 	result = 1.0/sigma * (1.0 / sqrt(2.0 * pi)) * exp(-0.5*z*z);
 	
-	std::feclearexcept(FE_ALL_EXCEPT);
+	
+	//std::cout << sigma << "," << mu << std::endl;
+
+	//std::cout << z << std::endl;
+
+	//std::cout << exp(-0.5*z*z) << std::endl;
 
 
 	// detect possible underflow
 	if (std::fetestexcept(FE_UNDERFLOW)) {
+		throw(std::underflow_error("floating point operation error in Normal.pdf"));
 		result = 0.0;
 	}
 

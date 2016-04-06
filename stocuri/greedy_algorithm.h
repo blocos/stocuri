@@ -18,7 +18,12 @@ class GreedyAlgorithm {
 
 		TwoEchelonDistributionNetwork *network;
 
+		bool GRAVES = true;
+
 		bool debug = false;
+
+		int n = 0;
+		int w = 0;
 
 		// warehouse ------------------------------------------------------------------------------------------------------------
 		
@@ -38,13 +43,20 @@ class GreedyAlgorithm {
 
 		// retailer -------------------------------------------------------------------------------------------------------------
 		
-		double pPartsOnOrderAtRetailer(int product, int retailer, int x);
-		double pPartsOnOrderAtRetailer2Moment(int product, int retailer, int x);
+		// here
 		double pPartsOnHandAtRetailer(int product, int retailer, int x);
 		double pPartsOnBackorderAtRetailer(int product, int retailer, int x);
 
 		double ePartsOnHandAtRetailer(int product, int retailer);
 		double ePartsOnBackorderAtRetailer(int product, int retailer);
+		
+		double vPartsOnBackorderAtWarehouse(int product);
+		double vPartsOnBackorderAtWarehouseFromRetailer(int product, int retailer);
+
+		double ePartsOnOrderAtRetailer(int product, int retailer);
+		double vPartsOnOrderAtRetailer(int product, int retailer);
+		
+		
 
 
 		// support --------------------------------------------------------------------------------------------------------------
@@ -57,6 +69,11 @@ class GreedyAlgorithm {
 	public:
 		GreedyAlgorithm();
 		~GreedyAlgorithm();
+
+		double pPartsOnOrderAtRetailer(int product, int retailer, int x);
+		double pPartsOnOrderAtRetailer2Moment(int product, int retailer, int x);
+
+		void setNetwork(TwoEchelonDistributionNetwork *network){ this->network = network; debug = true; };
 
 		QList<double> evaluateNetwork(TwoEchelonDistributionNetwork *network);
 		int optimizeNetwork(TwoEchelonDistributionNetwork *network, QList<double> *targetAggregateFillRates);

@@ -26,7 +26,7 @@ int main ( int argc, char *argv[] ) {
 	targetAggregateFillRates->append(0.95);
 	
 	// retailers = 3, products = 5
-	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, 10); // 2, 1
+	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, 4); // 2, 1
 	network->loadFromFile("preprocessesed-settings.csv", "demand.csv");
 	
 	//qDebug() << network->getArrivalRateAtWarehouse(1);
@@ -81,9 +81,15 @@ int main ( int argc, char *argv[] ) {
 	BasestockInitializationAlgorithm *bia = new BasestockInitializationAlgorithm();
 	bia->run(network, targetAggregateFillRates);
 
+	//gerrit->setNetwork(network);
 
-	return a.exec();
+	//std::cout << "2m  : " << gerrit->pPartsOnOrderAtRetailer2Moment(2, 3, 2) << std::endl;
+	//std::cout << "n2m : " << gerrit->pPartsOnOrderAtRetailer(2, 3, 2) << std::endl;
 
+
+	//return a.exec();
+
+	std::cout << "initialized" << std::endl;
 
 
 	time_t start;

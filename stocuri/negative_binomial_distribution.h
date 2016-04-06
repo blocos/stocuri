@@ -7,6 +7,8 @@
 #include <exception>
 #include <cmath>
 
+#include "normal_distribution.h"
+
 class NegativeBinomialDistribution {
 
 	public:
@@ -14,6 +16,8 @@ class NegativeBinomialDistribution {
 		~NegativeBinomialDistribution();
 
 		double probability(double p, double k, double x);
+
+		double probabilityByNormalApproximation(double p, double k, double x);
 
 };
 
