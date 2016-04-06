@@ -45,6 +45,9 @@
     <ClCompile Include="negative_binomial_distribution.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="basestock_initialization_algorithm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="poisson_distribution.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="negative_binomial_distribution.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="basestock_initialization_algorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

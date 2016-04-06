@@ -8,8 +8,8 @@
 #include <cassert>
 #include <ctime>
 
+#include "basestock_initialization_algorithm.h"
 #include "greedy_algorithm.h"
-
 #include "poisson_distribution.h"
 #include "normal_distribution.h"
 
@@ -26,7 +26,7 @@ int main ( int argc, char *argv[] ) {
 	targetAggregateFillRates->append(0.95);
 	
 	// retailers = 3, products = 5
-	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, 5); // 2, 1
+	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, 10); // 2, 1
 	network->loadFromFile("preprocessesed-settings.csv", "demand.csv");
 	
 	//qDebug() << network->getArrivalRateAtWarehouse(1);
@@ -77,11 +77,19 @@ int main ( int argc, char *argv[] ) {
 	// ----------------------------------------------------------------------------------------------------------- optimizatia --
 
 	GreedyAlgorithm *gerrit = new GreedyAlgorithm();
+	
+	BasestockInitializationAlgorithm *bia = new BasestockInitializationAlgorithm();
+	bia->run(network, targetAggregateFillRates);
+
+
+	return a.exec();
+
+
 
 	time_t start;
 	time(&start);
 
-	///int result = gerrit->optimizeNetwork(network, targetAggregateFillRates);
+	int result = gerrit->optimizeNetwork(network, targetAggregateFillRates);
 
 	time_t stop;
 	time(&stop);
@@ -110,7 +118,7 @@ int main ( int argc, char *argv[] ) {
 	network->setBaseStockLevelAtRetailer(2, 2, 5);*/
 
 	QList<double> EBOj = gerrit->evaluateNetwork(network);
-	network->setBaseStockLevelAtRetailer(5, 3, 2);
+	///network->setBaseStockLevelAtRetailer(5, 3, 2);
 
 	EBOj = gerrit->evaluateNetwork(network);
 
@@ -126,9 +134,9 @@ int main ( int argc, char *argv[] ) {
 
 	// -------------------------------------------------------------------------------------------------------- write to files --
 
-	//network->writeBaseStockLevelsToFile("base-stock-levels.txt");
+	network->writeBaseStockLevelsToFile("base-stock-levels.txt");
 
-	//network->writeBaseStockLevelsToExcel("base-stock-levels.xls");
+	network->writeBaseStockLevelsToExcel("base-stock-levels.xls");
 
 
 	// -------------------------------------------------------------------------------------------------------------- clean up --

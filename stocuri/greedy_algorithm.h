@@ -61,6 +61,8 @@ class GreedyAlgorithm {
 		QList<double> evaluateNetwork(TwoEchelonDistributionNetwork *network);
 		int optimizeNetwork(TwoEchelonDistributionNetwork *network, QList<double> *targetAggregateFillRates);
 
+		
+
 };
 
 #endif
