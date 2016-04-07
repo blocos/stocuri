@@ -30,8 +30,6 @@ double GreedyAlgorithm::pPartsOnOrderAtWarehouse(int product, int x) {
 	// determine mean for Poisson distribution
 	double lambda = network->getArrivalRateAtWarehouse(product) * network->getLeadTimeToWarehouse(product);
 
-	//std::cout << lambda << std::endl;
-
 	// initialize Poisson distribution
 	PoissonDistribution tetrodotoxin;
 
@@ -42,14 +40,9 @@ double GreedyAlgorithm::pPartsOnOrderAtWarehouse(int product, int x) {
 	} catch (std::exception& me) {
 		std::cout << me.what() << std::endl;
 
-		std::cout << lambda << std::endl;
-		std::cout << x << std::endl;
-
 		// catched me, try calculation with Normal approximation
 		result = tetrodotoxin.probabilityByNormalApproximation(lambda, x);
-	} // tryCatchMe
-
-	//std::cout << result << std::endl;
+	} // catch-me-if-you-can
 
 	assert(result >= 0);
 	assert(result <= 1);
@@ -181,20 +174,20 @@ double GreedyAlgorithm::pPartsOnBackorderAtWarehouseFromRetailer(int product, in
 	int y = x;
 
 	while (true) {
-		// y over x
-		double over = exp(lgammal(y + 1) - lgammal(x + 1) - lgammal(y - x + 1));
 
+		// y over x, expressed in the logarithmic gamma function, translate using exponential
+		double binCoef = exp(lgammal(y + 1) - lgammal(x + 1) - lgammal(y - x + 1));
 		double powerX = pow(mij / mi0, x);
 		double powerYminX = pow(1.0 - (mij / mi0), y - x);
-		double p = pPartsOnBackorderAtWarehouse(product, y);
+		double pBO = pPartsOnBackorderAtWarehouse(product, y);
 
-		double value = over * powerX * powerYminX * p;
+		double value = binCoef * powerX * powerYminX * pBO;
 
 		result = result + value;
 
 		y = y + 1;
 
-		if (result - previous < 0.00000001) {
+		if (result - previous < BOCUTOFF) {
 			break;
 		} // if
 
@@ -212,7 +205,7 @@ double GreedyAlgorithm::pPartsOnBackorderAtWarehouseFromRetailer(int product, in
 
 double GreedyAlgorithm::ePartsOnBackorderAtWarehouseFromRetailer(int product, int retailer) {
 	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
-	// ret	: E[BOi0j(Si0) = x]
+	// ret	: E[BOi0j(Si0)]
 
 	assert(1 <= product);
 	assert(product <= network->sizeProducts());
@@ -269,8 +262,6 @@ double GreedyAlgorithm::pPartsOnOrderAtRetailer(int product, int retailer, int x
 		} catch (std::exception& me) {
 			std::cout << me.what() << std::endl;
 
-			std::cout << lambda << std::endl;
-
 			// catched me, try calculation with Normal approximation
 			p1 = tetrodotoxin.probabilityByNormalApproximation(lambda, k);
 		} // try to catch me
@@ -292,7 +283,7 @@ double GreedyAlgorithm::pPartsOnOrderAtRetailer(int product, int retailer, int x
 
 double GreedyAlgorithm::vPartsOnBackorderAtWarehouse(int product) {
 	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
-	// ret	: 
+	// ret	: Var[BOi0j(Si0)]
 
 	assert(1 <= product);
 	assert(product <= network->sizeProducts());
@@ -326,7 +317,7 @@ double GreedyAlgorithm::vPartsOnBackorderAtWarehouse(int product) {
 
 double GreedyAlgorithm::vPartsOnBackorderAtWarehouseFromRetailer(int product, int retailer) {
 	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
-	// ret	: 
+	// ret	: Var[BOi0j(Si0)]
 
 	assert(1 <= product);
 	assert(product <= network->sizeProducts());
@@ -353,7 +344,7 @@ double GreedyAlgorithm::vPartsOnBackorderAtWarehouseFromRetailer(int product, in
 
 double GreedyAlgorithm::ePartsOnOrderAtRetailer(int product, int retailer) {
 	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
-	// ret	: 
+	// ret	: E[Xij(Si0,Sij)]
 
 	assert(1 <= product);
 	assert(product <= network->sizeProducts());
@@ -370,8 +361,6 @@ double GreedyAlgorithm::ePartsOnOrderAtRetailer(int product, int retailer) {
 
 	result = mij*Lij + EBOj;
 
-	//std::cout << "EBOj" << EBOj << std::endl;
-
 	return result;
 
 } // ePartsOnOrderAtRetailer
@@ -379,7 +368,7 @@ double GreedyAlgorithm::ePartsOnOrderAtRetailer(int product, int retailer) {
 
 double GreedyAlgorithm::vPartsOnOrderAtRetailer(int product, int retailer) {
 	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
-	// ret	: 
+	// ret	: Var[Xij(Si0,Sij)]
 
 	assert(1 <= product);
 	assert(product <= network->sizeProducts());

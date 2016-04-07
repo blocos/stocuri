@@ -7,18 +7,25 @@ PoissonDistribution::PoissonDistribution() {
 PoissonDistribution::~PoissonDistribution() {
 }
 
+
 double PoissonDistribution::recursiveProbability(double lambda, double x){
+	// pre	: True
+	// ret	: [ (lambda/x)*recursiveProbability(lambda, x-1) | x > 0 ] && [1 | x == 0]
+
+	// pre-conditions satisfied
+
 	double result;
 
 	if (x == 0) {
 		result = 1.0;
-	}
-	else {
+	} else {
 		result = (lambda / x) * recursiveProbability(lambda, x - 1);
-	}
+	} // eif
 
 	return result;
-}
+
+} // recursiveProbability
+
 
 double PoissonDistribution::probability(double lambda, double x) {
 	// pre	: lambda >= 0 /\ x >= 0
@@ -39,22 +46,23 @@ double PoissonDistribution::probability(double lambda, double x) {
 	// detect possible underflow on exponential with negative lambda
 	if (std::fetestexcept(FE_UNDERFLOW)) {
 		throw std::underflow_error("underflow in PoissonDistribution.pdf");
-	}
+	} // if
 
 	result = recursiveProbability(lambda, x) * result;
 
 	// detect possible underflow after recursion
 	if (std::fetestexcept(FE_UNDERFLOW)) {
 		throw std::underflow_error("underflow in PoissonDistribution.pdf");
-	}
+	} // if
 
 	return result;
 
 } // pdf
 
+
 double PoissonDistribution::probabilityBySterlingApproximation(double lambda, double x) {
 	// pre	: True
-	// ret	: PDF based onSterling's Approximation
+	// ret	: PDF based on Sterling's Approximation
 
 	// pre-conditions satisfied
 
@@ -63,6 +71,7 @@ double PoissonDistribution::probabilityBySterlingApproximation(double lambda, do
 	return result;
 
 } // pdfSterlingApproximation
+
 
 double PoissonDistribution::probabilityByNormalApproximation(double lambda, double x) {
 	// pre	: True

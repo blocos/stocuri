@@ -16,14 +16,14 @@
 class GreedyAlgorithm {
 	private:	
 
-		TwoEchelonDistributionNetwork *network;
-
 		bool GRAVES = true;
-
+		double BOCUTOFF = 0.00000001;
 		bool debug = true;
 
 		int n = 0;
 		int w = 0;
+
+		TwoEchelonDistributionNetwork *network;
 
 		// warehouse ------------------------------------------------------------------------------------------------------------
 		
@@ -56,9 +56,6 @@ class GreedyAlgorithm {
 		double ePartsOnOrderAtRetailer(int product, int retailer);
 		double vPartsOnOrderAtRetailer(int product, int retailer);
 		
-		
-
-
 		// support --------------------------------------------------------------------------------------------------------------
 
 		bool isTargetFillRatesSatisfied(TwoEchelonDistributionNetwork *network, QList<double> *EBOj, QList<double> *targetAggregateFillRates);
@@ -77,8 +74,6 @@ class GreedyAlgorithm {
 
 		QList<double> evaluateNetwork(TwoEchelonDistributionNetwork *network);
 		int optimizeNetwork(TwoEchelonDistributionNetwork *network, QList<double> *targetAggregateFillRates);
-
-		
 
 };
 
