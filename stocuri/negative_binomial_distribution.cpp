@@ -19,10 +19,15 @@ double NegativeBinomialDistribution::probability(double p, double k, double x) {
 
 	// y over x
 
+	// exp(lgamma(r + k) - lgamma(r) - lgamma(k + 1)) * pow(p, r) * pow((1 - p), k)
+	//double over = exp(lgammal(x + k) - lgammal(x) - lgammal(k + 1));
 
-	double over = exp(lgammal(x + k) - lgammal(x + 1) - lgammal(k));
+	// y over x
+	double over = exp(lgammal(x+k-1 + 1) - lgammal(x + 1) - lgammal(x+k-1 - x + 1));
 
 	result = over * pow(p, x) * pow(1 - p, k);
+
+	std::cout << "o:" << over << std::endl;
 
 	// detect possible underflow on exponential with negative lambda
 	if (std::fetestexcept(FE_OVERFLOW)) {

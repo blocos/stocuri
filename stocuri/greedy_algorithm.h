@@ -20,7 +20,7 @@ class GreedyAlgorithm {
 
 		bool GRAVES = true;
 
-		bool debug = false;
+		bool debug = true;
 
 		int n = 0;
 		int w = 0;

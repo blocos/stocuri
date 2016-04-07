@@ -417,69 +417,32 @@ double GreedyAlgorithm::pPartsOnOrderAtRetailer2Moment(int product, int retailer
 	double EXij = ePartsOnOrderAtRetailer(product, retailer);
 	double VarXij = vPartsOnOrderAtRetailer(product, retailer);
 
-	if (VarXij < EXij) {
-		//std::cout << "var less then e" << std::endl;
-		return pPartsOnOrderAtRetailer(product, retailer, x);
-	}
+	PoissonDistribution tetrodotoxin;
 
-	if (VarXij == EXij) {
-		//std::cout << "var = e" << std::endl;
-		PoissonDistribution tetrodotoxin;
-		return tetrodotoxin.probability(EXij, x);
+	if (EXij == VarXij){
+		double lambda = EXij;
+		return tetrodotoxin.probability(lambda, x);
 	}
 
 
+	std::cout << "2m EXij " << EXij << std::endl;
+	std::cout << "2m VarXij " << VarXij << std::endl;
 
 	double p = (VarXij - EXij) / VarXij;
 
-
-	if (VarXij > EXij) {
-		//std::cout << "usable...." << std::endl;
-		std::cout << p << std::endl;
-	}
-
-	/*std::cout << "varXij: " << VarXij << std::endl;
-	std::cout << "EXij: " << EXij << std::endl;
-	std::cout << "p: " << p << std::endl;
-
-	if (p == 0) {
-	n = n + 1;
-	std::cout << "ret, p=" << p << std::endl;
-	return pPartsOnOrderAtRetailer(product, retailer, x);
-	} else {
-	w = w + 1;
-	}*/
+	std::cout << "2m p: " << p << std::endl;
 
 	double k = ((1 - p) / p)*EXij;
 
-	if (VarXij > EXij) {
-		//std::cout << "usable...." << std::endl;
-		std::cout << "p" << p << std::endl;
-		std::cout << "k" << k << std::endl;
-	}
-
+	std::cout << "2m k: " << k << std::endl;
 
 
 	NegativeBinomialDistribution grumpy;
+	result =  grumpy.probability(p, k, x);
 
-	if (k <= 8) {
+	std::cout << "gres: " << x << ", " << result << std::endl;
 
-		try {
-			result = grumpy.probability(p, k, x);
-		}
-		catch (std::exception &me) {
-			//std::cout << me.what() << std::endl;
 
-			//std::cout << p << std::endl;
-
-			result = pPartsOnOrderAtRetailer(product, retailer, x);
-		}
-
-	} else {
-		result = grumpy.probabilityByNormalApproximation(p, k, x);
-	}
-
-	//std::cout << "result: " << result << std::endl;
 
 	assert(result >= 0);
 	assert(result <= 1);
@@ -563,8 +526,8 @@ double GreedyAlgorithm::ePartsOnHandAtRetailer(int product, int retailer) {
 			result = result + ((Sij - x)*pPartsOnOrderAtRetailer2Moment(product, retailer, x));
 
 			if (debug){
-				std::cout << "n2m: " << pPartsOnOrderAtRetailer(product, retailer, x) << std::endl;
-				std::cout << "2m: " << pPartsOnOrderAtRetailer2Moment(product, retailer, x) << std::endl;
+				std::cout << "t n2m: " << pPartsOnOrderAtRetailer(product, retailer, x) << std::endl;
+				std::cout << "t 2m: " << pPartsOnOrderAtRetailer2Moment(product, retailer, x) << std::endl;
 			}
 		}
 		else {
@@ -599,14 +562,14 @@ double GreedyAlgorithm::ePartsOnBackorderAtRetailer(int product, int retailer){
 
 	result = (mij*Lij) - Sij + ePartsOnBackorderAtWarehouseFromRetailer(product, retailer) + ePartsOnHandAtRetailer(product, retailer);
 
-	if (result < 0){
-		debug = true;
-		std::cout << "mij*Lij: " << (mij*Lij) << std::endl;
-		std::cout << "Sij: " << Sij << std::endl;
-		std::cout << "EBOj: " << ePartsOnBackorderAtWarehouseFromRetailer(product, retailer) << std::endl;
-		std::cout << "EOH: " << ePartsOnHandAtRetailer(product, retailer) << std::endl;
-		std::cout << "result: " << result << std::endl;
-	}
+	//if (result < 0){
+	//	debug = true;
+		//std::cout << "mij*Lij: " << (mij*Lij) << std::endl;
+		//std::cout << "Sij: " << Sij << std::endl;
+		//std::cout << "EBOj: " << ePartsOnBackorderAtWarehouseFromRetailer(product, retailer) << std::endl;
+		//std::cout << "EOH: " << ePartsOnHandAtRetailer(product, retailer) << std::endl;
+		//std::cout << "result: " << result << std::endl;
+	//}
 
 	
 
@@ -628,6 +591,37 @@ QList<double> GreedyAlgorithm::evaluateNetwork(TwoEchelonDistributionNetwork *ne
 	// pre-conditions satisfied
 
 	this->network = network;
+
+	std::cout << "VarBOi0: " << vPartsOnBackorderAtWarehouse(1) << std::endl;
+
+	std::cout << "EXij: " << ePartsOnOrderAtRetailer(1, 1) << std::endl;
+	std::cout << "VarXij: " << vPartsOnOrderAtRetailer(1, 1) << std::endl;
+
+	double mi0 = network->getArrivalRateAtWarehouse(1);
+	double Li0 = network->getLeadTimeToWarehouse(1);
+
+	double EX2 = vPartsOnOrderAtRetailer(1, 1) + ePartsOnOrderAtRetailer(1,1)*ePartsOnOrderAtRetailer(1,1);
+
+	std::cout << "EXij squared: " << EX2 << std::endl;
+
+	double p = (vPartsOnOrderAtRetailer(1, 1) - ePartsOnOrderAtRetailer(1, 1)) / vPartsOnOrderAtRetailer(1, 1);
+	std::cout << "p: " << p << std::endl;
+
+	double k = ((1 - p) / p) *ePartsOnOrderAtRetailer(1, 1);
+
+	std::cout << "k: " << k << std::endl;
+
+	std::cout << "------------------------" << std::endl;
+
+
+
+	std::cout << "EBOj: " << ePartsOnBackorderAtRetailer(1, 1) << std::endl;
+
+
+	GRAVES = false;
+
+	std::cout << "EBOj 2: " << ePartsOnBackorderAtRetailer(1, 1) << std::endl;
+	
 
 	for (int x = 0; x <= 6; x++) {
 		//std::cout << pPartsOnBackorderAtWarehouse(1, x) << std::endl;
