@@ -9,6 +9,8 @@
 
 #include "normal_distribution.h"
 
+#include <QtCore>
+
 class NegativeBinomialDistribution {
 
 	public:
