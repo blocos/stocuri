@@ -5,6 +5,7 @@
 #include <cassert>
 #include <cfenv>
 #include <exception>
+#include <stdexcept>
 #include <cmath>
 
 
