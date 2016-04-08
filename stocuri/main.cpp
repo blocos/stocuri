@@ -6,6 +6,7 @@
 #include <cfenv>
 #include <exception>
 #include <cassert>
+#include <stdexcept>
 #include <ctime>
 
 #include "basestock_initialization_algorithm.h"
