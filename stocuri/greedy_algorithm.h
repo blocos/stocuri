@@ -16,12 +16,8 @@
 class GreedyAlgorithm {
 	private:	
 
-		bool GRAVES = false;
 		double BOCUTOFF = 0.00000001;
 		bool debug = true;
-
-		int n = 0;
-		int w = 0;
 
 		TwoEchelonDistributionNetwork *network;
 
@@ -69,8 +65,6 @@ class GreedyAlgorithm {
 
 		double pPartsOnOrderAtRetailer(int product, int retailer, int x);
 		double pPartsOnOrderAtRetailer2Moment(int product, int retailer, int x);
-
-		void setNetwork(TwoEchelonDistributionNetwork *network){ this->network = network; debug = true; };
 
 		QList<double> evaluateNetwork(TwoEchelonDistributionNetwork *network);
 		int optimizeNetwork(TwoEchelonDistributionNetwork *network, QList<double> *targetAggregateFillRates);
