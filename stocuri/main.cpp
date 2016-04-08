@@ -23,11 +23,11 @@ int main ( int argc, char *argv[] ) {
 	QList<double> *targetAggregateFillRates = new QList<double>();
 	targetAggregateFillRates->append(0.95);
 	targetAggregateFillRates->append(0.95);
-	//targetAggregateFillRates->append(0.95);
+	targetAggregateFillRates->append(0.95);
 	
 	// retailers = 3, products = 5
-	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(2, 1); // 2, 1
-	//network->loadFromFile("preprocessesed-settings.csv", "demand.csv");
+	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, 22); // 2, 1
+	network->loadFromFile("preprocessesed-settings.csv", "demand.csv");
 	
 	//qDebug() << network->getArrivalRateAtWarehouse(1);
 	//qDebug() << network->getArrivalRateAtRetailer(1, 1);
@@ -36,62 +36,31 @@ int main ( int argc, char *argv[] ) {
 
 
 	// set arrival rates
-	network->setArrivalRateAtWarehouse(1, 300.3); 
+	/*network->setArrivalRateAtWarehouse(1, 300.3); 
 	network->setArrivalRateAtRetailer(1, 1, 100.1);
 	network->setArrivalRateAtRetailer(1, 2, 200.2);
 
-	/*network->setArrivalRateAtWarehouse(2, 4);
-	network->setArrivalRateAtRetailer(2, 1, 2);
-	network->setArrivalRateAtRetailer(2, 2, 2);
-
-	network->setArrivalRateAtWarehouse(3, 0.75);
-	network->setArrivalRateAtRetailer(3, 1, 0.05);
-	network->setArrivalRateAtRetailer(3, 2, 0.70);*/
-	
 	// set lead times
 	network->setLeadTimeToWarehouse(1, 4);
 	network->setLeadTimeToRetailer(1, 1, 1);
 	network->setLeadTimeToRetailer(1, 2, 1);
-	/*
-	network->setLeadTimeToWarehouse(2, 5);
-	network->setLeadTimeToRetailer(2, 1, 1);
-	network->setLeadTimeToRetailer(2, 2, 1);
-
-	network->setLeadTimeToWarehouse(3, 6);
-	network->setLeadTimeToRetailer(3, 1, 1);
-	network->setLeadTimeToRetailer(3, 2, 1);
-	*/
 
 	// set inventory holding cost
 	network->setInventoryHoldingCostAtWarehouse(1, 1);
 	network->setInventoryHoldingCostAtRetailer(1, 1, 1);
 	network->setInventoryHoldingCostAtRetailer(1, 2, 1);
-	/*
-	network->setInventoryHoldingCostAtWarehouse(2, 1);
-	network->setInventoryHoldingCostAtRetailer(2, 1, 1);
-	network->setInventoryHoldingCostAtRetailer(2, 2, 1);
 
-	network->setInventoryHoldingCostAtWarehouse(3, 1);
-	network->setInventoryHoldingCostAtRetailer(3, 1, 1);
-	network->setInventoryHoldingCostAtRetailer(3, 2, 1);*/
+	//network->setBaseStockLevelAtWarehouse(1, 300);*/
+	
 
 	// ----------------------------------------------------------------------------------------------------------- optimizatia --
 
 	GreedyAlgorithm *gerrit = new GreedyAlgorithm();
 	
-	//BasestockInitializationAlgorithm *bia = new BasestockInitializationAlgorithm();
-	//bia->run(network, targetAggregateFillRates);
-
-	//gerrit->setNetwork(network);
-
-	//std::cout << "2m  : " << gerrit->pPartsOnOrderAtRetailer2Moment(2, 3, 2) << std::endl;
-	//std::cout << "n2m : " << gerrit->pPartsOnOrderAtRetailer(2, 3, 2) << std::endl;
-
-
-	//return a.exec();
+	BasestockInitializationAlgorithm *bia = new BasestockInitializationAlgorithm();
+	bia->run(network, targetAggregateFillRates);
 
 	std::cout << "initialized" << std::endl;
-
 
 	time_t start;
 	time(&start);

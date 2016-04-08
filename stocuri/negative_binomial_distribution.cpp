@@ -27,19 +27,17 @@ double NegativeBinomialDistribution::probability(double p, double k, double x) {
 	double binCoef = exp(lgammal(x+k-1 + 1) - lgammal(x + 1) - lgammal(x+k-1 - x + 1));
 
 	double px = pow(p, x);
-	double p1x = pow(1 - p, x);
+	double p1x = pow(1 - p, k);
 
 
 	result = binCoef * px * p1x;
 	
-	std::cout << "k: " << k << std::endl;
-	std::cout << "p: " << p << std::endl;
 
-	//std::cout << "y over x" << binCoef << std::endl;
+	//std::cout << "y over x: " << binCoef << std::endl;
 
-	std::cout << "p^x: " << px << std::endl;
+	//std::cout << "p^x: " << px << std::endl;
 
-	//std::cout << "(1-p)^x" << p1x << std::endl;
+	//std::cout << "(1-p)^x: " << p1x << std::endl;
 	
 	// detect possible floating point operation exception
 	if (std::fetestexcept(FE_OVERFLOW) || std::fetestexcept(FE_UNDERFLOW)) {
@@ -62,9 +60,17 @@ double NegativeBinomialDistribution::probabilityByNormalApproximation(double p, 
 	double mu = k / p;
 	double sigma = sqrt(k * ((1 - p) / (p*p)));
 
+	//std::cout << mu << std::endl;
+	//std::cout << sigma << std::endl;
+
 	NormalDistribution kees;
 
-	result = kees.probability(mu, sigma, x);
+	try{
+		result = kees.probability(mu, sigma, x);
+	}
+	catch (std::exception &me) {
+		result = 0.0;
+	}
 
 	return result;
 

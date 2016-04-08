@@ -17,7 +17,7 @@ double BasestockInitializationAlgorithm::pPartsOnOrderAtRetailer(int product, in
 	assert(1 <= product);
 	assert(product <= network->sizeProducts());
 	assert(1 <= retailer);
-	assert(retailer <= network->sizeProducts());
+	assert(retailer <= network->sizeRetailers());
 	assert(x >= 0);
 
 	PoissonDistribution tetrodotoxin;
@@ -81,6 +81,10 @@ int BasestockInitializationAlgorithm::run(TwoEchelonDistributionNetwork *network
 
 			double mij = network->getArrivalRateAtRetailer(i, j);
 			double Lij = network->getLeadTimeToRetailer(i, j);
+
+			if (mij >= 20) {
+				Lij += network->getLeadTimeToWarehouse(i);
+			}
 
 			double f = ceil(mij*Lij);
 

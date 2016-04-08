@@ -33,7 +33,7 @@ double GreedyAlgorithm::pPartsOnOrderAtWarehouse(int product, int x) {
 	// initialize Poisson distribution
 	PoissonDistribution tetrodotoxin;
 
-	if (lambda >= APPROX) {
+	if (lambda <= APPROX) {
 		try {
 			// try regular calculation
 			result = tetrodotoxin.probabilityBySterlingApproximation(lambda, x);
@@ -261,16 +261,23 @@ double GreedyAlgorithm::pPartsOnOrderAtRetailer(int product, int retailer, int x
 		double p1 = 0.0;
 
 		PoissonDistribution tetrodotoxin;
+		
+		if (lambda <= APPROX) {
 
-		try {
-			// try regular calculation
-			p1 = tetrodotoxin.probability(lambda, k);
-		} catch (std::exception& me) {
-			std::cout << me.what() << std::endl;
+			try {
+				// try regular calculation
+				p1 = tetrodotoxin.probabilityBySterlingApproximation(lambda, k);
+			}
+			catch (std::exception& me) {
+				std::cout << me.what() << std::endl;
 
-			// catched me, try calculation with Normal approximation
-			p1 = tetrodotoxin.probabilityByNormalApproximation(lambda, k);
-		} // try to catch me
+				// catched me, try calculation with Normal approximation
+				p1 = tetrodotoxin.probabilityByNormalApproximation(lambda, k);
+			} // try to catch me
+		}
+		else {
+			result = tetrodotoxin.probabilityByNormalApproximation(lambda, k);
+		}
 
 		// 2. P[BOj = x - k]
 		double p2 = pPartsOnBackorderAtWarehouseFromRetailer(product, retailer, x-k);
@@ -414,28 +421,48 @@ double GreedyAlgorithm::pPartsOnOrderAtRetailer2Moment(int product, int retailer
 
 	PoissonDistribution tetrodotoxin;
 
-	if (EXij == VarXij){
+	if (abs(EXij - VarXij) < 0.0000001){
 		double lambda = EXij;
-		return tetrodotoxin.probability(lambda, x);
+
+		try {
+			result = tetrodotoxin.probabilityBySterlingApproximation(lambda, x);
+		}
+		catch (std::exception &me) {
+			std::cout << "DORK!" << std::endl;
+		}
 	}
+	else {
+		//std::cout << "/ \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \ / \ / \\" << std::endl;
+
+		//std::cout << "E[Xij] " << EXij << std::endl;
+		//std::cout << "Var[Xij] " << VarXij << std::endl;
+
+		double p = (VarXij - EXij) / VarXij;
+
+		//std::cout << "p: " << p << std::endl;
+
+		double k = ((1 - p) / p)*EXij;
+
+		//std::cout << "k: " << k << std::endl;
 
 
-	std::cout << "2m EXij " << EXij << std::endl;
-	std::cout << "2m VarXij " << VarXij << std::endl;
+		NegativeBinomialDistribution grumpy;
 
-	double p = (VarXij - EXij) / VarXij;
+		if (k >= 500){
+			result = grumpy.probabilityByNormalApproximation(p, k, x);
+		}
+		else{
 
-	std::cout << "2m p: " << p << std::endl;
+			try {
+				result = grumpy.probability(p, k, x);
+			}
+			catch (std::exception &me) {
+				result = grumpy.probabilityByNormalApproximation(p, k, x);
+			}
+		}
 
-	double k = ((1 - p) / p)*EXij;
-
-	std::cout << "2m k: " << k << std::endl;
-
-
-	NegativeBinomialDistribution grumpy;
-	result =  grumpy.probability(p, k, x);
-
-	std::cout << "gres: " << x << ", " << result << std::endl;
+		//std::cout << "gres: " << x << ", " << result << std::endl;
+	}
 
 
 
@@ -518,11 +545,19 @@ double GreedyAlgorithm::ePartsOnHandAtRetailer(int product, int retailer) {
 
 	for (int x = 0; x <= Sij; x++){
 		if (GRAVES) {
-			result = result + ((Sij - x)*pPartsOnOrderAtRetailer2Moment(product, retailer, x));
+			try{
+				result = result + ((Sij - x)*pPartsOnOrderAtRetailer2Moment(product, retailer, x));
+			}
+			catch (std::exception &me) {
+				//std::cout << "graves..." << std::endl;
+				//std::cout << pPartsOnOrderAtRetailer2Moment(product, retailer, x) << std::endl;
+
+				//assert(1 == 0);
+			}
 
 			if (debug){
-				std::cout << "t n2m: " << pPartsOnOrderAtRetailer(product, retailer, x) << std::endl;
-				std::cout << "t 2m: " << pPartsOnOrderAtRetailer2Moment(product, retailer, x) << std::endl;
+				//std::cout << "t n2m: " << pPartsOnOrderAtRetailer(product, retailer, x) << std::endl;
+				//std::cout << "t 2m: " << pPartsOnOrderAtRetailer2Moment(product, retailer, x) << std::endl;
 			}
 		}
 		else {
@@ -557,6 +592,10 @@ double GreedyAlgorithm::ePartsOnBackorderAtRetailer(int product, int retailer){
 
 	result = (mij*Lij) - Sij + ePartsOnBackorderAtWarehouseFromRetailer(product, retailer) + ePartsOnHandAtRetailer(product, retailer);	
 
+	if (result < 0) {
+		result = 0;
+	}
+
 	assert(result >= 0);	
 
 	return result;
@@ -574,45 +613,7 @@ QList<double> GreedyAlgorithm::evaluateNetwork(TwoEchelonDistributionNetwork *ne
 
 	this->network = network;
 
-	std::cout << "VarBOi0: " << vPartsOnBackorderAtWarehouse(1) << std::endl;
-
-	std::cout << "EXij: " << ePartsOnOrderAtRetailer(1, 1) << std::endl;
-	std::cout << "VarXij: " << vPartsOnOrderAtRetailer(1, 1) << std::endl;
-
-	double mi0 = network->getArrivalRateAtWarehouse(1);
-	double Li0 = network->getLeadTimeToWarehouse(1);
-
-	double EX2 = vPartsOnOrderAtRetailer(1, 1) + ePartsOnOrderAtRetailer(1,1)*ePartsOnOrderAtRetailer(1,1);
-
-	std::cout << "EXij squared: " << EX2 << std::endl;
-
-	double p = (vPartsOnOrderAtRetailer(1, 1) - ePartsOnOrderAtRetailer(1, 1)) / vPartsOnOrderAtRetailer(1, 1);
-	std::cout << "p: " << p << std::endl;
-
-	double k = ((1 - p) / p) *ePartsOnOrderAtRetailer(1, 1);
-
-	std::cout << "k: " << k << std::endl;
-
-	std::cout << "------------------------" << std::endl;
-
-
-
-	std::cout << "EBOj: " << ePartsOnBackorderAtRetailer(1, 1) << std::endl;
-
-
-	GRAVES = false;
-
-	std::cout << "EBOj 2: " << ePartsOnBackorderAtRetailer(1, 1) << std::endl;
 	
-
-	for (int x = 0; x <= 6; x++) {
-		//std::cout << pPartsOnBackorderAtWarehouse(1, x) << std::endl;
-	}
-
-	for (int x = 0; x <= 3; x++) {
-		//std::cout << pPartsOnBackorderAtRetailer(1, 1, x) << std::endl;
-	}
-
 	QList<double> EBOj = QList<double>();
 
 	for (int j = 1; j <= network->sizeRetailers(); j++) {
@@ -724,13 +725,39 @@ int GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network, QLi
 
 			double SiX = 0.0;
 
+			double inc = 1.0;
+
 			if (l == 0) {
 				SiX = network->getBaseStockLevelAtWarehouse(k);
-				network->setBaseStockLevelAtWarehouse(k, SiX + 1);
+				if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 4) {
+					inc = 2;
+				}
+
+				if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 20) {
+					inc = 10;
+				}
+
+				if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 50) {
+					inc = 25;
+				}
+				network->setBaseStockLevelAtWarehouse(k, SiX + inc);
 			} else {
 				SiX = network->getBaseStockLevelAtRetailer(k, l);
-				network->setBaseStockLevelAtRetailer(k, l, SiX + 1);
+				if (network->getArrivalRateAtRetailer(k,l)*network->getLeadTimeToRetailer(k,l) > 4) {
+					inc = 2;
+				}
+
+				if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 20) {
+					inc = 10;
+				}
+
+				if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 50) {
+					inc = 25;
+				}
+				network->setBaseStockLevelAtRetailer(k, l, SiX + inc);
 			} // eif
+
+			std::cout << "update at " << l << " product " << k << " to " << SiX + inc << std::endl;
 
 			// Line 13
 
@@ -838,12 +865,42 @@ double GreedyAlgorithm::calculateDeltaEBO(int product, int j, QList<double> *tar
 
 		double SiX = 0.0;
 
+
+		double inc = 1.0;
+
 		if (j == 0) {
 			SiX = network->getBaseStockLevelAtWarehouse(product);
-			network->setBaseStockLevelAtWarehouse(product, SiX + 1);
+
+			if (network->getArrivalRateAtWarehouse(product)*network->getLeadTimeToWarehouse(product) > 4) {
+				inc = 2;
+			}
+			
+			if (network->getArrivalRateAtWarehouse(product)*network->getLeadTimeToWarehouse(product) > 20) {
+				inc = 10;
+			}
+
+			if (network->getArrivalRateAtWarehouse(product)*network->getLeadTimeToWarehouse(product) > 50) {
+				inc = 25;
+			}
+
+
+			network->setBaseStockLevelAtWarehouse(product, SiX + inc);
 		} else {
 			SiX = network->getBaseStockLevelAtRetailer(product, j);
-			network->setBaseStockLevelAtRetailer(product, j, SiX + 1);
+
+			if (network->getArrivalRateAtRetailer(product, j)*network->getLeadTimeToRetailer(product, j) > 4) {
+				inc = 2;
+			}
+
+			if (network->getArrivalRateAtRetailer(product, j)*network->getLeadTimeToRetailer(product, j) > 20) {
+				inc = 10;
+			}
+
+			if (network->getArrivalRateAtRetailer(product, j)*network->getLeadTimeToRetailer(product, j) > 50) {
+				inc = 25;
+			}
+
+			network->setBaseStockLevelAtRetailer(product, j, SiX + inc);
 		}
 
 		for (int i = 1; i <= network->sizeProducts(); i++){
