@@ -36,9 +36,9 @@ int main ( int argc, char *argv[] ) {
 
 
 	// set arrival rates
-	network->setArrivalRateAtWarehouse(1, 0.3); 
-	network->setArrivalRateAtRetailer(1, 1, 0.1);
-	network->setArrivalRateAtRetailer(1, 2, 0.2);
+	network->setArrivalRateAtWarehouse(1, 300.3); 
+	network->setArrivalRateAtRetailer(1, 1, 100.1);
+	network->setArrivalRateAtRetailer(1, 2, 200.2);
 
 	/*network->setArrivalRateAtWarehouse(2, 4);
 	network->setArrivalRateAtRetailer(2, 1, 2);

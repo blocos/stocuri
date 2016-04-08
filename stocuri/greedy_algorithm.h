@@ -17,8 +17,10 @@ class GreedyAlgorithm {
 	private:	
 
 		bool GRAVES = false;
-		double BOCUTOFF = 0.00000001;
+		double BOCUTOFF = 0.000000001;
 		bool debug = true;
+
+		double APPROX = 30;
 
 		TwoEchelonDistributionNetwork *network;
 

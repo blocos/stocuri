@@ -33,16 +33,22 @@ double GreedyAlgorithm::pPartsOnOrderAtWarehouse(int product, int x) {
 	// initialize Poisson distribution
 	PoissonDistribution tetrodotoxin;
 
-	try {
-		// try regular calculation
-		//result = tetrodotoxin.probabilityBySterlingApproximation(lambda, x);
-		result = tetrodotoxin.probability(lambda, x);
-	} catch (std::exception& me) {
-		std::cout << me.what() << std::endl;
+	if (lambda >= APPROX) {
+		try {
+			// try regular calculation
+			result = tetrodotoxin.probabilityBySterlingApproximation(lambda, x);
+		}
+		catch (std::exception& me) {
+			std::cout << me.what() << std::endl;
 
-		// catched me, try calculation with Normal approximation
+			// catched me, try calculation with Normal approximation
+			result = tetrodotoxin.probabilityByNormalApproximation(lambda, x);
+		} // catch-me-if-you-can
+	} else {
 		result = tetrodotoxin.probabilityByNormalApproximation(lambda, x);
-	} // catch-me-if-you-can
+	}
+
+	
 
 	assert(result >= 0);
 	assert(result <= 1);
@@ -742,8 +748,6 @@ int GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network, QLi
 	} // if
 
 
-	std::cout << "n: " << n << std::endl;
-	std::cout << "w: " << w << std::endl;
 
 	// Line 14;
 
