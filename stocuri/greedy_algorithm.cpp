@@ -281,167 +281,6 @@ double GreedyAlgorithm::pPartsOnOrderAtRetailer(int product, int retailer, int x
 } // pPartsOnOrderAtRetailer
 
 
-double GreedyAlgorithm::vPartsOnBackorderAtWarehouse(int product) {
-	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
-	// ret	: Var[BOi0j(Si0)]
-
-	assert(1 <= product);
-	assert(product <= network->sizeProducts());
-
-	// pre-conditions satisfied
-
-	double result = 0.0;
-	
-	double EBO = ePartsOnBackorderAtWarehouse(product);
-	
-	double Si0 = network->getBaseStockLevelAtWarehouse(product);
-	double mi0 = network->getArrivalRateAtWarehouse(product);
-	double Li0 = network->getLeadTimeToWarehouse(product);
-
-	double EX = mi0*Li0;
-	double EX2 = mi0*Li0*((mi0*Li0) + 1);
-
-	double sum = 0.0;
-	for (int x = 0; x <= Si0; x++){
-		sum = sum + (((Si0 - (double)x)*(Si0 - (double)x))*pPartsOnOrderAtWarehouse(product, x));
-	} // for
-
-	double EBO2 = EX2 - (2 * Si0 * EX) + (Si0*Si0) - sum;
-
-	result = EBO2 - (EBO * EBO);
-
-	return result;
-
-} // vPartsOnBackorderAtWarehouseFromRetailer
-
-
-double GreedyAlgorithm::vPartsOnBackorderAtWarehouseFromRetailer(int product, int retailer) {
-	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
-	// ret	: Var[BOi0j(Si0)]
-
-	assert(1 <= product);
-	assert(product <= network->sizeProducts());
-	assert(1 <= retailer);
-	assert(retailer <= network->sizeRetailers());
-
-	// pre-conditions satisfied
-
-	double result = 0.0;
-
-	double mi0 = network->getArrivalRateAtWarehouse(product);
-	double mij = network->getArrivalRateAtRetailer(product, retailer);
-	double fij = mij / mi0;
-
-	double EBO = ePartsOnBackorderAtWarehouse(product);
-	double VarBO = vPartsOnBackorderAtWarehouse(product);
-
-	result = (fij * fij * VarBO) + (fij * (1 - fij) * EBO);
-
-	return result;
-
-} // vPartsOnBackorderAtWarehouseFromRetailer
-
-
-double GreedyAlgorithm::ePartsOnOrderAtRetailer(int product, int retailer) {
-	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
-	// ret	: E[Xij(Si0,Sij)]
-
-	assert(1 <= product);
-	assert(product <= network->sizeProducts());
-	assert(1 <= retailer);
-	assert(retailer <= network->sizeRetailers());
-
-	// pre-conditions satisfied
-
-	double result = 0.0;
-
-	double mij = network->getArrivalRateAtRetailer(product, retailer);
-	double Lij = network->getLeadTimeToRetailer(product, retailer);
-	double EBOj = ePartsOnBackorderAtWarehouseFromRetailer(product, retailer);
-
-	result = mij*Lij + EBOj;
-
-	return result;
-
-} // ePartsOnOrderAtRetailer
-
-
-double GreedyAlgorithm::vPartsOnOrderAtRetailer(int product, int retailer) {
-	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
-	// ret	: Var[Xij(Si0,Sij)]
-
-	assert(1 <= product);
-	assert(product <= network->sizeProducts());
-	assert(1 <= retailer);
-	assert(retailer <= network->sizeRetailers());
-
-	// pre-conditions satisfied
-
-	double result = 0.0;
-
-	double mij = network->getArrivalRateAtRetailer(product, retailer);
-	double Lij = network->getLeadTimeToRetailer(product, retailer);
-	double VarBOj = vPartsOnBackorderAtWarehouseFromRetailer(product, retailer);
-
-	result = mij*Lij + VarBOj;
-
-	return result;
-} // vPartsOnOrderAtRetailer
-
-
-
-double GreedyAlgorithm::pPartsOnOrderAtRetailer2Moment(int product, int retailer, int x) {
-	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
-	// ret	: P[Xij(Si0)=x] sim P[XijNB(Si0)=x]
-
-	assert(1 <= product);
-	assert(product <= network->sizeProducts());
-	assert(1 <= retailer);
-	assert(retailer <= network->sizeRetailers());
-	assert(x >= 0);
-
-	// pre-conditions satisfied
-
-	double result = 0.0;
-
-	double EXij = ePartsOnOrderAtRetailer(product, retailer);
-	double VarXij = vPartsOnOrderAtRetailer(product, retailer);
-
-	PoissonDistribution tetrodotoxin;
-
-	if (EXij == VarXij){
-		double lambda = EXij;
-		return tetrodotoxin.probability(lambda, x);
-	}
-
-
-	std::cout << "2m EXij " << EXij << std::endl;
-	std::cout << "2m VarXij " << VarXij << std::endl;
-
-	double p = (VarXij - EXij) / VarXij;
-
-	std::cout << "2m p: " << p << std::endl;
-
-	double k = ((1 - p) / p)*EXij;
-
-	std::cout << "2m k: " << k << std::endl;
-
-
-	NegativeBinomialDistribution grumpy;
-	result = grumpy.probability(p, k, x);
-
-	std::cout << "gres: " << x << ", " << result << std::endl;
-
-
-
-	assert(result >= 0);
-	assert(result <= 1);
-
-	return result;
-
-} // pPartsOnOrderAtRetailer2Moment
-
-
 double GreedyAlgorithm::pPartsOnHandAtRetailer(int product, int retailer, int x){
 	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
 	// ret	: P[OHij(Si0, Sij) = x]
@@ -512,18 +351,7 @@ double GreedyAlgorithm::ePartsOnHandAtRetailer(int product, int retailer) {
 	double Sij = network->getBaseStockLevelAtRetailer(product, retailer);
 
 	for (int x = 0; x <= Sij; x++){
-		if (GRAVES) {
-			result = result + ((Sij - x)*pPartsOnOrderAtRetailer2Moment(product, retailer, x));
-
-			if (debug){
-				std::cout << "t n2m: " << pPartsOnOrderAtRetailer(product, retailer, x) << std::endl;
-				std::cout << "t 2m: " << pPartsOnOrderAtRetailer2Moment(product, retailer, x) << std::endl;
-			}
-		}
-		else {
-			result = result + ((Sij - x)*pPartsOnOrderAtRetailer(product, retailer, x));
-		}
-		
+		result = result + ((Sij - x)*pPartsOnOrderAtRetailer(product, retailer, x));		
 	} // for
 
 	assert(result >= 0);
@@ -569,50 +397,10 @@ QList<double> GreedyAlgorithm::evaluateNetwork(TwoEchelonDistributionNetwork *ne
 
 	this->network = network;
 
-	std::cout << "VarBOi0: " << vPartsOnBackorderAtWarehouse(1) << std::endl;
-
-	std::cout << "EXij: " << ePartsOnOrderAtRetailer(1, 1) << std::endl;
-	std::cout << "VarXij: " << vPartsOnOrderAtRetailer(1, 1) << std::endl;
-
-	double mi0 = network->getArrivalRateAtWarehouse(1);
-	double Li0 = network->getLeadTimeToWarehouse(1);
-
-	double EX2 = vPartsOnOrderAtRetailer(1, 1) + ePartsOnOrderAtRetailer(1,1)*ePartsOnOrderAtRetailer(1,1);
-
-	std::cout << "EXij squared: " << EX2 << std::endl;
-
-	double p = (vPartsOnOrderAtRetailer(1, 1) - ePartsOnOrderAtRetailer(1, 1)) / vPartsOnOrderAtRetailer(1, 1);
-	std::cout << "p: " << p << std::endl;
-
-	double k = ((1 - p) / p) *ePartsOnOrderAtRetailer(1, 1);
-
-	std::cout << "k: " << k << std::endl;
-
-	std::cout << "------------------------" << std::endl;
-
-
-
-	std::cout << "EBOj: " << ePartsOnBackorderAtRetailer(1, 1) << std::endl;
-
-
-	GRAVES = false;
-
-	std::cout << "EBOj 2: " << ePartsOnBackorderAtRetailer(1, 1) << std::endl;
-	
-
-	for (int x = 0; x <= 6; x++) {
-		//std::cout << pPartsOnBackorderAtWarehouse(1, x) << std::endl;
-	}
-
-	for (int x = 0; x <= 3; x++) {
-		//std::cout << pPartsOnBackorderAtRetailer(1, 1, x) << std::endl;
-	}
-
 	QList<double> EBOj = QList<double>();
 
 	for (int j = 1; j <= network->sizeRetailers(); j++) {
 		EBOj.append(0);
-
 
 		for (int i = 1; i <= network->sizeProducts(); i++) {
 
@@ -620,7 +408,6 @@ QList<double> GreedyAlgorithm::evaluateNetwork(TwoEchelonDistributionNetwork *ne
 
 			EBOj[j - 1] = EBOj[j - 1] + eboj;
 
-		
 			std::cout << "product: " << i << ", location: " << j << ": E[BOj]=" << eboj << std::endl;
 		
 		} // for
