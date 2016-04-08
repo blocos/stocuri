@@ -311,9 +311,9 @@ int TwoEchelonDistributionNetwork::writeBaseStockLevelsToFile(QString fileName){
 } // writeBaseStockLevelsToFile
 
 int TwoEchelonDistributionNetwork::writeBaseStockLevelsToExcel(QString fileName) {
-
+	
 	int result = 0;
-
+/*
 	BasicExcel e;
 	e.New(1);
 
@@ -362,7 +362,7 @@ int TwoEchelonDistributionNetwork::writeBaseStockLevelsToExcel(QString fileName)
 	} // if
 
 	e.SaveAs("base-stock-levels.xls");
-
+*/
 	return result;
 
 } // writeBaseStockLevelsToExcel
