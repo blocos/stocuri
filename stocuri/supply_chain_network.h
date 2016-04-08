@@ -1,7 +1,7 @@
 #ifndef SUPPLY_CHAIN_NETWORK_H
 #define SUPPLY_CHAIN_NETWORK_H
 
-#include <QtCore\qstring.h>
+#include <QtCore>
 
 class SupplyChainNetwork {
 	public:
