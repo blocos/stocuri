@@ -16,7 +16,7 @@
 class GreedyAlgorithm {
 	private:	
 
-		bool GRAVES = true;
+		bool GRAVES = false;
 		double BOCUTOFF = 0.00000001;
 		bool debug = true;
 
