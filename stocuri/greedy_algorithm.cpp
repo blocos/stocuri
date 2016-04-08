@@ -33,16 +33,23 @@ double GreedyAlgorithm::pPartsOnOrderAtWarehouse(int product, int x) {
 	// initialize Poisson distribution
 	PoissonDistribution tetrodotoxin;
 
-	try {
-		// try regular calculation
-		//result = tetrodotoxin.probabilityBySterlingApproximation(lambda, x);
-		result = tetrodotoxin.probability(lambda, x);
-	} catch (std::exception& me) {
-		std::cout << me.what() << std::endl;
-
-		// catched me, try calculation with Normal approximation
+	if (lambda >= 30){
 		result = tetrodotoxin.probabilityByNormalApproximation(lambda, x);
-	} // catch-me-if-you-can
+	}
+	else {
+
+		try {
+			// try regular calculation
+			result = tetrodotoxin.probabilityBySterlingApproximation(lambda, x);
+			//result = tetrodotoxin.probability(lambda, x);
+		}
+		catch (std::exception& me) {
+			std::cout << me.what() << std::endl;
+
+			// catched me, try calculation with Normal approximation
+			result = tetrodotoxin.probabilityByNormalApproximation(lambda, x);
+		} // catch-me-if-you-can
+	}
 
 	assert(result >= 0);
 	assert(result <= 1);
@@ -256,15 +263,22 @@ double GreedyAlgorithm::pPartsOnOrderAtRetailer(int product, int retailer, int x
 
 		PoissonDistribution tetrodotoxin;
 
-		try {
-			// try regular calculation
-			p1 = tetrodotoxin.probability(lambda, k);
-		} catch (std::exception& me) {
-			std::cout << me.what() << std::endl;
+		if (lambda >= 30){
+			result = tetrodotoxin.probabilityByNormalApproximation(lambda, x);
+		}
+		else {
 
-			// catched me, try calculation with Normal approximation
-			p1 = tetrodotoxin.probabilityByNormalApproximation(lambda, k);
-		} // try to catch me
+			try {
+				// try regular calculation
+				p1 = tetrodotoxin.probabilityBySterlingApproximation(lambda, k);
+			}
+			catch (std::exception& me) {
+				std::cout << me.what() << std::endl;
+
+				// catched me, try calculation with Normal approximation
+				p1 = tetrodotoxin.probabilityByNormalApproximation(lambda, k);
+			} // try to catch me
+		}
 
 		// 2. P[BOj = x - k]
 		double p2 = pPartsOnBackorderAtWarehouseFromRetailer(product, retailer, x-k);
@@ -379,6 +393,10 @@ double GreedyAlgorithm::ePartsOnBackorderAtRetailer(int product, int retailer){
 	double Sij = network->getBaseStockLevelAtRetailer(product, retailer);
 
 	result = (mij*Lij) - Sij + ePartsOnBackorderAtWarehouseFromRetailer(product, retailer) + ePartsOnHandAtRetailer(product, retailer);	
+
+	if (result < 0) {
+		result = 0;
+	}
 
 	assert(result >= 0);	
 

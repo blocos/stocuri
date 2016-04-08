@@ -30,7 +30,7 @@ double BasestockInitializationAlgorithm::pPartsOnOrderAtRetailer(int product, in
 	double lambda = mij * Lij;
 
 	try{
-		result = tetrodotoxin.probability(lambda, x);
+		result = tetrodotoxin.probabilityBySterlingApproximation(lambda, x);
 	}
 	catch (std::exception& me) {
 		std::cout << me.what() << std::endl;
