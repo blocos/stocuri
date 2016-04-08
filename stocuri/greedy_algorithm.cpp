@@ -389,58 +389,6 @@ double GreedyAlgorithm::vPartsOnOrderAtRetailer(int product, int retailer) {
 } // vPartsOnOrderAtRetailer
 
 
-double GreedyAlgorithm::pPartsOnOrderAtRetailer2Moment(int product, int retailer, int x) {
-	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
-	// ret	: P[Xij(Si0)=x] sim P[XijNB(Si0)=x]
-
-	assert(1 <= product);
-	assert(product <= network->sizeProducts());
-	assert(1 <= retailer);
-	assert(retailer <= network->sizeRetailers());
-	assert(x >= 0);
-
-	// pre-conditions satisfied
-
-	double result = 0.0;
-
-	double EXij = ePartsOnOrderAtRetailer(product, retailer);
-	double VarXij = vPartsOnOrderAtRetailer(product, retailer);
-
-	PoissonDistribution tetrodotoxin;
-
-	if (EXij == VarXij){
-		double lambda = EXij;
-		return tetrodotoxin.probability(lambda, x);
-	}
-
-
-	std::cout << "2m EXij " << EXij << std::endl;
-	std::cout << "2m VarXij " << VarXij << std::endl;
-
-	double p = (VarXij - EXij) / VarXij;
-
-	std::cout << "2m p: " << p << std::endl;
-
-	double k = ((1 - p) / p)*EXij;
-
-	std::cout << "2m k: " << k << std::endl;
-
-
-	NegativeBinomialDistribution grumpy;
-	result =  grumpy.probability(p, k, x);
-
-	std::cout << "gres: " << x << ", " << result << std::endl;
-
-
-
-	assert(result >= 0);
-	assert(result <= 1);
-
-	return result;
-
-} // pPartsOnOrderAtRetailer2Moment
-
-
 double GreedyAlgorithm::pPartsOnHandAtRetailer(int product, int retailer, int x){
 	// pre	: 1 <= product <= |I| /\ 1 <= retailer <= |Jloc| /\ x >= 0
 	// ret	: P[OHij(Si0, Sij) = x]
