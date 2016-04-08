@@ -549,22 +549,9 @@ double GreedyAlgorithm::ePartsOnBackorderAtRetailer(int product, int retailer){
 	double Lij = network->getLeadTimeToRetailer(product, retailer);
 	double Sij = network->getBaseStockLevelAtRetailer(product, retailer);
 
-	result = (mij*Lij) - Sij + ePartsOnBackorderAtWarehouseFromRetailer(product, retailer) + ePartsOnHandAtRetailer(product, retailer);
+	result = (mij*Lij) - Sij + ePartsOnBackorderAtWarehouseFromRetailer(product, retailer) + ePartsOnHandAtRetailer(product, retailer);	
 
-	//if (result < 0){
-	//	debug = true;
-		//std::cout << "mij*Lij: " << (mij*Lij) << std::endl;
-		//std::cout << "Sij: " << Sij << std::endl;
-		//std::cout << "EBOj: " << ePartsOnBackorderAtWarehouseFromRetailer(product, retailer) << std::endl;
-		//std::cout << "EOH: " << ePartsOnHandAtRetailer(product, retailer) << std::endl;
-		//std::cout << "result: " << result << std::endl;
-	//}
-
-	
-
-	assert(result >= 0);
-
-	
+	assert(result >= 0);	
 
 	return result;
 

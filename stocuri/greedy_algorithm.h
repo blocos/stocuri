@@ -19,9 +19,6 @@ class GreedyAlgorithm {
 		double BOCUTOFF = 0.00000001;
 		bool debug = true;
 
-		int n = 0;
-		int w = 0;
-
 		TwoEchelonDistributionNetwork *network;
 
 		// warehouse ------------------------------------------------------------------------------------------------------------
