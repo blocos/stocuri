@@ -735,6 +735,9 @@ int GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network, QLi
 			} //
 
 			if (MULTI){
+
+				std::cout << "---- multi insert ---" << std::endl;
+
 				QList<double> sorted = list.values();
 				qSort(sorted.begin(), sorted.end());
 
