@@ -8,10 +8,8 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
+#include <ctime>
 
-#include "BasicExcel.hpp"
-
-using namespace YExcel;
 
 class TwoEchelonDistributionNetwork : SupplyChainNetwork {
 
@@ -62,10 +60,8 @@ class TwoEchelonDistributionNetwork : SupplyChainNetwork {
 		int sizeProducts();
 
 		// overriding virtual methods
-
 		int loadFromFile(QString fileNameSettings, QString filenNameDemand);
 		int writeBaseStockLevelsToFile(QString fileName);
-		int writeBaseStockLevelsToExcel(QString fileName);
 
 };
 

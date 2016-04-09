@@ -72,7 +72,8 @@ TwoEchelonDistributionNetwork::~TwoEchelonDistributionNetwork() {
 
 	delete productsIdToNumber;
 
-}
+} // ~TwoEchelonDistributionNetwork
+
 
 // ------------------------------------------------------------------------------------------------------- GETTERS AND SETTERS --
 
@@ -80,61 +81,76 @@ void TwoEchelonDistributionNetwork::setArrivalRateAtWarehouse(int product, doubl
 	(*(*arrivalRates)[0])[product - 1] = arrivalRate;
 }
 
+
 double TwoEchelonDistributionNetwork::getArrivalRateAtWarehouse(int product) {
 	return arrivalRates->at(0)->at(product - 1);
 }
+
 
 void TwoEchelonDistributionNetwork::setLeadTimeToWarehouse(int product, double leadTime) {
 	(*(*leadTimes)[0])[product - 1] = leadTime;
 }
 
+
 double TwoEchelonDistributionNetwork::getLeadTimeToWarehouse(int product) {
 	return leadTimes->at(0)->at(product - 1);
 }
+
 
 void TwoEchelonDistributionNetwork::setBaseStockLevelAtWarehouse(int product, double baseStockLevel) {
 	(*(*baseStockLevels)[0])[product - 1] = baseStockLevel;
 }
 
+
 double TwoEchelonDistributionNetwork::getBaseStockLevelAtWarehouse(int product) {
 	return baseStockLevels->at(0)->at(product - 1);
 }
+
 
 void TwoEchelonDistributionNetwork::setInventoryHoldingCostAtWarehouse(int product, double inventoryHoldingCost){
 	(*(*inventoryHoldingCosts)[0])[product - 1] = inventoryHoldingCost;
 }
 
+
 double TwoEchelonDistributionNetwork::getInventoryHoldingCostAtWarehouse(int product) {
 	return inventoryHoldingCosts->at(0)->at(product - 1);
 }
+
 
 void TwoEchelonDistributionNetwork::setArrivalRateAtRetailer(int product, int retailer, double arrivalRate) {
 	(*(*arrivalRates)[retailer])[product - 1] = arrivalRate;
 }
 
+
 double TwoEchelonDistributionNetwork::getArrivalRateAtRetailer(int product, int retailer) {
 	return arrivalRates->at(retailer)->at(product - 1);
 }
+
 
 void TwoEchelonDistributionNetwork::setLeadTimeToRetailer(int product, int retailer, double leadTime) {
 	(*(*leadTimes)[retailer])[product - 1] = leadTime;
 }
 
+
 double TwoEchelonDistributionNetwork::getLeadTimeToRetailer(int product, int retailer) {
 	return leadTimes->at(retailer)->at(product - 1);
 }
+
 
 void TwoEchelonDistributionNetwork::setBaseStockLevelAtRetailer(int product, int retailer, double baseStockLevel) {
 	(*(*baseStockLevels)[retailer])[product - 1] = baseStockLevel;
 }
 
+
 double TwoEchelonDistributionNetwork::getBaseStockLevelAtRetailer(int product, int retailer) {
 	return baseStockLevels->at(retailer)->at(product - 1);
 }
 
+
 void TwoEchelonDistributionNetwork::setInventoryHoldingCostAtRetailer(int product, int retailer, double inventoryHoldingCost) {
 	(*(*inventoryHoldingCosts)[retailer])[product - 1] = inventoryHoldingCost;
 }
+
 
 double TwoEchelonDistributionNetwork::getInventoryHoldingCostAtRetailer(int product, int retailer) {
 	return inventoryHoldingCosts->at(retailer)->at(product - 1);
@@ -147,9 +163,11 @@ int TwoEchelonDistributionNetwork::sizeProducts() {
 	return nProducts;
 }
 
+
 int TwoEchelonDistributionNetwork::sizeRetailers() {
 	return nRetailers;
 }
+
 
 // -------------------------------------------------------------------------------------------------------- OVERRIDDEN METHODS --
 
@@ -233,7 +251,7 @@ int TwoEchelonDistributionNetwork::loadFromFile(QString fileNameSettings, QStrin
 		if (sfl) {
 			sfl = false;
 			continue;
-		}
+		} // if
 
 		// convert
 		QString qLine = QString::fromStdString(line);
@@ -266,16 +284,18 @@ int TwoEchelonDistributionNetwork::loadFromFile(QString fileNameSettings, QStrin
 			// undefined
 		} // eif
 		
-
 		if ((lineCounter / 4) == nProducts) {
 			break;
 		} // if
+
 	} // while
 
 	fileInputDemand.close();
 
 	return result;
-}
+
+} // loadFromFile
+
 
 int TwoEchelonDistributionNetwork::writeBaseStockLevelsToFile(QString fileName){
 	bool result = 0;
@@ -295,7 +315,7 @@ int TwoEchelonDistributionNetwork::writeBaseStockLevelsToFile(QString fileName){
 					SiX = getBaseStockLevelAtWarehouse(i);
 				} else{
 					SiX = getBaseStockLevelAtRetailer(i, j);
-				}
+				} // eif
 
 				QString number = productsIdToNumber->at(i - 1);
 				fileOutput << regions[j].toStdString() << ", " << number.toStdString() << ", " << SiX << std::endl;
@@ -309,62 +329,3 @@ int TwoEchelonDistributionNetwork::writeBaseStockLevelsToFile(QString fileName){
 	return result;
 
 } // writeBaseStockLevelsToFile
-
-int TwoEchelonDistributionNetwork::writeBaseStockLevelsToExcel(QString fileName) {
-	/*
-	int result = 0;
-
-	BasicExcel e;
-	e.New(1);
-
-	BasicExcelWorksheet* sheet = e.GetWorksheet("Sheet1");
-	BasicExcelCell* cell;
-
-	if (sheet) {
-
-		cell = sheet->Cell(0, 1); // location
-		cell->Set("CSC");
-
-		cell = sheet->Cell(0, 2); // location
-		cell->Set("USA");
-
-		cell = sheet->Cell(0, 3); // location
-		cell->Set("Singapore");
-
-		cell = sheet->Cell(0, 4); // location
-		cell->Set("China");
-
-		int row = 1;
-
-		for (int i = 1; i <= this->sizeProducts(); i++) {
-
-			cell = sheet->Cell(row, 0); // location
-			QString number = productsIdToNumber->at(i - 1);
-			cell->Set(number.toInt());
-
-			for (int j = 0; j <= this->sizeRetailers(); j++){
-
-				cell = sheet->Cell(row, j + 1);
-
-				if (j == 0) {
-					cell->Set((double)this->getBaseStockLevelAtWarehouse(i));
-				}
-				else {
-					cell->Set((double)this->getBaseStockLevelAtRetailer(i, j));
-				} // eif
-
-			} // for
-
-			row = row + 1;
-
-		} // for
-
-	} // if
-
-	e.SaveAs("base-stock-levels.xls");*/
-
-	int result = 0;
-
-	return result;
-
-} // writeBaseStockLevelsToExcel

@@ -1,7 +1,6 @@
 #ifndef POISSON_DISTRIBUTION_H
 #define POISSON_DISTRIBUTION_H
 
-
 #include <iostream>
 #include <cassert>
 #include <cfenv>
@@ -9,7 +8,6 @@
 #include <cmath>
 
 #include "normal_distribution.h"
-
 
 class PoissonDistribution {
 
@@ -21,10 +19,9 @@ class PoissonDistribution {
 		~PoissonDistribution();
 
 		double probability(double lambda, double x);
-
 		double probabilityBySterlingApproximation(double lambda, double x);
-
 		double probabilityByNormalApproximation(double lambda, double x);
+
 };
 
 #endif

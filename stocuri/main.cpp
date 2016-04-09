@@ -7,14 +7,13 @@
 #include <exception>
 #include <cassert>
 #include <stdexcept>
-#include <ctime>
 
 #include "basestock_initialization_algorithm.h"
 #include "greedy_algorithm.h"
 #include "poisson_distribution.h"
 #include "normal_distribution.h"
 
-// ensure access to floating point operations registers, needed to detect underflows
+// ensure access to floating point operations registers, needed to detect underflows, overflows and so on
 #pragma fenv_access (on)
 
 int main ( int argc, char *argv[] ) {
@@ -30,14 +29,9 @@ int main ( int argc, char *argv[] ) {
 	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, 22); // 2, 1
 	network->loadFromFile("preprocessesed-settings.csv", "demand.csv");
 	
-	//qDebug() << network->getArrivalRateAtWarehouse(1);
-	//qDebug() << network->getArrivalRateAtRetailer(1, 1);
-	//qDebug() << network->getArrivalRateAtRetailer(1, 2);
-	//qDebug() << network->getArrivalRateAtRetailer(1, 3);
-
-
+	/*
 	// set arrival rates
-	/*network->setArrivalRateAtWarehouse(1, 300.3); 
+	network->setArrivalRateAtWarehouse(1, 300.3); 
 	network->setArrivalRateAtRetailer(1, 1, 100.1);
 	network->setArrivalRateAtRetailer(1, 2, 200.2);
 
@@ -50,62 +44,50 @@ int main ( int argc, char *argv[] ) {
 	network->setInventoryHoldingCostAtWarehouse(1, 1);
 	network->setInventoryHoldingCostAtRetailer(1, 1, 1);
 	network->setInventoryHoldingCostAtRetailer(1, 2, 1);
-
-	//network->setBaseStockLevelAtWarehouse(1, 300);*/
-	
+	*/	
 
 	// ----------------------------------------------------------------------------------------------------------- optimizatia --
 
-	GreedyAlgorithm *gerrit = new GreedyAlgorithm();
-	
-	BasestockInitializationAlgorithm *bia = new BasestockInitializationAlgorithm();
-	bia->run(network, targetAggregateFillRates);
+	BasestockInitializationAlgorithm *gaia = new BasestockInitializationAlgorithm();
+	std::cout << "initializing base-stock levels..." << std::endl;
+	gaia->run(network, targetAggregateFillRates);
+	std::cout << "base-stock levels initialized" << std::endl;
 
-	std::cout << "initialized" << std::endl;
 
+	// define relevant times
 	time_t start;
+	time_t stop;
+
 	time(&start);
 
+	GreedyAlgorithm *gerrit = new GreedyAlgorithm();
+	std::cout << "optimizing base-stock levels..." << std::endl;
 	int result = gerrit->optimizeNetwork(network, targetAggregateFillRates);
 
-	time_t stop;
 	time(&stop);
 
 	int duration = difftime(stop, start);
 
-	int seconds = duration % 60;
-	int minutes = floor(duration / 60);
-	int hours = floor(duration / 3600 );
-
-
-	std::cout << "optimization duration: " << duration << "s" << std::endl;
+	std::cout << "base-stock levels optimized in " << duration << " seconds" << std::endl;
 
 	// ------------------------------------------------------------------------------------------------------------- evaluation --
 
-	// set base-stock levels
+	std::cout << "********************************" << std::endl;
 
-	//setBaseStockLevelAtRetailer(1, 3, 1);
-
-	//network->setBaseStockLevelAtWarehouse(1, 2);
-	//network->setBaseStockLevelAtRetailer(1, 1, 1);
-	//network->setBaseStockLevelAtRetailer(1, 2, 1);
 	/*
-	network->setBaseStockLevelAtWarehouse(2, 2);
-	network->setBaseStockLevelAtRetailer(2, 1, 3);
-	network->setBaseStockLevelAtRetailer(2, 2, 5);*/
+	// set base-stock levels
+	network->setBaseStockLevelAtWarehouse(1, 2);
+	network->setBaseStockLevelAtRetailer(1, 1, 1);
+	network->setBaseStockLevelAtRetailer(1, 2, 1);
+	*/
 
 	QList<double> EBOj = gerrit->evaluateNetwork(network);
-	///network->setBaseStockLevelAtRetailer(5, 3, 2);
-
-	///EBOj = gerrit->evaluateNetwork(network);
-
-	std::cout << "********************" << std::endl;
 
 	for (int j = 1; j <= network->sizeRetailers(); j++){
 		double Mj = 0.0;
 		for (int i = 1; i <= network->sizeProducts(); i++){
 			Mj = Mj + network->getArrivalRateAtRetailer(i, j);
-		}
+		} // for
 		std::cout << "demand at j=" << j << " equals: " << Mj << std::endl;
 		std::cout << "EBOj for j=" << j << " equals: " << EBOj[j - 1] << std::endl;
 		std::cout << "beta star for j=" << j << " equals: " << (1 - (EBOj[j - 1] / Mj)) << std::endl;
@@ -114,9 +96,6 @@ int main ( int argc, char *argv[] ) {
 	// -------------------------------------------------------------------------------------------------------- write to files --
 
 	network->writeBaseStockLevelsToFile("base-stock-levels.txt");
-
-	network->writeBaseStockLevelsToExcel("base-stock-levels.xls");
-
 
 	// -------------------------------------------------------------------------------------------------------------- clean up --
 
@@ -129,10 +108,8 @@ int main ( int argc, char *argv[] ) {
 	delete gerrit;
 	gerrit = 0;
 
-
 	// --------------------------------------------------------------------------------------------------- execute application --
 
 	return a.exec();
-	
 	
 } // main
