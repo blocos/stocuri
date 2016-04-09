@@ -691,6 +691,12 @@ int GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network, QLi
 
 			double deltaMax = -1000.0;
 
+
+			
+			QMap<QPair<int, int>, double> list = QMap<QPair<int, int>, double>();
+			
+
+		
 			
 
 			for (int i = 1; i <= network->sizeProducts(); i++) {
@@ -708,7 +714,14 @@ int GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network, QLi
 						hiX = network->getInventoryHoldingCostAtRetailer(i, j);
 					} // eif
 
+					double value = 0.0;
+
 					gamma[i - 1][j] = deltaEBO / hiX;
+
+					if (MULTI){
+						QPair<int, int> key = QPair<int, int>(j, i);// QString::number(j) + "," + QString::number(i);
+						list.insert(key, gamma[i - 1][j]);
+					}
 
 					// Line 11
 					if (deltaMax < gamma[i - 1][j]) {
@@ -721,43 +734,105 @@ int GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network, QLi
 
 			} //
 
-			// Line 12
+			if (MULTI){
+				QList<double> sorted = list.values();
+				qSort(sorted.begin(), sorted.end());
 
-			double SiX = 0.0;
+				qDebug() << deltaMax;
+				qDebug() << "j=" << l << ", i=" << k;
 
-			double inc = 1.0;
+				qDebug() << sorted[sorted.size() - 1];
+				qDebug() << list.key(sorted[sorted.size() - 1]);
 
-			if (l == 0) {
-				SiX = network->getBaseStockLevelAtWarehouse(k);
-				if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 4) {
-					inc = 2;
+				for (int e = 0; e <= MULTI_MAX; e++) {
+					QPair<int, int> key = list.key(sorted[sorted.size() - 1 - e]);
+
+					int l = key.first;
+					int k = key.second;
+
+					// Line 12
+
+					double SiX = 0.0;
+
+					double inc = 1.0;
+
+					if (l == 0) {
+						SiX = network->getBaseStockLevelAtWarehouse(k);
+						if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 4) {
+							inc = 2;
+						}
+
+						if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 20) {
+							inc = 10;
+						}
+
+						if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 50) {
+							inc = 25;
+						}
+						network->setBaseStockLevelAtWarehouse(k, SiX + inc);
+					}
+					else {
+						SiX = network->getBaseStockLevelAtRetailer(k, l);
+						if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 4) {
+							inc = 2;
+						}
+
+						if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 20) {
+							inc = 10;
+						}
+
+						if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 50) {
+							inc = 25;
+						}
+						network->setBaseStockLevelAtRetailer(k, l, SiX + inc);
+					} // eif
+
+					std::cout << "update at " << l << " product " << k << " to " << SiX + inc << std::endl;
 				}
 
-				if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 20) {
-					inc = 10;
-				}
 
-				if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 50) {
-					inc = 25;
-				}
-				network->setBaseStockLevelAtWarehouse(k, SiX + inc);
 			} else {
-				SiX = network->getBaseStockLevelAtRetailer(k, l);
-				if (network->getArrivalRateAtRetailer(k,l)*network->getLeadTimeToRetailer(k,l) > 4) {
-					inc = 2;
-				}
 
-				if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 20) {
-					inc = 10;
-				}
+			
 
-				if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 50) {
-					inc = 25;
-				}
-				network->setBaseStockLevelAtRetailer(k, l, SiX + inc);
-			} // eif
+				// Line 12
 
-			std::cout << "update at " << l << " product " << k << " to " << SiX + inc << std::endl;
+				double SiX = 0.0;
+
+				double inc = 1.0;
+
+				if (l == 0) {
+					SiX = network->getBaseStockLevelAtWarehouse(k);
+					if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 4) {
+						inc = 2;
+					}
+
+					if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 20) {
+						inc = 10;
+					}
+
+					if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 50) {
+						inc = 25;
+					}
+					network->setBaseStockLevelAtWarehouse(k, SiX + inc);
+				} else {
+					SiX = network->getBaseStockLevelAtRetailer(k, l);
+					if (network->getArrivalRateAtRetailer(k,l)*network->getLeadTimeToRetailer(k,l) > 4) {
+						inc = 2;
+					}
+
+					if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 20) {
+						inc = 10;
+					}
+
+					if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 50) {
+						inc = 25;
+					}
+					network->setBaseStockLevelAtRetailer(k, l, SiX + inc);
+				} // eif
+
+				std::cout << "update at " << l << " product " << k << " to " << SiX + inc << std::endl;
+			}
 
 			// Line 13
 
