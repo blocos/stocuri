@@ -188,14 +188,8 @@ int TwoEchelonDistributionNetwork::loadFromFile(QString fileNameSettings, QStrin
 			continue;
 		} 
 
-		// print line
-		// std::cout << line << std::endl;
-
 		// convert
 		QString qLine = QString::fromStdString(line);
-
-		// got one additional line
-		lineCounter = lineCounter + 1;
 
 		// split in parts
 		QStringList parts = qLine.split(",");
@@ -204,6 +198,9 @@ int TwoEchelonDistributionNetwork::loadFromFile(QString fileNameSettings, QStrin
 
 		// retrieve id
 		int id = parts[0].toInt();
+
+		// got one additional line
+		lineCounter = lineCounter + 1;
 
 		// store relation id->number
 		(*productsIdToNumber)[id-1] = parts[1];
