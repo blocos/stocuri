@@ -26,7 +26,7 @@ int main ( int argc, char *argv[] ) {
 	targetAggregateFillRates->append(0.95);
 	
 	// retailers = 3, products = 5
-	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, 30); // 2, 1
+	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, 94); // 2, 1
 	network->loadFromFile("preprocessesed-settings-94.csv", "demand-94.csv");
 	std::cout << "data loaded" << std::endl;
 	
@@ -96,7 +96,7 @@ int main ( int argc, char *argv[] ) {
 
 	// -------------------------------------------------------------------------------------------------------- write to files --
 
-	network->writeBaseStockLevelsToFile("base-stock-levels.txt");
+	network->writeBaseStockLevelsToFile("base-stock-levels-94.txt");
 
 	// -------------------------------------------------------------------------------------------------------------- clean up --
 
