@@ -762,30 +762,30 @@ int GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network, QLi
 					if (l == 0) {
 						SiX = network->getBaseStockLevelAtWarehouse(k);
 						if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 4) {
-							inc = 2;
+							//inc = 2;
 						}
 
 						if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 20) {
-							inc = 10;
+							//inc = 10;
 						}
 
 						if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 50) {
-							inc = 25;
+							//inc = 25;
 						}
 						network->setBaseStockLevelAtWarehouse(k, SiX + inc);
 					}
 					else {
 						SiX = network->getBaseStockLevelAtRetailer(k, l);
 						if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 4) {
-							inc = 2;
+							//inc = 2;
 						}
 
 						if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 20) {
-							inc = 10;
+							//inc = 10;
 						}
 
 						if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 50) {
-							inc = 25;
+							//inc = 25;
 						}
 						network->setBaseStockLevelAtRetailer(k, l, SiX + inc);
 					} // eif
@@ -807,29 +807,29 @@ int GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network, QLi
 				if (l == 0) {
 					SiX = network->getBaseStockLevelAtWarehouse(k);
 					if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 4) {
-						inc = 2;
+						//inc = 2;
 					}
 
 					if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 20) {
-						inc = 10;
+						//inc = 10;
 					}
 
 					if (network->getArrivalRateAtWarehouse(k)*network->getLeadTimeToWarehouse(k) > 50) {
-						inc = 25;
+						//inc = 25;
 					}
 					network->setBaseStockLevelAtWarehouse(k, SiX + inc);
 				} else {
 					SiX = network->getBaseStockLevelAtRetailer(k, l);
 					if (network->getArrivalRateAtRetailer(k,l)*network->getLeadTimeToRetailer(k,l) > 4) {
-						inc = 2;
+						//inc = 2;
 					}
 
 					if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 20) {
-						inc = 10;
+						//inc = 10;
 					}
 
 					if (network->getArrivalRateAtRetailer(k, l)*network->getLeadTimeToRetailer(k, l) > 50) {
-						inc = 25;
+						//inc = 25;
 					}
 					network->setBaseStockLevelAtRetailer(k, l, SiX + inc);
 				} // eif
@@ -950,15 +950,15 @@ double GreedyAlgorithm::calculateDeltaEBO(int product, int j, QList<double> *tar
 			SiX = network->getBaseStockLevelAtWarehouse(product);
 
 			if (network->getArrivalRateAtWarehouse(product)*network->getLeadTimeToWarehouse(product) > 4) {
-				inc = 2;
+				//inc = 2;
 			}
 			
 			if (network->getArrivalRateAtWarehouse(product)*network->getLeadTimeToWarehouse(product) > 20) {
-				inc = 10;
+				//inc = 10;
 			}
 
 			if (network->getArrivalRateAtWarehouse(product)*network->getLeadTimeToWarehouse(product) > 50) {
-				inc = 25;
+				//inc = 25;
 			}
 
 
@@ -967,15 +967,15 @@ double GreedyAlgorithm::calculateDeltaEBO(int product, int j, QList<double> *tar
 			SiX = network->getBaseStockLevelAtRetailer(product, j);
 
 			if (network->getArrivalRateAtRetailer(product, j)*network->getLeadTimeToRetailer(product, j) > 4) {
-				inc = 2;
+				//inc = 2;
 			}
 
 			if (network->getArrivalRateAtRetailer(product, j)*network->getLeadTimeToRetailer(product, j) > 20) {
-				inc = 10;
+				//inc = 10;
 			}
 
 			if (network->getArrivalRateAtRetailer(product, j)*network->getLeadTimeToRetailer(product, j) > 50) {
-				inc = 25;
+				//inc = 25;
 			}
 
 			network->setBaseStockLevelAtRetailer(product, j, SiX + inc);
