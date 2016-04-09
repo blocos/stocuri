@@ -26,8 +26,8 @@ int main ( int argc, char *argv[] ) {
 	targetAggregateFillRates->append(0.95);
 	
 	// retailers = 3, products = 5
-	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, 94); // 2, 1
-	network->loadFromFile("preprocessesed-settings.csv", "demand.csv");
+	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, 30); // 2, 1
+	network->loadFromFile("preprocessesed-settings-94.csv", "demand-94.csv");
 	std::cout << "data loaded" << std::endl;
 	
 	/*
@@ -63,7 +63,7 @@ int main ( int argc, char *argv[] ) {
 
 	GreedyAlgorithm *gerrit = new GreedyAlgorithm();
 	std::cout << "optimizing base-stock levels..." << std::endl;
-	//int result = gerrit->optimizeNetwork(network, targetAggregateFillRates);
+	int result = gerrit->optimizeNetwork(network, targetAggregateFillRates);
 
 	time(&stop);
 
