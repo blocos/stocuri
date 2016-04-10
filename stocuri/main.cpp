@@ -96,7 +96,7 @@ int main ( int argc, char *argv[] ) {
 
 	// -------------------------------------------------------------------------------------------------------- write to files --
 
-	network->writeBaseStockLevelsToFile("base-stock-levels-94.txt");
+	network->writeBaseStockLevelsToFile("base-stock-levels-94-max-10.txt");
 
 	// -------------------------------------------------------------------------------------------------------------- clean up --
 

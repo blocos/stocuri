@@ -17,7 +17,7 @@ class GreedyAlgorithm {
 	private:	
 
 		bool MULTI = true;
-		int MULTI_MAX = 40;
+		int MULTI_MAX = 10;
 		bool GRAVES = true;
 		double BOCUTOFF = 0.000000001;
 		bool debug = true;

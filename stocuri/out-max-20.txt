@@ -1,0 +1,2734 @@
+QVector("1933608", "1966175", "1988401", "1988659", "1988753", "1989113", "1989255", "2333325", "2912357", "2912740", "2912745", "2934880", "2944852", "2944889", "2967195", "2977722", "2993444", "2993483", "3851337", "5583919", "7023930", "7024034", "7038569", "7038571", "7045585", "7070762", "7131269", "7131911", "7185907", "7197803", "7201604", "7241998", "7242219", "7266418", "7279531", "7289916", "1060009638", "1060013731", "1060015723", "1060017415", "1060020390", "1060023339", "1060026514", "1060026699", "1060027349", "1060028296", "1060029499", "1060040181", "1060041723", "1060041755", "1060041769", "1060041862", "1060042501", "1060043083", "1060043348", "1060043433", "1060044814", "1060047381", "1060050272", "1060050660", "1060052787", "1060053122", "1060053952", "1060059265", "1060059398", "1060059412", "1060068975", "1060069942", "1060075483", "1060077524", "1060077688", "1060084283", "1060085883", "1060092144", "1060099445", "1060099782", "1060120261", "1060121817", "1060126020", "1060127417", "1060130314", "1070010650", "1070011442", "1070020743", "1070022528", "1070023116", "1070030088", "1070031044", "1070041413", "1070050411", "1070052506", "3010104769", "3010111406", "3010112872") 
+data loaded
+initializing base-stock levels...
+base-stock levels initialized
+optimizing base-stock levels...
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 61
+update at 0 product 13 to 1
+update at 3 product 89 to 4
+update at 0 product 89 to 1
+update at 2 product 13 to 7
+update at 2 product 75 to 25
+update at 1 product 13 to 16
+update at 2 product 89 to 3
+update at 0 product 66 to 1
+update at 1 product 66 to 69
+update at 3 product 75 to 11
+update at 0 product 92 to 1
+update at 0 product 64 to 1
+update at 1 product 92 to 23
+update at 1 product 64 to 35
+update at 0 product 75 to 1
+update at 1 product 89 to 5
+update at 2 product 66 to 7
+update at 3 product 66 to 7
+update at 3 product 64 to 4
+update at 0 product 65 to 1
+update at 2 product 23 to 3
+update at 2 product 64 to 7
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 62
+update at 0 product 13 to 2
+update at 2 product 75 to 26
+update at 0 product 64 to 2
+update at 0 product 66 to 2
+update at 1 product 66 to 70
+update at 1 product 13 to 17
+update at 2 product 13 to 8
+update at 3 product 75 to 12
+update at 0 product 89 to 2
+update at 3 product 89 to 5
+update at 1 product 64 to 36
+update at 0 product 75 to 2
+update at 0 product 65 to 2
+update at 1 product 65 to 40
+update at 2 product 65 to 3
+update at 2 product 23 to 4
+update at 0 product 22 to 1
+update at 3 product 81 to 2
+update at 2 product 22 to 3
+update at 0 product 23 to 1
+update at 0 product 79 to 1
+update at 2 product 89 to 4
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 63
+update at 0 product 13 to 3
+update at 2 product 75 to 27
+update at 0 product 66 to 3
+update at 1 product 66 to 71
+update at 3 product 75 to 13
+update at 1 product 13 to 18
+update at 0 product 64 to 3
+update at 1 product 64 to 37
+update at 0 product 79 to 2
+update at 0 product 75 to 3
+update at 2 product 13 to 9
+update at 0 product 65 to 3
+update at 1 product 65 to 41
+update at 0 product 89 to 3
+update at 1 product 75 to 69
+update at 0 product 36 to 1
+update at 2 product 70 to 14
+update at 1 product 92 to 24
+update at 2 product 36 to 9
+update at 1 product 79 to 68
+update at 3 product 66 to 8
+update at 2 product 66 to 8
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 64
+update at 0 product 13 to 4
+update at 2 product 75 to 28
+update at 0 product 66 to 4
+update at 1 product 66 to 72
+update at 0 product 64 to 4
+update at 1 product 64 to 38
+update at 3 product 75 to 14
+update at 1 product 13 to 19
+update at 0 product 75 to 4
+update at 0 product 65 to 4
+update at 1 product 65 to 42
+update at 0 product 79 to 3
+update at 1 product 79 to 69
+update at 1 product 75 to 70
+update at 0 product 36 to 2
+update at 2 product 70 to 15
+update at 2 product 36 to 10
+update at 3 product 36 to 2
+update at 3 product 70 to 3
+update at 2 product 13 to 10
+update at 2 product 22 to 4
+update at 0 product 5 to 1
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 65
+update at 0 product 13 to 5
+update at 2 product 75 to 29
+update at 0 product 66 to 5
+update at 1 product 66 to 73
+update at 1 product 64 to 39
+update at 0 product 5 to 2
+update at 0 product 75 to 5
+update at 3 product 75 to 15
+update at 0 product 65 to 5
+update at 1 product 13 to 20
+update at 1 product 65 to 43
+update at 0 product 79 to 4
+update at 1 product 79 to 70
+update at 1 product 75 to 71
+update at 0 product 36 to 3
+update at 2 product 70 to 16
+update at 2 product 36 to 11
+update at 3 product 36 to 3
+update at 0 product 89 to 4
+update at 3 product 70 to 4
+update at 0 product 23 to 2
+update at 2 product 81 to 2
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 66
+update at 0 product 13 to 6
+update at 2 product 75 to 30
+update at 0 product 66 to 6
+update at 1 product 66 to 74
+update at 0 product 75 to 6
+update at 3 product 75 to 16
+update at 1 product 65 to 44
+update at 1 product 64 to 40
+update at 0 product 79 to 5
+update at 1 product 13 to 21
+update at 1 product 75 to 72
+update at 1 product 79 to 71
+update at 2 product 70 to 17
+update at 0 product 36 to 4
+update at 2 product 36 to 12
+update at 0 product 70 to 1
+update at 0 product 25 to 1
+update at 3 product 79 to 3
+update at 3 product 36 to 4
+update at 2 product 25 to 2
+update at 3 product 70 to 5
+update at 0 product 81 to 1
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 67
+update at 0 product 13 to 7
+update at 2 product 75 to 31
+update at 0 product 66 to 7
+update at 1 product 66 to 75
+update at 0 product 75 to 7
+update at 1 product 65 to 45
+update at 3 product 75 to 17
+update at 1 product 75 to 73
+update at 2 product 70 to 18
+update at 2 product 36 to 13
+update at 0 product 36 to 5
+update at 1 product 13 to 22
+update at 0 product 70 to 2
+update at 3 product 5 to 2
+update at 1 product 92 to 25
+update at 2 product 3 to 4
+update at 0 product 81 to 2
+update at 2 product 5 to 7
+update at 0 product 23 to 3
+update at 3 product 81 to 3
+update at 3 product 65 to 4
+update at 2 product 55 to 2
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 68
+update at 0 product 13 to 8
+update at 2 product 75 to 32
+update at 0 product 66 to 8
+update at 1 product 66 to 76
+update at 0 product 75 to 8
+update at 1 product 65 to 46
+update at 1 product 75 to 74
+update at 2 product 70 to 19
+update at 2 product 36 to 14
+update at 0 product 36 to 6
+update at 3 product 75 to 18
+update at 0 product 70 to 3
+update at 3 product 64 to 5
+update at 2 product 22 to 5
+update at 2 product 55 to 3
+update at 0 product 81 to 3
+update at 2 product 72 to 2
+update at 2 product 3 to 5
+update at 3 product 55 to 3
+update at 2 product 64 to 8
+update at 0 product 22 to 2
+update at 2 product 43 to 2
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 69
+update at 0 product 13 to 9
+update at 2 product 75 to 33
+update at 0 product 66 to 9
+update at 1 product 66 to 77
+update at 0 product 75 to 9
+update at 1 product 65 to 47
+update at 1 product 75 to 75
+update at 2 product 70 to 20
+update at 2 product 36 to 15
+update at 0 product 36 to 7
+update at 0 product 70 to 4
+update at 3 product 75 to 19
+update at 3 product 55 to 4
+update at 0 product 81 to 4
+update at 2 product 55 to 4
+update at 2 product 79 to 3
+update at 2 product 53 to 7
+update at 0 product 55 to 1
+update at 3 product 43 to 2
+update at 3 product 70 to 6
+update at 2 product 43 to 3
+update at 2 product 72 to 3
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 70
+update at 0 product 13 to 10
+update at 2 product 75 to 34
+update at 0 product 66 to 10
+update at 1 product 66 to 78
+update at 0 product 75 to 10
+update at 1 product 65 to 48
+update at 1 product 75 to 76
+update at 2 product 70 to 21
+update at 0 product 36 to 8
+update at 2 product 36 to 16
+update at 0 product 70 to 5
+update at 3 product 55 to 5
+update at 2 product 53 to 8
+update at 0 product 81 to 5
+update at 0 product 55 to 2
+update at 3 product 43 to 3
+update at 2 product 50 to 2
+update at 2 product 68 to 2
+update at 0 product 89 to 5
+update at 3 product 75 to 20
+update at 2 product 3 to 6
+update at 0 product 23 to 4
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 71
+update at 0 product 13 to 11
+update at 0 product 66 to 11
+update at 1 product 66 to 79
+update at 2 product 75 to 35
+update at 0 product 75 to 11
+update at 1 product 65 to 49
+update at 1 product 75 to 77
+update at 2 product 70 to 22
+update at 0 product 36 to 9
+update at 2 product 36 to 17
+update at 0 product 70 to 6
+update at 3 product 55 to 6
+update at 2 product 53 to 9
+update at 0 product 55 to 3
+update at 0 product 81 to 6
+update at 3 product 43 to 4
+update at 2 product 55 to 5
+update at 2 product 43 to 4
+update at 3 product 36 to 5
+update at 1 product 92 to 26
+update at 0 product 53 to 1
+update at 1 product 13 to 23
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 72
+update at 0 product 13 to 12
+update at 0 product 66 to 12
+update at 1 product 66 to 80
+update at 2 product 75 to 36
+update at 0 product 75 to 12
+update at 1 product 75 to 78
+update at 2 product 70 to 23
+update at 2 product 36 to 18
+update at 0 product 36 to 10
+update at 0 product 70 to 7
+update at 2 product 53 to 10
+update at 3 product 55 to 7
+update at 0 product 55 to 4
+update at 0 product 81 to 7
+update at 0 product 53 to 2
+update at 2 product 65 to 4
+update at 3 product 31 to 6
+update at 2 product 47 to 2
+update at 3 product 92 to 3
+update at 2 product 72 to 4
+update at 0 product 38 to 1
+update at 3 product 3 to 2
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 73
+update at 0 product 13 to 13
+update at 0 product 66 to 13
+update at 1 product 66 to 81
+update at 2 product 75 to 37
+update at 0 product 75 to 13
+update at 1 product 75 to 79
+update at 2 product 70 to 24
+update at 0 product 70 to 8
+update at 2 product 36 to 19
+update at 0 product 36 to 11
+update at 2 product 53 to 11
+update at 0 product 53 to 3
+update at 3 product 55 to 8
+update at 3 product 58 to 4
+update at 0 product 81 to 8
+update at 3 product 43 to 5
+update at 0 product 50 to 1
+update at 3 product 37 to 2
+update at 0 product 55 to 5
+update at 2 product 40 to 4
+update at 0 product 37 to 1
+update at 2 product 3 to 7
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 74
+update at 0 product 13 to 14
+update at 0 product 66 to 14
+update at 1 product 66 to 82
+update at 2 product 75 to 38
+update at 0 product 75 to 14
+update at 1 product 75 to 80
+update at 2 product 70 to 25
+update at 0 product 70 to 9
+update at 0 product 36 to 12
+update at 2 product 36 to 20
+update at 2 product 53 to 12
+update at 0 product 53 to 4
+update at 0 product 50 to 2
+update at 2 product 43 to 5
+update at 3 product 47 to 4
+update at 2 product 5 to 8
+update at 2 product 58 to 3
+update at 2 product 12 to 2
+update at 3 product 46 to 2
+update at 0 product 81 to 9
+update at 0 product 8 to 1
+update at 0 product 55 to 6
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 75
+update at 0 product 13 to 15
+update at 0 product 66 to 15
+update at 1 product 66 to 83
+update at 2 product 75 to 39
+update at 0 product 75 to 15
+update at 1 product 75 to 81
+update at 2 product 70 to 26
+update at 0 product 70 to 10
+update at 2 product 53 to 13
+update at 0 product 36 to 13
+update at 2 product 36 to 21
+update at 0 product 53 to 5
+update at 0 product 50 to 3
+update at 0 product 6 to 1
+update at 2 product 57 to 3
+update at 0 product 2 to 1
+update at 0 product 22 to 3
+update at 0 product 23 to 5
+update at 3 product 70 to 7
+update at 3 product 11 to 6
+update at 2 product 92 to 4
+update at 2 product 6 to 42
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 76
+update at 0 product 13 to 16
+update at 0 product 66 to 16
+update at 1 product 66 to 84
+update at 2 product 75 to 40
+update at 0 product 75 to 16
+update at 1 product 75 to 82
+update at 2 product 70 to 27
+update at 0 product 70 to 11
+update at 2 product 53 to 14
+update at 0 product 53 to 6
+update at 0 product 36 to 14
+update at 0 product 50 to 4
+update at 2 product 36 to 22
+update at 3 product 10 to 2
+update at 3 product 76 to 2
+update at 2 product 48 to 2
+update at 0 product 22 to 4
+update at 3 product 73 to 3
+update at 0 product 55 to 7
+update at 3 product 9 to 27
+update at 3 product 59 to 2
+update at 0 product 33 to 1
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 77
+update at 0 product 13 to 17
+update at 2 product 75 to 41
+update at 0 product 75 to 17
+update at 1 product 75 to 83
+update at 2 product 70 to 28
+update at 0 product 70 to 12
+update at 2 product 53 to 15
+update at 0 product 53 to 7
+update at 0 product 50 to 5
+update at 1 product 70 to 15
+update at 2 product 86 to 4
+update at 3 product 43 to 6
+update at 0 product 3 to 1
+update at 3 product 6 to 11
+update at 2 product 82 to 4
+update at 0 product 37 to 2
+update at 0 product 81 to 10
+update at 2 product 72 to 5
+update at 0 product 43 to 1
+update at 1 product 50 to 3
+update at 3 product 86 to 4
+update at 0 product 55 to 8
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 78
+update at 0 product 13 to 18
+update at 2 product 75 to 42
+update at 0 product 75 to 18
+update at 1 product 75 to 84
+update at 2 product 70 to 29
+update at 0 product 70 to 13
+update at 2 product 53 to 16
+update at 0 product 53 to 8
+update at 1 product 70 to 16
+update at 2 product 86 to 5
+update at 2 product 82 to 5
+update at 3 product 86 to 5
+update at 3 product 40 to 2
+update at 3 product 54 to 9
+update at 0 product 3 to 2
+update at 2 product 34 to 8
+update at 3 product 71 to 28
+update at 2 product 64 to 9
+update at 3 product 82 to 3
+update at 3 product 52 to 2
+update at 2 product 30 to 4
+update at 3 product 34 to 26
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 79
+update at 0 product 13 to 19
+update at 0 product 75 to 19
+update at 2 product 75 to 43
+update at 1 product 75 to 85
+update at 2 product 70 to 30
+update at 0 product 70 to 14
+update at 2 product 53 to 17
+update at 0 product 53 to 9
+update at 1 product 70 to 17
+update at 2 product 86 to 6
+update at 2 product 82 to 6
+update at 3 product 86 to 6
+update at 3 product 82 to 4
+update at 2 product 76 to 9
+update at 0 product 36 to 15
+update at 1 product 92 to 27
+update at 0 product 50 to 6
+update at 0 product 17 to 1
+update at 3 product 44 to 3
+update at 0 product 2 to 2
+update at 0 product 3 to 3
+update at 3 product 79 to 4
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 80
+update at 0 product 13 to 20
+update at 0 product 75 to 20
+update at 1 product 75 to 86
+update at 2 product 70 to 31
+update at 2 product 75 to 44
+update at 0 product 70 to 15
+update at 1 product 70 to 18
+update at 2 product 82 to 7
+update at 2 product 86 to 7
+update at 2 product 53 to 18
+update at 3 product 82 to 5
+update at 3 product 86 to 7
+update at 0 product 53 to 10
+update at 0 product 89 to 6
+update at 0 product 55 to 9
+update at 3 product 66 to 9
+update at 0 product 43 to 2
+update at 0 product 81 to 11
+update at 2 product 91 to 2
+update at 3 product 65 to 5
+update at 3 product 29 to 7
+update at 2 product 66 to 9
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 81
+update at 0 product 13 to 21
+update at 1 product 75 to 87
+update at 0 product 75 to 21
+update at 2 product 70 to 32
+update at 2 product 75 to 45
+update at 0 product 70 to 16
+update at 1 product 70 to 19
+update at 2 product 82 to 8
+update at 3 product 82 to 6
+update at 2 product 86 to 8
+update at 3 product 86 to 8
+update at 2 product 54 to 8
+update at 0 product 33 to 2
+update at 3 product 28 to 24
+update at 2 product 31 to 5
+update at 2 product 69 to 3
+update at 2 product 8 to 4
+update at 0 product 31 to 1
+update at 0 product 3 to 4
+update at 0 product 43 to 3
+update at 0 product 37 to 3
+update at 0 product 63 to 1
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 82
+update at 1 product 75 to 88
+update at 0 product 75 to 22
+update at 2 product 70 to 33
+update at 0 product 70 to 17
+update at 2 product 75 to 46
+update at 1 product 70 to 20
+update at 2 product 82 to 9
+update at 3 product 82 to 7
+update at 2 product 86 to 9
+update at 3 product 86 to 9
+update at 2 product 38 to 5
+update at 3 product 64 to 6
+update at 0 product 25 to 2
+update at 0 product 19 to 1
+update at 3 product 78 to 2
+update at 0 product 38 to 2
+update at 2 product 28 to 7
+update at 0 product 55 to 10
+update at 0 product 36 to 16
+update at 0 product 43 to 4
+update at 0 product 14 to 1
+update at 3 product 12 to 4
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 83
+update at 0 product 75 to 23
+update at 1 product 75 to 89
+update at 2 product 70 to 34
+update at 0 product 70 to 18
+update at 2 product 75 to 47
+update at 0 product 19 to 2
+update at 1 product 70 to 21
+update at 2 product 82 to 10
+update at 3 product 82 to 8
+update at 2 product 86 to 10
+update at 0 product 6 to 2
+update at 3 product 27 to 7
+update at 0 product 50 to 7
+update at 0 product 3 to 5
+update at 0 product 72 to 1
+update at 0 product 53 to 11
+update at 0 product 9 to 1
+update at 2 product 46 to 5
+update at 3 product 86 to 10
+update at 2 product 53 to 19
+update at 0 product 43 to 5
+update at 1 product 23 to 2
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 84
+update at 1 product 75 to 90
+update at 0 product 75 to 24
+update at 2 product 70 to 35
+update at 0 product 70 to 19
+update at 0 product 6 to 3
+update at 1 product 70 to 22
+update at 2 product 82 to 11
+update at 3 product 82 to 9
+update at 0 product 72 to 2
+update at 2 product 71 to 22
+update at 3 product 45 to 5
+update at 3 product 60 to 4
+update at 2 product 52 to 3
+update at 2 product 78 to 2
+update at 0 product 81 to 12
+update at 0 product 11 to 1
+update at 3 product 41 to 2
+update at 3 product 88 to 5
+update at 3 product 30 to 2
+update at 2 product 86 to 11
+update at 3 product 69 to 2
+update at 0 product 43 to 6
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 85
+update at 1 product 75 to 91
+update at 0 product 75 to 25
+update at 2 product 70 to 36
+update at 0 product 70 to 20
+update at 1 product 70 to 23
+update at 2 product 82 to 12
+update at 3 product 82 to 10
+update at 0 product 72 to 3
+update at 0 product 55 to 11
+update at 0 product 82 to 1
+update at 0 product 3 to 6
+update at 3 product 71 to 29
+update at 0 product 36 to 17
+update at 2 product 91 to 3
+update at 3 product 86 to 11
+update at 0 product 33 to 3
+update at 3 product 34 to 27
+update at 0 product 43 to 7
+update at 0 product 24 to 1
+update at 0 product 42 to 1
+update at 3 product 75 to 21
+update at 0 product 9 to 2
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 86
+update at 1 product 75 to 92
+update at 0 product 75 to 26
+update at 2 product 70 to 37
+update at 0 product 70 to 21
+update at 1 product 70 to 24
+update at 2 product 82 to 13
+update at 3 product 82 to 11
+update at 0 product 72 to 4
+update at 0 product 82 to 2
+update at 1 product 72 to 6
+update at 2 product 87 to 2
+update at 3 product 5 to 3
+update at 2 product 85 to 2
+update at 2 product 73 to 5
+update at 2 product 83 to 2
+update at 2 product 19 to 7
+update at 0 product 50 to 8
+update at 2 product 5 to 9
+update at 0 product 3 to 7
+update at 2 product 18 to 7
+update at 3 product 31 to 7
+update at 0 product 53 to 12
+---- multi insert ---
+0.106049 
+j= 3 , i= 13 
+0.106049 
+QPair(3,13) 
+update at 3 product 13 to 87
+update at 1 product 75 to 93
+update at 0 product 75 to 27
+update at 2 product 70 to 38
+update at 0 product 70 to 22
+update at 1 product 70 to 25
+update at 2 product 82 to 14
+update at 3 product 82 to 12
+update at 0 product 72 to 5
+update at 0 product 82 to 3
+update at 1 product 72 to 7
+update at 2 product 87 to 3
+update at 0 product 93 to 1
+update at 0 product 43 to 8
+update at 0 product 55 to 12
+update at 2 product 88 to 3
+update at 3 product 87 to 4
+update at 2 product 49 to 2
+update at 0 product 16 to 1
+update at 3 product 8 to 10
+update at 2 product 44 to 4
+update at 0 product 37 to 4
+update at 0 product 29 to 1
+---- multi insert ---
+0.0221127 
+j= 3 , i= 13 
+0.0221127 
+QPair(3,13) 
+update at 3 product 13 to 88
+update at 1 product 75 to 94
+update at 0 product 75 to 28
+update at 2 product 70 to 39
+update at 0 product 70 to 23
+update at 1 product 70 to 26
+update at 2 product 82 to 15
+update at 3 product 82 to 13
+update at 0 product 72 to 6
+update at 0 product 82 to 4
+update at 1 product 72 to 8
+update at 2 product 87 to 4
+update at 3 product 87 to 5
+update at 2 product 79 to 4
+update at 0 product 93 to 2
+update at 2 product 60 to 2
+update at 3 product 73 to 4
+update at 0 product 2 to 3
+update at 2 product 86 to 12
+update at 3 product 68 to 2
+update at 2 product 13 to 11
+update at 0 product 81 to 13
+update at 3 product 58 to 5
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 95
+update at 0 product 75 to 29
+update at 0 product 70 to 24
+update at 2 product 70 to 40
+update at 1 product 70 to 27
+update at 2 product 82 to 16
+update at 3 product 82 to 14
+update at 0 product 72 to 7
+update at 0 product 82 to 5
+update at 1 product 72 to 9
+update at 3 product 87 to 6
+update at 2 product 87 to 5
+update at 0 product 93 to 3
+update at 2 product 17 to 2
+update at 1 product 43 to 3
+update at 0 product 43 to 9
+update at 2 product 63 to 6
+update at 3 product 17 to 4
+update at 3 product 94 to 2
+update at 0 product 36 to 18
+update at 3 product 14 to 16
+update at 0 product 78 to 1
+update at 0 product 53 to 13
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 96
+update at 0 product 75 to 30
+update at 0 product 70 to 25
+update at 2 product 82 to 17
+update at 1 product 70 to 28
+update at 2 product 70 to 41
+update at 3 product 82 to 15
+update at 0 product 72 to 8
+update at 0 product 82 to 6
+update at 1 product 72 to 10
+update at 3 product 87 to 7
+update at 3 product 28 to 25
+update at 2 product 33 to 12
+update at 0 product 71 to 1
+update at 0 product 28 to 1
+update at 1 product 92 to 28
+update at 2 product 87 to 6
+update at 3 product 86 to 12
+update at 3 product 51 to 2
+update at 0 product 9 to 3
+update at 0 product 1 to 1
+update at 2 product 26 to 4
+update at 0 product 93 to 4
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 97
+update at 0 product 75 to 31
+update at 2 product 82 to 18
+update at 1 product 70 to 29
+update at 0 product 28 to 2
+update at 0 product 70 to 26
+update at 3 product 82 to 16
+update at 2 product 70 to 42
+update at 0 product 82 to 7
+update at 0 product 72 to 9
+update at 3 product 87 to 8
+update at 1 product 72 to 11
+update at 0 product 3 to 8
+update at 2 product 51 to 2
+update at 3 product 51 to 3
+update at 2 product 45 to 8
+update at 0 product 39 to 1
+update at 1 product 43 to 4
+update at 0 product 55 to 13
+update at 3 product 88 to 6
+update at 3 product 47 to 5
+update at 0 product 34 to 1
+update at 1 product 55 to 2
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 98
+update at 0 product 75 to 32
+update at 2 product 82 to 19
+update at 1 product 70 to 30
+update at 0 product 70 to 27
+update at 0 product 82 to 8
+update at 3 product 87 to 9
+update at 0 product 72 to 10
+update at 3 product 82 to 17
+update at 1 product 72 to 12
+update at 0 product 23 to 6
+update at 1 product 53 to 5
+update at 3 product 38 to 23
+update at 0 product 76 to 1
+update at 0 product 53 to 14
+update at 3 product 26 to 4
+update at 2 product 10 to 3
+update at 2 product 83 to 3
+update at 3 product 33 to 26
+update at 3 product 51 to 4
+update at 0 product 78 to 2
+update at 0 product 71 to 2
+update at 3 product 63 to 5
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 99
+update at 0 product 75 to 33
+update at 0 product 71 to 3
+update at 2 product 82 to 20
+update at 1 product 70 to 31
+update at 0 product 70 to 28
+update at 0 product 82 to 9
+update at 3 product 87 to 10
+update at 0 product 72 to 11
+update at 0 product 93 to 5
+update at 1 product 53 to 6
+update at 2 product 65 to 5
+update at 1 product 65 to 50
+update at 0 product 43 to 10
+update at 0 product 54 to 1
+update at 1 product 18 to 2
+update at 2 product 87 to 7
+update at 0 product 50 to 9
+update at 1 product 43 to 5
+update at 3 product 82 to 18
+update at 0 product 36 to 19
+update at 2 product 24 to 3
+update at 2 product 86 to 13
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 100
+update at 0 product 75 to 34
+update at 2 product 82 to 21
+update at 1 product 70 to 32
+update at 0 product 70 to 29
+update at 0 product 54 to 2
+update at 3 product 87 to 11
+update at 0 product 82 to 10
+update at 0 product 4 to 1
+update at 0 product 3 to 9
+update at 2 product 9 to 19
+update at 1 product 53 to 7
+update at 0 product 9 to 4
+update at 2 product 51 to 3
+update at 3 product 51 to 5
+update at 0 product 72 to 12
+update at 0 product 53 to 15
+update at 0 product 81 to 14
+update at 2 product 6 to 43
+update at 2 product 91 to 4
+update at 3 product 86 to 13
+update at 0 product 34 to 2
+update at 2 product 40 to 5
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 101
+update at 0 product 75 to 35
+update at 2 product 82 to 22
+update at 1 product 70 to 33
+update at 0 product 70 to 30
+update at 3 product 87 to 12
+update at 0 product 82 to 11
+update at 3 product 77 to 2
+update at 0 product 93 to 6
+update at 1 product 13 to 24
+update at 3 product 35 to 2
+update at 0 product 45 to 1
+update at 0 product 55 to 14
+update at 0 product 69 to 1
+update at 0 product 78 to 3
+update at 0 product 89 to 7
+update at 3 product 39 to 3
+update at 2 product 64 to 10
+update at 2 product 58 to 4
+update at 2 product 42 to 7
+update at 2 product 87 to 8
+update at 2 product 29 to 9
+update at 3 product 24 to 14
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 102
+update at 0 product 75 to 36
+update at 2 product 82 to 23
+update at 1 product 70 to 34
+update at 3 product 87 to 13
+update at 0 product 70 to 31
+update at 0 product 45 to 2
+update at 0 product 82 to 12
+update at 3 product 19 to 8
+update at 2 product 11 to 15
+update at 0 product 11 to 2
+update at 0 product 94 to 1
+update at 3 product 62 to 3
+update at 0 product 85 to 1
+update at 0 product 72 to 13
+update at 3 product 16 to 3
+update at 0 product 43 to 11
+update at 0 product 36 to 20
+update at 2 product 34 to 9
+update at 2 product 85 to 3
+update at 0 product 37 to 5
+update at 0 product 62 to 1
+update at 0 product 3 to 10
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 103
+update at 0 product 75 to 37
+update at 0 product 82 to 13
+update at 2 product 82 to 24
+update at 3 product 87 to 14
+update at 1 product 70 to 35
+update at 0 product 70 to 32
+update at 2 product 47 to 3
+update at 0 product 53 to 16
+update at 1 product 53 to 8
+update at 0 product 57 to 1
+update at 0 product 73 to 1
+update at 3 product 51 to 6
+update at 2 product 90 to 2
+update at 0 product 94 to 2
+update at 3 product 48 to 2
+update at 0 product 86 to 1
+update at 2 product 14 to 10
+update at 3 product 9 to 28
+update at 2 product 83 to 4
+update at 2 product 71 to 23
+update at 2 product 86 to 14
+update at 0 product 50 to 10
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 104
+update at 0 product 75 to 38
+update at 2 product 82 to 25
+update at 3 product 87 to 15
+update at 0 product 82 to 14
+update at 1 product 70 to 36
+update at 0 product 70 to 33
+update at 3 product 88 to 7
+update at 3 product 66 to 10
+update at 0 product 93 to 7
+update at 2 product 20 to 2
+update at 3 product 54 to 10
+update at 3 product 90 to 2
+update at 3 product 6 to 12
+update at 1 product 2 to 2
+update at 2 product 1 to 3
+update at 2 product 88 to 4
+update at 0 product 72 to 14
+update at 0 product 55 to 15
+update at 0 product 86 to 2
+update at 1 product 12 to 2
+update at 0 product 87 to 1
+update at 0 product 46 to 1
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 105
+update at 0 product 75 to 39
+update at 2 product 82 to 26
+update at 3 product 87 to 16
+update at 0 product 82 to 15
+update at 1 product 70 to 37
+update at 0 product 70 to 34
+update at 0 product 87 to 2
+update at 0 product 86 to 3
+update at 2 product 66 to 10
+update at 3 product 71 to 30
+update at 0 product 43 to 12
+update at 0 product 94 to 3
+update at 1 product 43 to 6
+update at 3 product 59 to 3
+update at 2 product 51 to 4
+update at 2 product 76 to 10
+update at 2 product 77 to 2
+update at 0 product 81 to 15
+update at 0 product 27 to 1
+update at 0 product 59 to 1
+update at 0 product 36 to 21
+update at 0 product 32 to 1
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 106
+update at 0 product 75 to 40
+update at 3 product 87 to 17
+update at 0 product 87 to 3
+update at 0 product 86 to 4
+update at 0 product 25 to 3
+update at 0 product 52 to 1
+update at 0 product 91 to 1
+update at 0 product 78 to 4
+update at 3 product 18 to 2
+update at 0 product 3 to 11
+update at 0 product 53 to 17
+update at 3 product 83 to 2
+update at 0 product 34 to 3
+update at 1 product 92 to 29
+update at 1 product 3 to 8
+update at 0 product 41 to 1
+update at 3 product 11 to 7
+update at 2 product 87 to 9
+update at 0 product 47 to 1
+update at 2 product 69 to 4
+update at 0 product 72 to 15
+update at 1 product 53 to 9
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 107
+update at 0 product 75 to 41
+update at 3 product 87 to 18
+update at 0 product 47 to 2
+update at 0 product 86 to 5
+update at 0 product 87 to 4
+update at 0 product 91 to 2
+update at 0 product 44 to 1
+update at 0 product 58 to 1
+update at 3 product 51 to 7
+update at 0 product 70 to 35
+update at 1 product 86 to 15
+update at 1 product 60 to 7
+update at 0 product 94 to 4
+update at 0 product 33 to 4
+update at 2 product 62 to 2
+update at 1 product 70 to 38
+update at 0 product 73 to 2
+update at 0 product 60 to 1
+update at 3 product 82 to 19
+update at 1 product 82 to 6
+update at 1 product 91 to 10
+update at 0 product 55 to 16
+---- multi insert ---
+0.00289906 
+j= 1 , i= 75 
+0.00289906 
+QPair(1,75) 
+update at 1 product 75 to 108
+update at 0 product 75 to 42
+update at 3 product 87 to 19
+update at 0 product 86 to 6
+update at 0 product 87 to 5
+update at 0 product 91 to 3
+update at 1 product 86 to 16
+update at 1 product 82 to 7
+update at 1 product 91 to 11
+update at 0 product 93 to 8
+update at 0 product 88 to 1
+update at 2 product 54 to 9
+update at 1 product 93 to 4
+update at 1 product 36 to 2
+update at 2 product 6 to 44
+update at 3 product 65 to 6
+update at 0 product 14 to 2
+update at 2 product 5 to 10
+update at 0 product 36 to 22
+update at 3 product 31 to 8
+update at 2 product 28 to 8
+update at 2 product 57 to 4
+update at 0 product 4 to 2
+---- multi insert ---
+0.00281899 
+j= 1 , i= 75 
+0.00281899 
+QPair(1,75) 
+update at 1 product 75 to 109
+update at 0 product 75 to 43
+update at 0 product 88 to 2
+update at 3 product 87 to 20
+update at 0 product 86 to 7
+update at 0 product 91 to 4
+update at 0 product 87 to 6
+update at 1 product 86 to 17
+update at 1 product 82 to 8
+update at 1 product 91 to 12
+update at 0 product 23 to 7
+update at 0 product 22 to 5
+update at 3 product 38 to 24
+update at 0 product 68 to 1
+update at 2 product 68 to 3
+update at 2 product 31 to 6
+update at 3 product 79 to 5
+update at 3 product 64 to 7
+update at 0 product 50 to 11
+update at 0 product 73 to 3
+update at 3 product 28 to 26
+update at 0 product 83 to 1
+update at 3 product 1 to 8
+---- multi insert ---
+0.000223506 
+j= 3 , i= 87 
+0.000223506 
+QPair(3,87) 
+update at 3 product 87 to 21
+update at 0 product 88 to 3
+update at 1 product 88 to 41
+update at 0 product 91 to 5
+update at 0 product 86 to 8
+update at 0 product 87 to 7
+update at 0 product 50 to 12
+update at 1 product 86 to 18
+update at 1 product 82 to 9
+update at 1 product 91 to 13
+update at 0 product 72 to 16
+update at 0 product 7 to 1
+update at 0 product 53 to 18
+update at 1 product 13 to 25
+update at 3 product 8 to 11
+update at 0 product 83 to 2
+update at 2 product 16 to 3
+update at 1 product 7 to 4
+update at 0 product 90 to 1
+update at 0 product 24 to 2
+update at 2 product 18 to 8
+update at 0 product 70 to 36
+update at 0 product 26 to 1
+---- multi insert ---
+0.000201784 
+j= 3 , i= 87 
+0.000201784 
+QPair(3,87) 
+update at 3 product 87 to 22
+update at 0 product 91 to 6
+update at 0 product 86 to 9
+update at 0 product 87 to 8
+update at 1 product 86 to 19
+update at 1 product 82 to 10
+update at 1 product 91 to 14
+update at 0 product 90 to 2
+update at 0 product 43 to 13
+update at 0 product 34 to 4
+update at 0 product 85 to 2
+update at 0 product 51 to 1
+update at 0 product 81 to 16
+update at 1 product 55 to 3
+update at 3 product 29 to 8
+update at 0 product 9 to 5
+update at 3 product 34 to 28
+update at 0 product 83 to 3
+update at 0 product 69 to 2
+update at 0 product 77 to 1
+update at 2 product 41 to 2
+update at 2 product 21 to 3
+update at 1 product 81 to 14
+---- multi insert ---
+0.000176463 
+j= 3 , i= 87 
+0.000176463 
+QPair(3,87) 
+update at 3 product 87 to 23
+update at 0 product 91 to 7
+update at 0 product 86 to 10
+update at 1 product 86 to 20
+update at 1 product 82 to 11
+update at 1 product 91 to 15
+update at 0 product 87 to 9
+update at 0 product 90 to 3
+update at 0 product 82 to 16
+update at 0 product 94 to 5
+update at 2 product 27 to 3
+update at 0 product 51 to 2
+update at 2 product 37 to 2
+update at 3 product 21 to 3
+update at 0 product 83 to 4
+update at 0 product 42 to 2
+update at 0 product 37 to 6
+update at 2 product 39 to 8
+update at 2 product 30 to 5
+update at 1 product 78 to 4
+update at 0 product 49 to 1
+update at 0 product 78 to 5
+update at 3 product 42 to 2
+---- multi insert ---
+0.000148881 
+j= 3 , i= 87 
+0.000148881 
+QPair(3,87) 
+update at 3 product 87 to 24
+update at 0 product 91 to 8
+update at 0 product 86 to 11
+update at 1 product 86 to 21
+update at 1 product 82 to 12
+update at 1 product 91 to 16
+update at 0 product 87 to 10
+update at 0 product 90 to 4
+update at 2 product 13 to 12
+update at 0 product 51 to 3
+update at 0 product 48 to 1
+update at 3 product 71 to 31
+update at 0 product 83 to 5
+update at 2 product 56 to 2
+update at 3 product 57 to 2
+update at 2 product 71 to 24
+update at 0 product 70 to 37
+update at 0 product 53 to 19
+update at 0 product 72 to 17
+update at 2 product 73 to 6
+update at 0 product 73 to 4
+update at 2 product 32 to 2
+update at 3 product 33 to 27
+---- multi insert ---
+0.000125569 
+j= 0 , i= 91 
+0.000125569 
+QPair(0,91) 
+update at 0 product 91 to 9
+update at 3 product 87 to 25
+update at 0 product 86 to 12
+update at 1 product 86 to 22
+update at 1 product 82 to 13
+update at 1 product 91 to 17
+update at 0 product 87 to 11
+update at 0 product 90 to 5
+update at 0 product 69 to 3
+update at 0 product 51 to 4
+update at 3 product 12 to 5
+update at 0 product 83 to 6
+update at 0 product 67 to 1
+update at 1 product 90 to 5
+update at 2 product 67 to 2
+update at 0 product 3 to 12
+update at 1 product 20 to 3
+update at 3 product 32 to 2
+update at 0 product 36 to 23
+update at 3 product 82 to 20
+update at 3 product 76 to 3
+update at 3 product 67 to 2
+update at 0 product 70 to 38
+---- multi insert ---
+0.000125042 
+j= 0 , i= 91 
+0.000125042 
+QPair(0,91) 
+update at 0 product 91 to 10
+update at 0 product 86 to 13
+update at 1 product 86 to 23
+update at 1 product 82 to 14
+update at 1 product 91 to 18
+update at 3 product 87 to 26
+update at 0 product 90 to 6
+update at 0 product 87 to 12
+update at 1 product 90 to 6
+update at 0 product 51 to 5
+update at 0 product 83 to 7
+update at 0 product 43 to 14
+update at 3 product 17 to 5
+update at 1 product 43 to 7
+update at 1 product 83 to 3
+update at 3 product 14 to 17
+update at 2 product 8 to 5
+update at 0 product 53 to 20
+update at 3 product 9 to 29
+update at 2 product 12 to 3
+update at 0 product 55 to 17
+update at 2 product 9 to 20
+update at 3 product 88 to 8
+---- multi insert ---
+0.000124471 
+j= 0 , i= 91 
+0.000124471 
+QPair(0,91) 
+update at 0 product 91 to 11
+update at 0 product 86 to 14
+update at 1 product 86 to 24
+update at 1 product 82 to 15
+update at 1 product 91 to 19
+update at 0 product 90 to 7
+update at 0 product 87 to 13
+update at 1 product 90 to 7
+update at 3 product 87 to 27
+update at 0 product 51 to 6
+update at 0 product 83 to 8
+update at 2 product 4 to 3
+update at 2 product 81 to 3
+update at 0 product 72 to 18
+update at 0 product 58 to 2
+update at 2 product 33 to 13
+update at 0 product 89 to 8
+update at 0 product 2 to 4
+update at 3 product 4 to 3
+update at 0 product 93 to 9
+update at 1 product 46 to 8
+update at 1 product 87 to 7
+update at 0 product 35 to 1
+---- multi insert ---
+0.000123767 
+j= 0 , i= 91 
+0.000123767 
+QPair(0,91) 
+update at 0 product 91 to 12
+update at 1 product 86 to 25
+update at 0 product 86 to 15
+update at 1 product 82 to 16
+update at 1 product 91 to 20
+update at 0 product 90 to 8
+update at 1 product 90 to 8
+update at 0 product 87 to 14
+update at 0 product 51 to 7
+update at 1 product 87 to 8
+update at 3 product 27 to 8
+update at 0 product 70 to 39
+update at 1 product 57 to 13
+update at 0 product 93 to 10
+update at 0 product 94 to 6
+update at 2 product 19 to 8
+update at 1 product 92 to 30
+update at 0 product 85 to 3
+update at 3 product 70 to 8
+update at 2 product 6 to 45
+update at 3 product 73 to 5
+update at 0 product 83 to 9
+update at 1 product 10 to 5
+---- multi insert ---
+0.000220341 
+j= 0 , i= 87 
+0.000220341 
+QPair(0,87) 
+update at 0 product 87 to 15
+update at 0 product 91 to 13
+update at 1 product 86 to 26
+update at 0 product 86 to 16
+update at 1 product 82 to 17
+update at 1 product 91 to 21
+update at 0 product 90 to 9
+update at 1 product 90 to 9
+update at 1 product 87 to 9
+update at 0 product 51 to 8
+update at 0 product 36 to 24
+update at 0 product 77 to 2
+update at 0 product 53 to 21
+update at 3 product 77 to 3
+update at 3 product 62 to 4
+update at 1 product 51 to 2
+update at 0 product 3 to 13
+update at 2 product 46 to 6
+update at 3 product 3 to 3
+update at 2 product 64 to 11
+update at 1 product 76 to 8
+update at 2 product 80 to 2
+update at 2 product 29 to 10
+---- multi insert ---
+0.000121035 
+j= 0 , i= 91 
+0.000121035 
+QPair(0,91) 
+update at 0 product 91 to 14
+update at 1 product 86 to 27
+update at 0 product 86 to 17
+update at 1 product 82 to 18
+update at 1 product 91 to 22
+update at 0 product 90 to 10
+update at 1 product 90 to 10
+update at 1 product 87 to 10
+update at 0 product 51 to 9
+update at 1 product 51 to 3
+update at 3 product 52 to 3
+update at 1 product 68 to 7
+update at 0 product 69 to 4
+update at 3 product 28 to 27
+update at 1 product 41 to 18
+update at 3 product 47 to 6
+update at 2 product 76 to 11
+update at 1 product 83 to 4
+update at 0 product 83 to 10
+update at 2 product 42 to 8
+update at 2 product 11 to 16
+update at 3 product 44 to 4
+update at 2 product 88 to 5
+---- multi insert ---
+0.000118124 
+j= 0 , i= 91 
+0.000118124 
+QPair(0,91) 
+update at 0 product 91 to 15
+update at 1 product 86 to 28
+update at 1 product 82 to 19
+update at 0 product 86 to 18
+update at 1 product 91 to 23
+update at 0 product 90 to 11
+update at 1 product 90 to 11
+update at 1 product 87 to 11
+update at 1 product 51 to 4
+update at 0 product 51 to 10
+update at 2 product 79 to 5
+update at 0 product 72 to 19
+update at 2 product 92 to 5
+update at 3 product 22 to 2
+update at 3 product 82 to 21
+update at 3 product 45 to 6
+update at 1 product 17 to 4
+update at 0 product 40 to 1
+update at 3 product 58 to 6
+update at 3 product 40 to 3
+update at 3 product 54 to 11
+update at 3 product 46 to 3
+update at 2 product 87 to 10
+---- multi insert ---
+0.000115271 
+j= 1 , i= 86 
+0.000115271 
+QPair(1,86) 
+update at 1 product 86 to 29
+update at 0 product 91 to 16
+update at 1 product 82 to 20
+update at 0 product 86 to 19
+update at 1 product 91 to 24
+update at 0 product 90 to 12
+update at 1 product 87 to 12
+update at 1 product 90 to 12
+update at 1 product 51 to 5
+update at 0 product 70 to 40
+update at 1 product 70 to 39
+update at 1 product 13 to 26
+update at 0 product 51 to 11
+update at 0 product 34 to 5
+update at 1 product 63 to 12
+update at 3 product 75 to 22
+update at 1 product 25 to 2
+update at 0 product 55 to 18
+update at 1 product 59 to 2
+update at 0 product 53 to 22
+update at 3 product 71 to 32
+update at 2 product 38 to 6
+update at 0 product 23 to 8
+---- multi insert ---
+0.000114854 
+j= 1 , i= 86 
+0.000114854 
+QPair(1,86) 
+update at 1 product 86 to 30
+update at 1 product 82 to 21
+update at 0 product 86 to 20
+update at 0 product 91 to 17
+update at 1 product 91 to 25
+update at 1 product 87 to 13
+update at 0 product 90 to 13
+update at 1 product 90 to 13
+update at 1 product 44 to 14
+update at 0 product 36 to 25
+update at 3 product 92 to 4
+update at 3 product 38 to 25
+update at 2 product 65 to 6
+update at 0 product 24 to 3
+update at 2 product 63 to 7
+update at 3 product 74 to 2
+update at 3 product 66 to 11
+update at 0 product 33 to 5
+update at 3 product 78 to 3
+update at 1 product 51 to 6
+update at 2 product 52 to 4
+update at 1 product 48 to 9
+update at 2 product 45 to 9
+---- multi insert ---
+0.000114065 
+j= 1 , i= 86 
+0.000114065 
+QPair(1,86) 
+update at 1 product 86 to 31
+update at 1 product 82 to 22
+update at 0 product 86 to 21
+update at 0 product 91 to 18
+update at 1 product 91 to 26
+update at 1 product 87 to 14
+update at 2 product 48 to 3
+update at 3 product 37 to 3
+update at 3 product 5 to 4
+update at 3 product 6 to 13
+update at 2 product 71 to 25
+update at 3 product 69 to 3
+update at 1 product 26 to 10
+update at 0 product 69 to 5
+update at 1 product 4 to 40
+update at 0 product 73 to 5
+update at 0 product 9 to 6
+update at 2 product 66 to 11
+update at 0 product 90 to 14
+update at 1 product 49 to 4
+update at 1 product 62 to 3
+update at 0 product 4 to 3
+update at 0 product 72 to 20
+---- multi insert ---
+0.000112679 
+j= 1 , i= 86 
+0.000112679 
+QPair(1,86) 
+update at 1 product 86 to 32
+update at 1 product 82 to 23
+update at 0 product 86 to 22
+update at 0 product 91 to 19
+update at 1 product 91 to 27
+update at 1 product 87 to 15
+update at 0 product 43 to 15
+update at 0 product 94 to 7
+update at 3 product 60 to 5
+update at 2 product 34 to 10
+update at 0 product 53 to 23
+update at 2 product 94 to 2
+update at 1 product 3 to 9
+update at 3 product 81 to 4
+update at 1 product 11 to 11
+update at 1 product 35 to 2
+update at 3 product 19 to 9
+update at 1 product 42 to 3
+update at 0 product 51 to 12
+update at 0 product 83 to 11
+update at 1 product 77 to 7
+update at 1 product 51 to 7
+update at 1 product 16 to 3
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 24
+update at 1 product 86 to 33
+update at 0 product 86 to 23
+update at 0 product 91 to 20
+update at 1 product 91 to 28
+update at 1 product 87 to 16
+update at 1 product 81 to 15
+update at 2 product 5 to 11
+update at 1 product 31 to 8
+update at 1 product 78 to 5
+update at 2 product 15 to 2
+update at 0 product 14 to 3
+update at 1 product 80 to 3
+update at 3 product 31 to 9
+update at 0 product 70 to 41
+update at 1 product 39 to 15
+update at 0 product 80 to 1
+update at 0 product 85 to 4
+update at 0 product 90 to 15
+update at 1 product 32 to 3
+update at 2 product 44 to 5
+update at 1 product 58 to 23
+update at 2 product 54 to 10
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 25
+update at 1 product 86 to 34
+update at 0 product 86 to 24
+update at 1 product 87 to 17
+update at 0 product 91 to 21
+update at 1 product 91 to 29
+update at 0 product 36 to 26
+update at 3 product 82 to 22
+update at 0 product 18 to 1
+update at 0 product 55 to 19
+update at 2 product 6 to 46
+update at 3 product 11 to 8
+update at 0 product 53 to 24
+update at 3 product 88 to 9
+update at 3 product 16 to 4
+update at 2 product 62 to 3
+update at 3 product 34 to 29
+update at 2 product 17 to 3
+update at 3 product 93 to 2
+update at 0 product 72 to 21
+update at 0 product 70 to 42
+update at 1 product 18 to 3
+update at 2 product 78 to 3
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 26
+update at 1 product 86 to 35
+update at 0 product 86 to 25
+update at 1 product 87 to 18
+update at 0 product 91 to 22
+update at 1 product 91 to 30
+update at 1 product 83 to 5
+update at 1 product 57 to 14
+update at 1 product 67 to 4
+update at 1 product 1 to 3
+update at 1 product 92 to 31
+update at 1 product 93 to 5
+update at 1 product 41 to 19
+update at 1 product 34 to 35
+update at 1 product 33 to 42
+update at 1 product 29 to 9
+update at 1 product 51 to 8
+update at 1 product 43 to 8
+update at 1 product 30 to 3
+update at 0 product 83 to 12
+update at 1 product 94 to 3
+update at 1 product 73 to 24
+update at 1 product 52 to 7
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 27
+update at 1 product 86 to 36
+update at 0 product 86 to 26
+update at 1 product 87 to 19
+update at 0 product 91 to 23
+update at 1 product 91 to 31
+update at 1 product 40 to 2
+update at 1 product 8 to 3
+update at 1 product 53 to 10
+update at 1 product 13 to 27
+update at 1 product 70 to 40
+update at 0 product 90 to 16
+update at 1 product 85 to 3
+update at 1 product 77 to 8
+update at 1 product 23 to 3
+update at 1 product 27 to 7
+update at 1 product 90 to 14
+update at 1 product 20 to 4
+update at 1 product 9 to 43
+update at 1 product 3 to 10
+update at 1 product 38 to 14
+update at 1 product 69 to 20
+update at 0 product 72 to 22
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 28
+update at 1 product 86 to 37
+update at 0 product 86 to 27
+update at 1 product 87 to 20
+update at 1 product 76 to 9
+update at 1 product 50 to 4
+update at 1 product 46 to 9
+update at 1 product 51 to 9
+update at 1 product 81 to 16
+update at 1 product 24 to 35
+update at 1 product 60 to 8
+update at 1 product 14 to 24
+update at 1 product 62 to 4
+update at 1 product 58 to 24
+update at 1 product 44 to 15
+update at 0 product 91 to 24
+update at 1 product 89 to 6
+update at 1 product 91 to 32
+update at 1 product 21 to 3
+update at 1 product 70 to 41
+update at 1 product 34 to 36
+update at 1 product 2 to 3
+update at 1 product 73 to 25
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 29
+update at 1 product 86 to 38
+update at 0 product 86 to 28
+update at 1 product 87 to 21
+update at 1 product 78 to 6
+update at 1 product 67 to 5
+update at 1 product 83 to 6
+update at 1 product 43 to 9
+update at 0 product 83 to 13
+update at 1 product 48 to 10
+update at 1 product 33 to 43
+update at 1 product 51 to 10
+update at 0 product 72 to 23
+update at 1 product 63 to 13
+update at 0 product 90 to 17
+update at 1 product 68 to 8
+update at 1 product 55 to 4
+update at 1 product 11 to 12
+update at 1 product 53 to 11
+update at 1 product 41 to 20
+update at 1 product 90 to 15
+update at 1 product 4 to 41
+update at 1 product 7 to 5
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 30
+update at 1 product 86 to 39
+update at 1 product 87 to 22
+update at 0 product 86 to 29
+update at 1 product 12 to 3
+update at 1 product 31 to 9
+update at 1 product 74 to 2
+update at 1 product 9 to 44
+update at 1 product 57 to 15
+update at 1 product 92 to 32
+update at 1 product 77 to 9
+update at 1 product 17 to 5
+update at 1 product 56 to 3
+update at 1 product 70 to 42
+update at 0 product 91 to 25
+update at 1 product 69 to 21
+update at 1 product 26 to 11
+update at 1 product 91 to 33
+update at 1 product 37 to 2
+update at 1 product 3 to 11
+update at 1 product 93 to 6
+update at 1 product 39 to 16
+update at 1 product 13 to 28
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 31
+update at 1 product 87 to 23
+update at 1 product 86 to 40
+update at 0 product 86 to 30
+update at 1 product 74 to 3
+update at 1 product 22 to 2
+update at 1 product 94 to 4
+update at 1 product 73 to 26
+update at 1 product 80 to 4
+update at 1 product 36 to 3
+update at 1 product 51 to 11
+update at 1 product 81 to 17
+update at 1 product 49 to 5
+update at 1 product 42 to 4
+update at 1 product 58 to 25
+update at 1 product 34 to 37
+update at 0 product 72 to 24
+update at 1 product 10 to 6
+update at 0 product 73 to 6
+update at 1 product 24 to 36
+update at 0 product 81 to 17
+update at 1 product 43 to 10
+update at 1 product 70 to 43
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 32
+update at 1 product 87 to 24
+update at 1 product 86 to 41
+update at 0 product 86 to 31
+update at 1 product 74 to 4
+update at 0 product 90 to 18
+update at 1 product 14 to 25
+update at 1 product 85 to 4
+update at 1 product 53 to 12
+update at 1 product 52 to 8
+update at 1 product 67 to 6
+update at 1 product 29 to 10
+update at 1 product 62 to 5
+update at 1 product 90 to 16
+update at 1 product 33 to 44
+update at 0 product 91 to 26
+update at 1 product 83 to 7
+update at 0 product 83 to 14
+update at 1 product 9 to 45
+update at 1 product 35 to 3
+update at 1 product 91 to 34
+update at 1 product 44 to 16
+update at 1 product 51 to 12
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 33
+update at 1 product 87 to 25
+update at 1 product 86 to 42
+update at 0 product 86 to 32
+update at 1 product 4 to 42
+update at 1 product 76 to 10
+update at 1 product 16 to 4
+update at 1 product 41 to 21
+update at 1 product 69 to 22
+update at 1 product 77 to 10
+update at 1 product 78 to 7
+update at 1 product 38 to 15
+update at 1 product 84 to 6
+update at 1 product 70 to 44
+update at 1 product 74 to 5
+update at 0 product 84 to 1
+update at 0 product 72 to 25
+update at 1 product 59 to 3
+update at 1 product 46 to 10
+update at 1 product 34 to 38
+update at 1 product 3 to 12
+update at 1 product 92 to 33
+update at 1 product 57 to 16
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 34
+update at 1 product 87 to 26
+update at 1 product 86 to 43
+update at 0 product 86 to 33
+update at 1 product 43 to 11
+update at 1 product 58 to 26
+update at 0 product 73 to 7
+update at 1 product 20 to 5
+update at 1 product 27 to 8
+update at 1 product 11 to 13
+update at 1 product 60 to 9
+update at 0 product 90 to 19
+update at 1 product 13 to 29
+update at 1 product 51 to 13
+update at 0 product 91 to 27
+update at 1 product 25 to 3
+update at 1 product 53 to 13
+update at 1 product 91 to 35
+update at 1 product 48 to 11
+update at 1 product 73 to 27
+update at 1 product 50 to 5
+update at 0 product 43 to 16
+update at 0 product 20 to 1
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 35
+update at 1 product 87 to 27
+update at 1 product 86 to 44
+update at 0 product 86 to 34
+update at 1 product 9 to 46
+update at 1 product 24 to 37
+update at 1 product 70 to 45
+update at 0 product 81 to 18
+update at 1 product 32 to 4
+update at 1 product 63 to 14
+update at 1 product 31 to 10
+update at 1 product 33 to 45
+update at 1 product 93 to 7
+update at 1 product 56 to 4
+update at 1 product 94 to 5
+update at 1 product 74 to 6
+update at 0 product 90 to 20
+update at 1 product 4 to 43
+update at 1 product 80 to 5
+update at 1 product 55 to 5
+update at 1 product 69 to 23
+update at 1 product 14 to 26
+update at 0 product 83 to 15
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 36
+update at 1 product 87 to 28
+update at 1 product 86 to 45
+update at 0 product 86 to 35
+update at 0 product 72 to 26
+update at 1 product 67 to 7
+update at 1 product 68 to 9
+update at 1 product 34 to 39
+update at 1 product 39 to 17
+update at 1 product 26 to 12
+update at 1 product 77 to 11
+update at 1 product 41 to 22
+update at 1 product 51 to 14
+update at 1 product 7 to 6
+update at 1 product 23 to 4
+update at 1 product 70 to 46
+update at 1 product 89 to 7
+update at 1 product 44 to 17
+update at 0 product 91 to 28
+update at 1 product 84 to 7
+update at 1 product 3 to 13
+update at 1 product 91 to 36
+update at 1 product 62 to 6
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 37
+update at 1 product 87 to 29
+update at 1 product 86 to 46
+update at 0 product 86 to 36
+update at 1 product 17 to 6
+update at 0 product 90 to 21
+update at 1 product 58 to 27
+update at 1 product 53 to 14
+update at 1 product 85 to 5
+update at 1 product 2 to 4
+update at 1 product 9 to 47
+update at 1 product 92 to 34
+update at 0 product 83 to 16
+update at 1 product 52 to 9
+update at 1 product 78 to 8
+update at 1 product 42 to 5
+update at 1 product 49 to 6
+update at 1 product 29 to 11
+update at 1 product 13 to 30
+update at 1 product 76 to 11
+update at 1 product 57 to 17
+update at 1 product 74 to 7
+update at 1 product 18 to 4
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 38
+update at 1 product 87 to 30
+update at 1 product 86 to 47
+update at 0 product 86 to 37
+update at 1 product 33 to 46
+update at 1 product 43 to 12
+update at 1 product 70 to 47
+update at 1 product 24 to 38
+update at 1 product 51 to 15
+update at 0 product 43 to 17
+update at 0 product 90 to 22
+update at 1 product 69 to 24
+update at 1 product 4 to 44
+update at 1 product 38 to 16
+update at 1 product 15 to 2
+update at 1 product 34 to 40
+update at 1 product 30 to 4
+update at 0 product 72 to 27
+update at 0 product 91 to 29
+update at 1 product 91 to 37
+update at 1 product 46 to 11
+update at 1 product 11 to 14
+update at 1 product 84 to 8
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 39
+update at 1 product 87 to 31
+update at 1 product 86 to 48
+update at 0 product 86 to 38
+update at 1 product 8 to 4
+update at 1 product 73 to 28
+update at 0 product 83 to 17
+update at 1 product 37 to 3
+update at 1 product 14 to 27
+update at 1 product 61 to 2
+update at 1 product 36 to 4
+update at 1 product 41 to 23
+update at 1 product 77 to 12
+update at 1 product 53 to 15
+update at 1 product 9 to 48
+update at 0 product 3 to 14
+update at 1 product 10 to 7
+update at 1 product 48 to 12
+update at 1 product 70 to 48
+update at 1 product 58 to 28
+update at 1 product 3 to 14
+update at 1 product 67 to 8
+update at 1 product 31 to 11
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 40
+update at 1 product 87 to 32
+update at 1 product 86 to 49
+update at 0 product 86 to 39
+update at 1 product 93 to 8
+update at 0 product 90 to 23
+update at 1 product 51 to 16
+update at 1 product 35 to 4
+update at 1 product 63 to 15
+update at 1 product 94 to 6
+update at 1 product 60 to 10
+update at 1 product 81 to 18
+update at 1 product 74 to 8
+update at 1 product 44 to 18
+update at 1 product 80 to 6
+update at 1 product 16 to 5
+update at 1 product 27 to 9
+update at 1 product 40 to 3
+update at 1 product 33 to 47
+update at 1 product 92 to 35
+update at 0 product 74 to 1
+update at 1 product 34 to 41
+update at 0 product 91 to 30
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 41
+update at 1 product 87 to 33
+update at 0 product 87 to 16
+update at 1 product 86 to 50
+update at 0 product 86 to 40
+update at 1 product 56 to 5
+update at 1 product 12 to 4
+update at 1 product 13 to 31
+update at 1 product 69 to 25
+update at 1 product 39 to 18
+update at 1 product 4 to 45
+update at 1 product 1 to 4
+update at 1 product 70 to 49
+update at 1 product 24 to 39
+update at 1 product 50 to 6
+update at 1 product 62 to 7
+update at 0 product 83 to 18
+update at 0 product 72 to 28
+update at 1 product 26 to 13
+update at 1 product 57 to 18
+update at 1 product 73 to 29
+update at 0 product 56 to 1
+update at 1 product 84 to 9
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 42
+update at 1 product 87 to 34
+update at 0 product 87 to 17
+update at 3 product 10 to 3
+update at 3 product 8 to 12
+update at 3 product 63 to 6
+update at 3 product 9 to 30
+update at 3 product 28 to 28
+update at 3 product 41 to 3
+update at 3 product 24 to 15
+update at 3 product 33 to 28
+update at 3 product 71 to 33
+update at 3 product 29 to 9
+update at 3 product 65 to 7
+update at 3 product 75 to 23
+update at 3 product 64 to 8
+update at 3 product 53 to 2
+update at 3 product 35 to 3
+update at 3 product 82 to 23
+update at 3 product 79 to 6
+update at 3 product 62 to 5
+update at 3 product 38 to 26
+update at 3 product 14 to 18
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 43
+update at 1 product 87 to 35
+update at 0 product 87 to 18
+update at 1 product 86 to 51
+update at 0 product 86 to 41
+update at 1 product 55 to 6
+update at 0 product 91 to 31
+update at 1 product 9 to 49
+update at 1 product 68 to 10
+update at 1 product 78 to 9
+update at 1 product 53 to 16
+update at 0 product 43 to 18
+update at 1 product 51 to 17
+update at 0 product 90 to 24
+update at 1 product 91 to 38
+update at 1 product 43 to 13
+update at 0 product 83 to 19
+update at 1 product 85 to 6
+update at 1 product 58 to 29
+update at 1 product 21 to 4
+update at 1 product 22 to 3
+update at 1 product 76 to 12
+update at 1 product 52 to 10
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 44
+update at 1 product 87 to 36
+update at 0 product 87 to 19
+update at 0 product 72 to 29
+update at 1 product 41 to 24
+update at 1 product 7 to 7
+update at 1 product 70 to 50
+update at 1 product 59 to 4
+update at 1 product 77 to 13
+update at 1 product 86 to 52
+update at 1 product 14 to 28
+update at 1 product 29 to 12
+update at 1 product 34 to 42
+update at 1 product 17 to 7
+update at 0 product 41 to 2
+update at 1 product 38 to 17
+update at 0 product 3 to 15
+update at 1 product 33 to 48
+update at 1 product 11 to 15
+update at 1 product 67 to 9
+update at 0 product 86 to 42
+update at 1 product 4 to 46
+update at 1 product 69 to 26
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 45
+update at 1 product 87 to 37
+update at 0 product 87 to 20
+update at 1 product 32 to 5
+update at 0 product 91 to 32
+update at 1 product 42 to 6
+update at 1 product 49 to 7
+update at 1 product 51 to 18
+update at 1 product 73 to 30
+update at 1 product 81 to 19
+update at 1 product 92 to 36
+update at 1 product 46 to 12
+update at 1 product 9 to 50
+update at 1 product 89 to 8
+update at 1 product 13 to 32
+update at 1 product 24 to 40
+update at 1 product 70 to 51
+update at 1 product 53 to 17
+update at 1 product 91 to 39
+update at 1 product 84 to 10
+update at 1 product 48 to 13
+update at 1 product 25 to 4
+update at 1 product 44 to 19
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 46
+update at 1 product 87 to 38
+update at 0 product 87 to 21
+update at 0 product 90 to 25
+update at 1 product 31 to 12
+update at 1 product 93 to 9
+update at 1 product 86 to 53
+update at 1 product 20 to 6
+update at 1 product 23 to 5
+update at 1 product 2 to 5
+update at 1 product 94 to 7
+update at 1 product 63 to 16
+update at 1 product 58 to 30
+update at 1 product 57 to 19
+update at 0 product 2 to 5
+update at 1 product 34 to 43
+update at 1 product 80 to 7
+update at 0 product 86 to 43
+update at 1 product 70 to 52
+update at 0 product 91 to 33
+update at 1 product 39 to 19
+update at 1 product 60 to 11
+update at 0 product 74 to 2
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 47
+update at 1 product 87 to 39
+update at 0 product 87 to 22
+update at 0 product 43 to 19
+update at 1 product 51 to 19
+update at 1 product 33 to 49
+update at 1 product 62 to 8
+update at 1 product 77 to 14
+update at 1 product 14 to 29
+update at 1 product 78 to 10
+update at 1 product 9 to 51
+update at 1 product 4 to 47
+update at 1 product 73 to 31
+update at 1 product 69 to 27
+update at 1 product 43 to 14
+update at 1 product 53 to 18
+update at 1 product 86 to 54
+update at 1 product 26 to 14
+update at 1 product 27 to 10
+update at 0 product 91 to 34
+update at 1 product 10 to 8
+update at 1 product 76 to 13
+update at 1 product 92 to 37
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 48
+update at 1 product 87 to 40
+update at 0 product 87 to 23
+update at 1 product 18 to 5
+update at 1 product 24 to 41
+update at 0 product 90 to 26
+update at 1 product 84 to 11
+update at 1 product 70 to 53
+update at 1 product 13 to 33
+update at 1 product 36 to 5
+update at 1 product 85 to 7
+update at 1 product 81 to 20
+update at 1 product 68 to 11
+update at 1 product 52 to 11
+update at 1 product 35 to 5
+update at 1 product 67 to 10
+update at 1 product 55 to 7
+update at 1 product 50 to 7
+update at 1 product 11 to 16
+update at 1 product 34 to 44
+update at 1 product 37 to 4
+update at 1 product 86 to 55
+update at 1 product 51 to 20
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 49
+update at 1 product 87 to 41
+update at 0 product 87 to 24
+update at 1 product 29 to 13
+update at 1 product 41 to 25
+update at 0 product 91 to 35
+update at 1 product 58 to 31
+update at 1 product 38 to 18
+update at 1 product 16 to 6
+update at 1 product 44 to 20
+update at 1 product 33 to 50
+update at 1 product 9 to 52
+update at 1 product 7 to 8
+update at 0 product 74 to 3
+update at 1 product 30 to 5
+update at 1 product 73 to 32
+update at 1 product 57 to 20
+update at 1 product 70 to 54
+update at 1 product 4 to 48
+update at 1 product 86 to 56
+update at 1 product 53 to 19
+update at 1 product 46 to 13
+update at 1 product 74 to 9
+---- multi insert ---
+0.000111156 
+j= 1 , i= 82 
+0.000111156 
+QPair(1,82) 
+update at 1 product 82 to 50
+update at 1 product 87 to 42
+update at 0 product 87 to 25
+update at 1 product 48 to 14
+update at 1 product 69 to 28
+update at 1 product 31 to 13
+update at 0 product 91 to 36
+update at 1 product 93 to 10
+update at 1 product 17 to 8
+update at 1 product 77 to 15
+update at 1 product 14 to 30
+update at 1 product 8 to 5
+update at 1 product 51 to 21
+update at 1 product 63 to 17
+update at 1 product 42 to 7
+update at 1 product 49 to 8
+update at 1 product 56 to 6
+update at 1 product 94 to 8
+update at 1 product 34 to 45
+update at 1 product 86 to 57
+update at 1 product 24 to 42
+update at 0 product 43 to 20
+update at 1 product 92 to 38
+---- multi insert ---
+5.39612e-05 
+j= 1 , i= 87 
+5.39612e-05 
+QPair(1,87) 
+update at 1 product 87 to 43
+update at 0 product 87 to 26
+update at 1 product 82 to 51
+update at 0 product 90 to 27
+update at 1 product 39 to 20
+update at 1 product 84 to 12
+update at 1 product 70 to 55
+update at 1 product 13 to 34
+update at 1 product 80 to 8
+update at 1 product 78 to 11
+update at 0 product 91 to 37
+update at 1 product 58 to 32
+update at 1 product 9 to 53
+update at 1 product 62 to 9
+update at 0 product 84 to 2
+update at 1 product 12 to 5
+update at 1 product 81 to 21
+update at 1 product 41 to 26
+update at 1 product 33 to 51
+update at 1 product 89 to 9
+update at 1 product 86 to 58
+update at 1 product 60 to 12
+update at 1 product 73 to 33
+---- multi insert ---
+3.79112e-05 
+j= 0 , i= 87 
+3.79112e-05 
+QPair(0,87) 
+update at 0 product 87 to 27
+update at 1 product 87 to 44
+update at 1 product 53 to 20
+update at 1 product 59 to 5
+update at 1 product 20 to 7
+update at 1 product 4 to 49
+update at 1 product 15 to 3
+update at 1 product 67 to 11
+update at 1 product 26 to 15
+update at 1 product 76 to 14
+update at 1 product 51 to 22
+update at 1 product 69 to 29
+update at 1 product 11 to 17
+update at 1 product 32 to 6
+update at 1 product 70 to 56
+update at 0 product 53 to 25
+update at 1 product 44 to 21
+update at 0 product 4 to 4
+update at 1 product 34 to 46
+update at 1 product 61 to 3
+update at 1 product 86 to 59
+update at 0 product 67 to 2
+update at 0 product 91 to 38
+base-stock levels optimized in 874 seconds
+********************************
+product: 1, location: 1: E[BOj]=3.3655e-07
+product: 2, location: 1: E[BOj]=1.70672e-05
+product: 3, location: 1: E[BOj]=0.000132222
+product: 4, location: 1: E[BOj]=7.78445e-07
+product: 5, location: 1: E[BOj]=0
+product: 6, location: 1: E[BOj]=0
+product: 7, location: 1: E[BOj]=2.57515e-05
+product: 8, location: 1: E[BOj]=4.87421e-07
+product: 9, location: 1: E[BOj]=1.14589e-05
+product: 10, location: 1: E[BOj]=1.96181e-06
+product: 11, location: 1: E[BOj]=4.09154e-06
+product: 12, location: 1: E[BOj]=8.43733e-07
+product: 13, location: 1: E[BOj]=1.78734e-06
+product: 14, location: 1: E[BOj]=1.95726e-06
+product: 15, location: 1: E[BOj]=1.30085e-06
+product: 16, location: 1: E[BOj]=2.35824e-05
+product: 17, location: 1: E[BOj]=1.82084e-05
+product: 18, location: 1: E[BOj]=4.69591e-06
+product: 19, location: 1: E[BOj]=0
+product: 20, location: 1: E[BOj]=1.35502e-05
+product: 21, location: 1: E[BOj]=5.95606e-07
+product: 22, location: 1: E[BOj]=4.28129e-05
+product: 23, location: 1: E[BOj]=3.1616e-05
+product: 24, location: 1: E[BOj]=5.62722e-07
+product: 25, location: 1: E[BOj]=2.58581e-05
+product: 26, location: 1: E[BOj]=8.57992e-07
+product: 27, location: 1: E[BOj]=6.61246e-06
+product: 28, location: 1: E[BOj]=0
+product: 29, location: 1: E[BOj]=9.51534e-06
+product: 30, location: 1: E[BOj]=8.43733e-07
+product: 31, location: 1: E[BOj]=2.36801e-05
+product: 32, location: 1: E[BOj]=1.87573e-06
+product: 33, location: 1: E[BOj]=1.04332e-06
+product: 34, location: 1: E[BOj]=1.59306e-05
+product: 35, location: 1: E[BOj]=7.30603e-05
+product: 36, location: 1: E[BOj]=3.22987e-05
+product: 37, location: 1: E[BOj]=6.34284e-05
+product: 38, location: 1: E[BOj]=1.12002e-06
+product: 39, location: 1: E[BOj]=2.48989e-07
+product: 40, location: 1: E[BOj]=1.25051e-05
+product: 41, location: 1: E[BOj]=1.67707e-05
+product: 42, location: 1: E[BOj]=4.55711e-05
+product: 43, location: 1: E[BOj]=0.000140435
+product: 44, location: 1: E[BOj]=4.42922e-06
+product: 45, location: 1: E[BOj]=0
+product: 46, location: 1: E[BOj]=7.48508e-06
+product: 47, location: 1: E[BOj]=0
+product: 48, location: 1: E[BOj]=1.00599e-05
+product: 49, location: 1: E[BOj]=1.93577e-05
+product: 50, location: 1: E[BOj]=4.6719e-05
+product: 51, location: 1: E[BOj]=0.000976588
+product: 52, location: 1: E[BOj]=4.20483e-05
+product: 53, location: 1: E[BOj]=0.000126271
+product: 54, location: 1: E[BOj]=0
+product: 55, location: 1: E[BOj]=0.000108996
+product: 56, location: 1: E[BOj]=0.000172906
+product: 57, location: 1: E[BOj]=2.65346e-05
+product: 58, location: 1: E[BOj]=2.97817e-05
+product: 59, location: 1: E[BOj]=5.47656e-06
+product: 60, location: 1: E[BOj]=2.27609e-06
+product: 61, location: 1: E[BOj]=1.30085e-06
+product: 62, location: 1: E[BOj]=0.000177513
+product: 63, location: 1: E[BOj]=8.49872e-07
+product: 64, location: 1: E[BOj]=0
+product: 65, location: 1: E[BOj]=0
+product: 66, location: 1: E[BOj]=0
+product: 67, location: 1: E[BOj]=0.000108524
+product: 68, location: 1: E[BOj]=6.68526e-06
+product: 69, location: 1: E[BOj]=6.48239e-05
+product: 70, location: 1: E[BOj]=0.000118587
+product: 71, location: 1: E[BOj]=0
+product: 72, location: 1: E[BOj]=0.00012061
+product: 73, location: 1: E[BOj]=0.000122657
+product: 74, location: 1: E[BOj]=0.000907197
+product: 75, location: 1: E[BOj]=0
+product: 76, location: 1: E[BOj]=8.47463e-06
+product: 77, location: 1: E[BOj]=0.000428318
+product: 78, location: 1: E[BOj]=0.000113788
+product: 79, location: 1: E[BOj]=0
+product: 80, location: 1: E[BOj]=0.000179606
+product: 81, location: 1: E[BOj]=2.1881e-05
+product: 82, location: 1: E[BOj]=0
+product: 83, location: 1: E[BOj]=9.57079e-05
+product: 84, location: 1: E[BOj]=0.00135795
+product: 85, location: 1: E[BOj]=0.000419299
+product: 86, location: 1: E[BOj]=0.000729389
+product: 87, location: 1: E[BOj]=6.98191
+product: 88, location: 1: E[BOj]=0
+product: 89, location: 1: E[BOj]=5.2167e-07
+product: 90, location: 1: E[BOj]=0.000429218
+product: 91, location: 1: E[BOj]=0.000268183
+product: 92, location: 1: E[BOj]=3.35655e-07
+product: 93, location: 1: E[BOj]=0.000138267
+product: 94, location: 1: E[BOj]=0.000244755
+product: 1, location: 2: E[BOj]=1.26164e-05
+product: 2, location: 2: E[BOj]=0.00260025
+product: 3, location: 2: E[BOj]=0.00265038
+product: 4, location: 2: E[BOj]=1.26353e-05
+product: 5, location: 2: E[BOj]=0.00114636
+product: 6, location: 2: E[BOj]=0.000181427
+product: 7, location: 2: E[BOj]=0.00706361
+product: 8, location: 2: E[BOj]=0.000243179
+product: 9, location: 2: E[BOj]=0.00161087
+product: 10, location: 2: E[BOj]=0.000288216
+product: 11, location: 2: E[BOj]=0.00184091
+product: 12, location: 2: E[BOj]=0.000288216
+product: 13, location: 2: E[BOj]=0.000281444
+product: 14, location: 2: E[BOj]=0.000251399
+product: 15, location: 2: E[BOj]=0.000530339
+product: 16, location: 2: E[BOj]=0.00422337
+product: 17, location: 2: E[BOj]=0.000694405
+product: 18, location: 2: E[BOj]=0.001253
+product: 19, location: 2: E[BOj]=0.000108104
+product: 20, location: 2: E[BOj]=0.00390814
+product: 21, location: 2: E[BOj]=1.98974e-05
+product: 22, location: 2: E[BOj]=0.00691329
+product: 23, location: 2: E[BOj]=0.00174201
+product: 24, location: 2: E[BOj]=1.3436e-05
+product: 25, location: 2: E[BOj]=0.00505066
+product: 26, location: 2: E[BOj]=0.000286702
+product: 27, location: 2: E[BOj]=0.0001978
+product: 28, location: 2: E[BOj]=0.00218707
+product: 29, location: 2: E[BOj]=0.00100774
+product: 30, location: 2: E[BOj]=0.000405538
+product: 31, location: 2: E[BOj]=0.00525786
+product: 32, location: 2: E[BOj]=0.000394289
+product: 33, location: 2: E[BOj]=9.05307e-05
+product: 34, location: 2: E[BOj]=0.00160599
+product: 35, location: 2: E[BOj]=0.0153494
+product: 36, location: 2: E[BOj]=0.0145491
+product: 37, location: 2: E[BOj]=0.00860058
+product: 38, location: 2: E[BOj]=2.87171e-05
+product: 39, location: 2: E[BOj]=3.70766e-05
+product: 40, location: 2: E[BOj]=0.00184432
+product: 41, location: 2: E[BOj]=0.000390258
+product: 42, location: 2: E[BOj]=0.0206229
+product: 43, location: 2: E[BOj]=0.000431007
+product: 44, location: 2: E[BOj]=0.000265679
+product: 45, location: 2: E[BOj]=0.000269977
+product: 46, location: 2: E[BOj]=0.000660832
+product: 47, location: 2: E[BOj]=0.00320283
+product: 48, location: 2: E[BOj]=0.000196257
+product: 49, location: 2: E[BOj]=0.00684735
+product: 50, location: 2: E[BOj]=0.000799344
+product: 51, location: 2: E[BOj]=0.0645594
+product: 52, location: 2: E[BOj]=0.0013802
+product: 53, location: 2: E[BOj]=0.0135755
+product: 54, location: 2: E[BOj]=0.000593757
+product: 55, location: 2: E[BOj]=0.00356584
+product: 56, location: 2: E[BOj]=0.0366838
+product: 57, location: 2: E[BOj]=0.00197951
+product: 58, location: 2: E[BOj]=0.00375669
+product: 59, location: 2: E[BOj]=0.00682702
+product: 60, location: 2: E[BOj]=0.00039311
+product: 61, location: 2: E[BOj]=0.0108197
+product: 62, location: 2: E[BOj]=0.0173857
+product: 63, location: 2: E[BOj]=5.50928e-05
+product: 64, location: 2: E[BOj]=0.000555182
+product: 65, location: 2: E[BOj]=0.000456952
+product: 66, location: 2: E[BOj]=0.000273711
+product: 67, location: 2: E[BOj]=0.0436961
+product: 68, location: 2: E[BOj]=0.000189123
+product: 69, location: 2: E[BOj]=0.00735759
+product: 70, location: 2: E[BOj]=0.0165523
+product: 71, location: 2: E[BOj]=0.00340169
+product: 72, location: 2: E[BOj]=4.86116e-05
+product: 73, location: 2: E[BOj]=0.0109221
+product: 74, location: 2: E[BOj]=0.286806
+product: 75, location: 2: E[BOj]=0
+product: 76, location: 2: E[BOj]=0.00337865
+product: 77, location: 2: E[BOj]=0.0607293
+product: 78, location: 2: E[BOj]=0.00655219
+product: 79, location: 2: E[BOj]=0.000585637
+product: 80, location: 2: E[BOj]=0.0162713
+product: 81, location: 2: E[BOj]=0.000950237
+product: 82, location: 2: E[BOj]=0
+product: 83, location: 2: E[BOj]=4.76046e-05
+product: 84, location: 2: E[BOj]=0.00696002
+product: 85, location: 2: E[BOj]=0.0198399
+product: 86, location: 2: E[BOj]=0.0010196
+product: 87, location: 2: E[BOj]=0.0777389
+product: 88, location: 2: E[BOj]=0.0405158
+product: 89, location: 2: E[BOj]=5.83767e-05
+product: 90, location: 2: E[BOj]=0.00256101
+product: 91, location: 2: E[BOj]=0.00175666
+product: 92, location: 2: E[BOj]=6.09079e-06
+product: 93, location: 2: E[BOj]=0.00229719
+product: 94, location: 2: E[BOj]=0.0122143
+product: 1, location: 3: E[BOj]=5.69659e-05
+product: 2, location: 3: E[BOj]=0.00268243
+product: 3, location: 3: E[BOj]=0.00333877
+product: 4, location: 3: E[BOj]=1.34398e-05
+product: 5, location: 3: E[BOj]=0.000410125
+product: 6, location: 3: E[BOj]=8.6696e-05
+product: 7, location: 3: E[BOj]=0.00181088
+product: 8, location: 3: E[BOj]=0.000308134
+product: 9, location: 3: E[BOj]=0.00112136
+product: 10, location: 3: E[BOj]=2.11609e-05
+product: 11, location: 3: E[BOj]=0.00057929
+product: 12, location: 3: E[BOj]=0.000922966
+product: 13, location: 3: E[BOj]=0
+product: 14, location: 3: E[BOj]=7.60636e-05
+product: 15, location: 3: E[BOj]=0.00287505
+product: 16, location: 3: E[BOj]=0.00164757
+product: 17, location: 3: E[BOj]=0.00483248
+product: 18, location: 3: E[BOj]=0.000389601
+product: 19, location: 3: E[BOj]=7.94495e-05
+product: 20, location: 3: E[BOj]=0.00183663
+product: 21, location: 3: E[BOj]=2.11609e-05
+product: 22, location: 3: E[BOj]=0.000948065
+product: 23, location: 3: E[BOj]=0.00322885
+product: 24, location: 3: E[BOj]=2.39855e-05
+product: 25, location: 3: E[BOj]=0.00330122
+product: 26, location: 3: E[BOj]=0.000286702
+product: 27, location: 3: E[BOj]=0.000658929
+product: 28, location: 3: E[BOj]=0.00153962
+product: 29, location: 3: E[BOj]=0.000379251
+product: 30, location: 3: E[BOj]=0.000534465
+product: 31, location: 3: E[BOj]=0.00252216
+product: 32, location: 3: E[BOj]=0.000412924
+product: 33, location: 3: E[BOj]=9.39258e-05
+product: 34, location: 3: E[BOj]=0.0034132
+product: 35, location: 3: E[BOj]=0.00260302
+product: 36, location: 3: E[BOj]=0.00533826
+product: 37, location: 3: E[BOj]=0.0104606
+product: 38, location: 3: E[BOj]=6.28437e-05
+product: 39, location: 3: E[BOj]=1.52117e-05
+product: 40, location: 3: E[BOj]=0.000182923
+product: 41, location: 3: E[BOj]=0.000191021
+product: 42, location: 3: E[BOj]=0.00669762
+product: 43, location: 3: E[BOj]=0.000111664
+product: 44, location: 3: E[BOj]=0.000341458
+product: 45, location: 3: E[BOj]=0.000210642
+product: 46, location: 3: E[BOj]=0.000199568
+product: 47, location: 3: E[BOj]=0.00249411
+product: 48, location: 3: E[BOj]=0.000417229
+product: 49, location: 3: E[BOj]=0.00189138
+product: 50, location: 3: E[BOj]=0.00367736
+product: 51, location: 3: E[BOj]=0.0330997
+product: 52, location: 3: E[BOj]=0.00131542
+product: 53, location: 3: E[BOj]=0.00128369
+product: 54, location: 3: E[BOj]=0.00115189
+product: 55, location: 3: E[BOj]=0.0195201
+product: 56, location: 3: E[BOj]=0.00717773
+product: 57, location: 3: E[BOj]=0.000424049
+product: 58, location: 3: E[BOj]=0.00202748
+product: 59, location: 3: E[BOj]=0.00397992
+product: 60, location: 3: E[BOj]=0.000255411
+product: 61, location: 3: E[BOj]=0.00287505
+product: 62, location: 3: E[BOj]=0.0177622
+product: 63, location: 3: E[BOj]=2.90893e-05
+product: 64, location: 3: E[BOj]=0.000144204
+product: 65, location: 3: E[BOj]=0.000287031
+product: 66, location: 3: E[BOj]=0.000325533
+product: 67, location: 3: E[BOj]=0.0436961
+product: 68, location: 3: E[BOj]=0.000387293
+product: 69, location: 3: E[BOj]=0.0024875
+product: 70, location: 3: E[BOj]=0.00819926
+product: 71, location: 3: E[BOj]=0.00267169
+product: 72, location: 3: E[BOj]=0.0019168
+product: 73, location: 3: E[BOj]=0.00885082
+product: 74, location: 3: E[BOj]=0.287957
+product: 75, location: 3: E[BOj]=0.00144812
+product: 76, location: 3: E[BOj]=0.00107928
+product: 77, location: 3: E[BOj]=0.0307561
+product: 78, location: 3: E[BOj]=0.0125426
+product: 79, location: 3: E[BOj]=0.000243925
+product: 80, location: 3: E[BOj]=0.0287695
+product: 81, location: 3: E[BOj]=0.000819586
+product: 82, location: 3: E[BOj]=0.0593612
+product: 83, location: 3: E[BOj]=0.000549886
+product: 84, location: 3: E[BOj]=0.0159687
+product: 85, location: 3: E[BOj]=0.0263126
+product: 86, location: 3: E[BOj]=0.00291818
+product: 87, location: 3: E[BOj]=0.134339
+product: 88, location: 3: E[BOj]=0.0404114
+product: 89, location: 3: E[BOj]=0.000202127
+product: 90, location: 3: E[BOj]=0.00256101
+product: 91, location: 3: E[BOj]=0.0125573
+product: 92, location: 3: E[BOj]=3.44626e-06
+product: 93, location: 3: E[BOj]=0.00315253
+product: 94, location: 3: E[BOj]=0.066345
+demand at j=1 equals: 155.378
+EBOj for j=1 equals: 6.99036
+beta star for j=1 equals: 0.955011
+demand at j=2 equals: 32.2265
+EBOj for j=2 equals: 0.913774
+beta star for j=2 equals: 0.971645
+demand at j=3 equals: 34.9243
+EBOj for j=3 equals: 0.963515
+beta star for j=3 equals: 0.972411
