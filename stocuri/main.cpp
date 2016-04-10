@@ -21,7 +21,7 @@ int main ( int argc, char *argv[] ) {
 	// settings -----------------------------------------------------------------------------------------------------------------
 
 	bool	USE_MULTI_INCREMENT = true;
-	int	MULTI_INCREMENT_MAX_PRODUCTS = 10;
+	int		MULTI_INCREMENT_MAX_PRODUCTS = 10;
 	double	MULTI_INCREMENT_MIN_EBO = 0.0;
 	bool	USE_GRAVES = true;
 	double	BO_CUT_OFF = 0.000000001;
