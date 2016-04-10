@@ -16,12 +16,12 @@
 class GreedyAlgorithm {
 	private:	
 
-		bool	USE_MULTI_INCREMENT				= true;
-		int		MULTI_INCREMENT_MAX_PRODUCTS	= 40;
-		double	MULTI_INCREMENT_MIN_EBO			= 0.0;
-		bool	USE_GRAVES						= true;
-		double	BO_CUT_OFF						= 0.000000001;
-		double	APPROX							= 30;
+		bool USE_MULTI_INCREMENT;
+		int MULTI_INCREMENT_MAX_PRODUCTS;
+		double MULTI_INCREMENT_MIN_EBO;
+		bool USE_GRAVES;
+		double BO_CUT_OFF;
+		double APPROX;
 
 		TwoEchelonDistributionNetwork *network;
 
