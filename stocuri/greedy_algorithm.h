@@ -16,13 +16,12 @@
 class GreedyAlgorithm {
 	private:	
 
-		bool MULTI = true;
-		int MULTI_MAX = 10;
-		bool GRAVES = true;
-		double BOCUTOFF = 0.000000001;
-		bool debug = true;
-
-		double APPROX = 30;
+		bool	USE_MULTI_INCREMENT				= true;
+		int		MULTI_INCREMENT_MAX_PRODUCTS	= 40;
+		double	MULTI_INCREMENT_MIN_EBO			= 0.0;
+		bool	USE_GRAVES						= true;
+		double	BO_CUT_OFF						= 0.000000001;
+		double	APPROX							= 30;
 
 		TwoEchelonDistributionNetwork *network;
 
@@ -66,12 +65,12 @@ class GreedyAlgorithm {
 
 	public:
 		GreedyAlgorithm();
+		GreedyAlgorithm(bool USE_MULTI_INCREMENT, int MULTI_INCREMENT_MAX_PRODUCTS, double MULTI_INCREMENT_MIN_EBO, bool USE_GRAVES, double BO_CUT_OFF, double APPROX);
+
 		~GreedyAlgorithm();
 
 		double pPartsOnOrderAtRetailer(int product, int retailer, int x);
 		double pPartsOnOrderAtRetailer2Moment(int product, int retailer, int x);
-
-		void setNetwork(TwoEchelonDistributionNetwork *network){ this->network = network; debug = true; };
 
 		QList<double> evaluateNetwork(TwoEchelonDistributionNetwork *network);
 		int optimizeNetwork(TwoEchelonDistributionNetwork *network, QList<double> *targetAggregateFillRates);

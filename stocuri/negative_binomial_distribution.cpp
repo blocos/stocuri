@@ -31,17 +31,15 @@ double NegativeBinomialDistribution::probability(double p, double k, double x) {
 
 
 	result = binCoef * px * p1x;
-	
 
-	//std::cout << "y over x: " << binCoef << std::endl;
-
-	//std::cout << "p^x: " << px << std::endl;
-
-	//std::cout << "(1-p)^x: " << p1x << std::endl;
 	
 	// detect possible floating point operation exception
-	if (std::fetestexcept(FE_OVERFLOW) || std::fetestexcept(FE_UNDERFLOW)) {
-		throw std::runtime_error("floating point operation failure in NegativeBinomialDistribution.probability");
+	if (std::fetestexcept(FE_OVERFLOW)) {
+		throw std::overflow_error("overflow in NegativeBinomialDistribution.probability");
+	}
+
+	if (std::fetestexcept(FE_UNDERFLOW)) {
+		throw std::underflow_error("underflow in NegativeBinomialDistribution.probability");
 	} // if
 
 	return result;
@@ -65,11 +63,24 @@ double NegativeBinomialDistribution::probabilityByNormalApproximation(double p, 
 
 	NormalDistribution kees;
 
-	try{
-		result = kees.probability(mu, sigma, x);
-	}
-	catch (std::exception &me) {
+	// check z
+	double z = (x - mu) / sigma;
+
+	if (z <= -30) {
 		result = 0.0;
+	}
+	else {
+
+		try{
+			result = kees.probability(mu, sigma, x);
+		}
+		catch (std::exception &me) {
+			std::cout << me.what() << std::endl;
+
+			std::cout << "z: " << (x - mu) / sigma << std::endl;
+
+			result = 0.0;
+		}
 	}
 
 	return result;

@@ -82,10 +82,6 @@ int BasestockInitializationAlgorithm::run(TwoEchelonDistributionNetwork *network
 			double mij = network->getArrivalRateAtRetailer(i, j);
 			double Lij = network->getLeadTimeToRetailer(i, j);
 
-			if (mij >= 20) {
-				Lij += network->getLeadTimeToWarehouse(i);
-			}
-
 			double f = ceil(mij*Lij);
 
 			double max = 0.0;

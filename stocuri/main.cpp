@@ -18,16 +18,36 @@
 
 int main ( int argc, char *argv[] ) {
 
+	// settings -----------------------------------------------------------------------------------------------------------------
+
+	bool	USE_MULTI_INCREMENT = true;
+	int		MULTI_INCREMENT_MAX_PRODUCTS = 10;
+	double	MULTI_INCREMENT_MIN_EBO = 0.0;
+	bool	USE_GRAVES = true;
+	double	BO_CUT_OFF = 0.000000001;
+	double	APPROX = 30;
+
+	QString el = "94"; // el in {94, 100, 7038435, 7038847, 7045042, 7132473, 1060024472, 3010101808 }
+	QString custom = "mimp-10";
+
+	int nProducts = 10;
+
+	QString demandFile = "demand-" + el + ".csv";
+	QString settingsFile = "preprocessesed-settings-" + el + ".csv";
+
+
+	// core ---------------------------------------------------------------------------------------------------------------------
+
 	QCoreApplication a ( argc, argv );
 
 	QList<double> *targetAggregateFillRates = new QList<double>();
 	targetAggregateFillRates->append(0.95);
 	targetAggregateFillRates->append(0.95);
 	targetAggregateFillRates->append(0.95);
-	
-	// retailers = 3, products = 5
-	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, 94); // 2, 1
-	network->loadFromFile("preprocessesed-settings-94.csv", "demand-94.csv");
+
+	// retailers, products
+	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, nProducts);
+	network->loadFromFile(settingsFile, demandFile);
 	std::cout << "data loaded" << std::endl;
 	
 	/*
@@ -61,7 +81,7 @@ int main ( int argc, char *argv[] ) {
 
 	time(&start);
 
-	GreedyAlgorithm *gerrit = new GreedyAlgorithm();
+	GreedyAlgorithm *gerrit = new GreedyAlgorithm(USE_MULTI_INCREMENT, MULTI_INCREMENT_MAX_PRODUCTS, MULTI_INCREMENT_MIN_EBO, USE_GRAVES, BO_CUT_OFF, APPROX);
 	std::cout << "optimizing base-stock levels..." << std::endl;
 	int result = gerrit->optimizeNetwork(network, targetAggregateFillRates);
 
@@ -96,7 +116,7 @@ int main ( int argc, char *argv[] ) {
 
 	// -------------------------------------------------------------------------------------------------------- write to files --
 
-	network->writeBaseStockLevelsToFile("base-stock-levels-94-max-10.txt");
+	network->writeBaseStockLevelsToFile("base-stock-levels-" + el + "-" + custom + ".txt");
 
 	// -------------------------------------------------------------------------------------------------------------- clean up --
 
