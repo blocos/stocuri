@@ -20,17 +20,17 @@ int main ( int argc, char *argv[] ) {
 
 	// settings -----------------------------------------------------------------------------------------------------------------
 
-	bool	USE_MULTI_INCREMENT = true;
-	int		MULTI_INCREMENT_MAX_PRODUCTS = 10;
+	bool	USE_MULTI_INCREMENT = false;
+	int		MULTI_INCREMENT_MAX_PRODUCTS = 1;
 	double	MULTI_INCREMENT_MIN_EBO = 0.0;
 	bool	USE_GRAVES = true;
 	double	BO_CUT_OFF = 0.000000001;
 	double	APPROX = 30;
 
-	QString el = "94"; // el in {94, 100, 7038435, 7038847, 7045042, 7132473, 1060024472, 3010101808 }
-	QString custom = "mimp-10";
+	QString el = "3010101808"; // el in {94, 100, 7038435, 7038847, 7045042, 7132473, 1060024472, 3010101808 }
+	QString custom = "mimp-false";
 
-	int nProducts = 10;
+	int nProducts = 1;
 
 	QString demandFile = "demand-" + el + ".csv";
 	QString settingsFile = "preprocessesed-settings-" + el + ".csv";
