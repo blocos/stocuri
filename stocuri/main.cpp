@@ -20,17 +20,19 @@ int main ( int argc, char *argv[] ) {
 
 	// settings -----------------------------------------------------------------------------------------------------------------
 
-	bool	USE_MULTI_INCREMENT = true;
-	int		MULTI_INCREMENT_MAX_PRODUCTS = 10;
+	bool	USE_MULTI_INCREMENT = false;
+	int		MULTI_INCREMENT_MAX_PRODUCTS = 1;
 	double	MULTI_INCREMENT_MIN_EBO = 0.0;
-	bool	USE_GRAVES = true;
+	bool	USE_GRAVES = false;
 	double	BO_CUT_OFF = 0.000000001;
 	double	APPROX = 30;
+	double	INCREMENT = 20;
 
-	QString el = "94"; // el in {94, 100, 7038435, 7038847, 7045042, 7132473, 1060024472, 3010101808 }
-	QString custom = "mimp-10";
+	QString el = "3010101808"; // el in {94, 100, 7038435, 7038847, 7045042, 7132473, 1060024472, 3010101808 }
+	QString custom = "mimp-10-min";
 
-	int nProducts = 94;
+
+	int nProducts = 1;
 
 	QString demandFile = "demand-" + el + ".csv";
 	QString settingsFile = "preprocessesed-settings-" + el + ".csv";
@@ -49,6 +51,8 @@ int main ( int argc, char *argv[] ) {
 	TwoEchelonDistributionNetwork *network = new TwoEchelonDistributionNetwork(3, nProducts);
 	network->loadFromFile(settingsFile, demandFile);
 	std::cout << "data loaded" << std::endl;
+
+	network->setBaseStockLevelAtWarehouse(1, 82);
 	
 	/*
 	// set arrival rates
@@ -81,7 +85,7 @@ int main ( int argc, char *argv[] ) {
 
 	time(&start);
 
-	GreedyAlgorithm *gerrit = new GreedyAlgorithm(USE_MULTI_INCREMENT, MULTI_INCREMENT_MAX_PRODUCTS, MULTI_INCREMENT_MIN_EBO, USE_GRAVES, BO_CUT_OFF, APPROX);
+	GreedyAlgorithm *gerrit = new GreedyAlgorithm(USE_MULTI_INCREMENT, MULTI_INCREMENT_MAX_PRODUCTS, MULTI_INCREMENT_MIN_EBO, USE_GRAVES, BO_CUT_OFF, APPROX, INCREMENT);
 	std::cout << "optimizing base-stock levels..." << std::endl;
 	int result = gerrit->optimizeNetwork(network, targetAggregateFillRates);
 

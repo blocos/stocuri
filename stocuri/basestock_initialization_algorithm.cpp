@@ -45,56 +45,56 @@ double BasestockInitializationAlgorithm::pPartsOnOrderAtRetailer(int product, in
 
 double BasestockInitializationAlgorithm::calculateBetaJ(double BigM, int retailer) {
 
-	double result = 0.0;
-
-	PoissonDistribution tetrodotoxin;
+	double beta_j = 0.0;
 
 	for (int i = 1; i <= network->sizeProducts(); i++){
-		double sum = 0.0;
+		
+		double beta_i_j = 0.0;
 
 		double mij = network->getArrivalRateAtRetailer(i, retailer);
 
 		for (int x = 0; x <= network->getBaseStockLevelAtRetailer(i, retailer); x++){
 			double pxx = pPartsOnOrderAtRetailer(i, retailer, x);
 
-			sum = sum + pxx;
+			beta_i_j = beta_i_j + pxx;
 		} // for
 
-		result = result + ((mij / BigM)*sum);
+		beta_j = beta_j + ((mij / BigM)*beta_i_j);
 
 	} // for
 
-	return result;
-}
+	return beta_j;
+
+} // calculateBetaJ
 
 int BasestockInitializationAlgorithm::run(TwoEchelonDistributionNetwork *network, QList<double> *targetAggregateFillRates) {
 	int result = 0;
 
 	this->network = network;
 
-	
-
 	for (int j = 1; j <= network->sizeRetailers(); j++) {
+
 		double BigM = 0;
+
 		for (int i = 1; i <= network->sizeProducts(); i++) {
+
 			BigM = BigM + network->getArrivalRateAtRetailer(i, j);
 
 			double mij = network->getArrivalRateAtRetailer(i, j);
 			double Lij = network->getLeadTimeToRetailer(i, j);
 
-			double f = ceil(mij*Lij);
+			double f = ceil(mij*Lij-1);
 
 			double max = 0.0;
 
 			if (f > max) {
 				max = f;
-			}
+			} // if
 
 			network->setBaseStockLevelAtRetailer(i, j, max);
+
 		} // for
 
-
-		// 
 		double betaJ = calculateBetaJ(BigM, j);
 
 		if (betaJ < (*targetAggregateFillRates)[j - 1]) {
@@ -107,6 +107,7 @@ int BasestockInitializationAlgorithm::run(TwoEchelonDistributionNetwork *network
 				double max = 0;
 
 				for (int i = 1; i <= network->sizeProducts(); i++){
+					
 					double mij = network->getArrivalRateAtRetailer(i, j);
 					double hij = network->getInventoryHoldingCostAtRetailer(i, j);
 					double Sij = network->getBaseStockLevelAtRetailer(i, j);
@@ -118,7 +119,8 @@ int BasestockInitializationAlgorithm::run(TwoEchelonDistributionNetwork *network
 					if (max < delta[i - 1]) {
 						max = delta[i - 1];
 						argmax = i;
-					}
+					} // if
+
 				} // for
 
 				double Skj = network->getBaseStockLevelAtRetailer(argmax, j);
@@ -132,10 +134,12 @@ int BasestockInitializationAlgorithm::run(TwoEchelonDistributionNetwork *network
 				if (betaJ >= (*targetAggregateFillRates)[j - 1]) {
 					break;
 				} // if
-			} // while
-		} // if
-	} // for
 
+			} // while
+
+		} // if
+
+	} // for
 
 	return result;
 }

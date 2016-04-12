@@ -6,13 +6,14 @@ GreedyAlgorithm::GreedyAlgorithm() {
 } // GreedyAlgorithm
 
 
-GreedyAlgorithm::GreedyAlgorithm(bool USE_MULTI_INCREMENT, int MULTI_INCREMENT_MAX_PRODUCTS, double MULTI_INCREMENT_MIN_EBO, bool USE_GRAVES, double BO_CUT_OFF, double APPROX) {
+GreedyAlgorithm::GreedyAlgorithm(bool USE_MULTI_INCREMENT, int MULTI_INCREMENT_MAX_PRODUCTS, double MULTI_INCREMENT_MIN_EBO, bool USE_GRAVES, double BO_CUT_OFF, double APPROX, double INCREMENT) {
 	this->USE_MULTI_INCREMENT = USE_MULTI_INCREMENT;
 	this->MULTI_INCREMENT_MAX_PRODUCTS = MULTI_INCREMENT_MAX_PRODUCTS;
 	this->MULTI_INCREMENT_MIN_EBO = MULTI_INCREMENT_MIN_EBO;
 	this->USE_GRAVES = USE_GRAVES;
 	this->BO_CUT_OFF = BO_CUT_OFF;
 	this->APPROX = APPROX;
+	this->INCREMENT = INCREMENT;
 } // GreedyAlgorithm
 
 
@@ -740,7 +741,7 @@ int GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network, QLi
 
 						double SiX = 0.0;
 
-						double inc = 1.0;
+						double inc = INCREMENT;
 
 						if (l == 0) {
 							SiX = network->getBaseStockLevelAtWarehouse(k);
@@ -762,7 +763,7 @@ int GreedyAlgorithm::optimizeNetwork(TwoEchelonDistributionNetwork *network, QLi
 
 				double SiX = 0.0;
 
-				double inc = 1.0;
+				double inc = INCREMENT;
 
 				if (l == 0) {
 					SiX = network->getBaseStockLevelAtWarehouse(k);
@@ -875,7 +876,7 @@ double GreedyAlgorithm::calculateDeltaEBO(int product, int j, QList<double> *tar
 		double EBOlSplus1 = 0.0;
 
 		double SiX = 0.0;
-		double inc = 1.0;
+		double inc = INCREMENT;
 
 		if (j == 0) {
 			SiX = network->getBaseStockLevelAtWarehouse(product);

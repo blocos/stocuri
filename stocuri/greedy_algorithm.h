@@ -22,6 +22,7 @@ class GreedyAlgorithm {
 		bool USE_GRAVES;
 		double BO_CUT_OFF;
 		double APPROX;
+		double INCREMENT;
 
 		TwoEchelonDistributionNetwork *network;
 
@@ -65,7 +66,7 @@ class GreedyAlgorithm {
 
 	public:
 		GreedyAlgorithm();
-		GreedyAlgorithm(bool USE_MULTI_INCREMENT, int MULTI_INCREMENT_MAX_PRODUCTS, double MULTI_INCREMENT_MIN_EBO, bool USE_GRAVES, double BO_CUT_OFF, double APPROX);
+		GreedyAlgorithm(bool USE_MULTI_INCREMENT, int MULTI_INCREMENT_MAX_PRODUCTS, double MULTI_INCREMENT_MIN_EBO, bool USE_GRAVES, double BO_CUT_OFF, double APPROX, double INCREMENT);
 
 		~GreedyAlgorithm();
 
